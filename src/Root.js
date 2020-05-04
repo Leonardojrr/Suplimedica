@@ -8,9 +8,9 @@ function Root() {
     <Router>
       <WindowFrame />
       <Route exact path="/">
-        <Redirect to="/modules" />
+        <Redirect to="/module" />
       </Route>
-      <Route path="/modules">
+      <Route path="/module">
         <App />
       </Route>
     </Router>

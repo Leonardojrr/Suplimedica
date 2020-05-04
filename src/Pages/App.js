@@ -3,6 +3,13 @@ import "./App.css";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import Menu from "../components/Menu";
 
+//Modules imports
+import Inventory from "../Pages/module/Inventory";
+import Market from "../Pages/module/Market";
+import Provider from "../Pages/module/Provider";
+import Client from "../Pages/module/Client";
+import Permission from "../Pages/module/Permission";
+
 function App() {
   let match = useRouteMatch();
 
@@ -14,20 +21,25 @@ function App() {
           <Route exact path={`${match.url}/`}>
             <h1>Elije un modulo</h1>
           </Route>
-          <Route exact path={`${match.url}/inventario`}>
-            <h1>Inventario</h1>
+
+          <Route exact path={`${match.url}/inventory`}>
+            <Inventory />
           </Route>
-          <Route exact path={`${match.url}/mercado`}>
-            <h1>Compra</h1>
+
+          <Route exact path={`${match.url}/market`}>
+            <Market />
           </Route>
-          <Route exact path={`${match.url}/proveedores`}>
-            <h1>Proveedores</h1>
+
+          <Route exact path={`${match.url}/providers`}>
+            <Provider />
           </Route>
-          <Route exact path={`${match.url}/clientes`}>
-            <h1>Clientes</h1>
+
+          <Route exact path={`${match.url}/clients`}>
+            <Client />
           </Route>
-          <Route exact path={`${match.url}/permisos`}>
-            <h1>Permisos</h1>
+
+          <Route exact path={`${match.url}/permissions`}>
+            <Permission />
           </Route>
         </Switch>
       </div>

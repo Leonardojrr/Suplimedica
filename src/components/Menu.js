@@ -90,7 +90,7 @@ function Menu() {
         onClick={changeStateOfButtom}
         activeClassName="on"
         className="Menu-button"
-        to={`${match.url}/inventario`}
+        to={`${match.url}/inventory`}
       >
         <img draggable={false} src={icons.inventory.off} />
       </NavLink>
@@ -101,7 +101,7 @@ function Menu() {
         onClick={changeStateOfButtom}
         activeClassName="on"
         className="Menu-button"
-        to={`${match.url}/mercado`}
+        to={`${match.url}/market`}
       >
         <img draggable={false} src={icons.market.off} />
       </NavLink>
@@ -112,7 +112,7 @@ function Menu() {
         onClick={changeStateOfButtom}
         activeClassName="on"
         className="Menu-button"
-        to={`${match.url}/proveedores`}
+        to={`${match.url}/providers`}
       >
         <img draggable={false} src={icons.provider.off} />
       </NavLink>
@@ -123,7 +123,7 @@ function Menu() {
         onClick={changeStateOfButtom}
         activeClassName="on"
         className="Menu-button"
-        to={`${match.url}/clientes`}
+        to={`${match.url}/clients`}
       >
         <img draggable={false} src={icons.client.off} />
       </NavLink>
@@ -134,7 +134,7 @@ function Menu() {
         onClick={changeStateOfButtom}
         activeClassName="on"
         className="Menu-button"
-        to={`${match.url}/permisos`}
+        to={`${match.url}/permissions`}
       >
         <img draggable={false} src={icons.permission.off} />
       </NavLink>
