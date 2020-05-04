@@ -85,6 +85,7 @@ function Menu() {
   return (
     <div id="Menu-container">
       <NavLink
+        title="Inventario"
         draggable={false}
         id="inventory-module-button"
         onClick={changeStateOfButtom}
@@ -96,6 +97,7 @@ function Menu() {
       </NavLink>
 
       <NavLink
+        title="Mercado"
         draggable={false}
         id="market-module-button"
         onClick={changeStateOfButtom}
@@ -107,6 +109,7 @@ function Menu() {
       </NavLink>
 
       <NavLink
+        title="Proveedores"
         draggable={false}
         id="provider-module-button"
         onClick={changeStateOfButtom}
@@ -118,6 +121,7 @@ function Menu() {
       </NavLink>
 
       <NavLink
+        title="Clientes"
         draggable={false}
         id="client-module-button"
         onClick={changeStateOfButtom}
@@ -129,6 +133,7 @@ function Menu() {
       </NavLink>
 
       <NavLink
+        title="Permisos"
         draggable={false}
         id="permission-module-button"
         onClick={changeStateOfButtom}
