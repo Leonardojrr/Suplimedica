@@ -1,0 +1,67 @@
+#WindowFrame-container {
+  width: 100%;
+  height: 25px;
+  display: flex;
+  justify-content: flex-end;
+  background: #00e6ff;
+  -webkit-app-region: drag;
+}
+
+#WindowFrame-buttons-container {
+  width: 114px;
+  height: 100%;
+  display: flex;
+}
+
+.WindowFrame-button {
+  width: 38px;
+  height: 100%;
+  background-color: #00e6ff;
+  -webkit-app-region: no-drag;
+  cursor: pointer;
+}
+
+#minize {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#minize img {
+  width: 20px;
+  height: 16px;
+}
+
+#minize:hover {
+  background: #66f0ff;
+}
+
+#maximize {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#maximize img {
+  width: 20px;
+  height: 16px;
+}
+
+#maximize:hover {
+  background: #66f0ff;
+}
+
+#close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#close img {
+  width: 20px;
+  height: 16px;
+}
+
+#close:hover {
+  background: #ff6666;
+}
