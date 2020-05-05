@@ -12,13 +12,52 @@
 .module-header span {
   font-family: "Nunito";
   font-weight: bold;
-  font-size: 25px;
+  font-size: 28px;
   color: #00e6ff;
   margin-left: 50px;
+  user-select: none;
 }
 
-.module-header #a {
-  width: 20px;
-  height: 20px;
-  background: yellowgreen;
+.module-header-buttons-container {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-right: 20px;
+}
+
+.module-header-button {
+  height: 50px;
+  width: 50px;
+  margin-right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.module-header-button svg {
+  width: 30px;
+  height: 30px;
+  fill: #c3c3c3;
+
+  transition: 0.3s;
+}
+
+.module-header-button.on svg {
+  fill: #ffffff;
+}
+
+.module-header-button:hover {
+  background: #eeeaea;
+}
+
+.module-header-button.on {
+  background: #00e6ff;
+}
+
+.module-header-button.on:hover {
+  background: #63f0ff;
 }

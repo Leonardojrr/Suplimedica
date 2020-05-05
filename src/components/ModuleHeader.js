@@ -3,6 +3,7 @@ import "./ModuleHeader.css";
 
 function ModuleHeader(props) {
   let isHide = false;
+
   function a() {
     if (isHide) {
       document.getElementById("inventory-panel-container").className = "show";
@@ -14,10 +15,10 @@ function ModuleHeader(props) {
       isHide = true;
     }
   }
+
   return (
     <div className="module-header">
       <span>{props.title.toUpperCase()}</span>
-      <div id="a" onClick={a}></div>
       <div className="module-header-buttons-container">{props.children}</div>
     </div>
   );
