@@ -5,6 +5,7 @@
   justify-content: flex-end;
   background: #00e6ff;
   -webkit-app-region: drag;
+  z-index: 100;
 }
 
 #WindowFrame-buttons-container {
