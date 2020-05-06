@@ -25,7 +25,7 @@ const Buy = (props) => {
                     </div>
                 ) : 
                 (
-                    <div>
+                    <div className={classes.products}>
                         Select a provider
                     </div>
                 )

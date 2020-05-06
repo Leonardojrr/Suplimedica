@@ -4,17 +4,21 @@
 
 .content {
     display: flex;
+    height: 80%;
     flex-direction: row;
 }
 
 .providers {
     width: 30%;
+    box-shadow: 0px 0px 1px grey;
 }
 
 .products {
     width: 35%;
+    box-shadow: 0px 0px 1px grey;
 }
 
 .details {
     width: 35%;
+    box-shadow: 0px 0px 1px grey;
 }
