@@ -4,24 +4,24 @@ import "./Menu.css";
 
 let icons = {
   inventory: {
-    on: require("../assets/Menu/inventory-icon-on.svg"),
-    off: require("../assets/Menu/inventory-icon-off.svg"),
+    on: require("../../assets/Menu/inventory-icon-on.svg"),
+    off: require("../../assets/Menu/inventory-icon-off.svg"),
   },
   market: {
-    on: require("../assets/Menu/market-icon-on.svg"),
-    off: require("../assets/Menu/market-icon-off.svg"),
+    on: require("../../assets/Menu/market-icon-on.svg"),
+    off: require("../../assets/Menu/market-icon-off.svg"),
   },
   provider: {
-    on: require("../assets/Menu/provider-icon-on.svg"),
-    off: require("../assets/Menu/provider-icon-off.svg"),
+    on: require("../../assets/Menu/provider-icon-on.svg"),
+    off: require("../../assets/Menu/provider-icon-off.svg"),
   },
   client: {
-    on: require("../assets/Menu/client-icon-on.svg"),
-    off: require("../assets/Menu/client-icon-off.svg"),
+    on: require("../../assets/Menu/client-icon-on.svg"),
+    off: require("../../assets/Menu/client-icon-off.svg"),
   },
   permission: {
-    on: require("../assets/Menu/permission-icon-on.svg"),
-    off: require("../assets/Menu/permission-icon-off.svg"),
+    on: require("../../assets/Menu/permission-icon-on.svg"),
+    off: require("../../assets/Menu/permission-icon-off.svg"),
   },
 };
 

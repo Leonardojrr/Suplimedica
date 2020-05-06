@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
-import Menu from "../components/Menu";
+import Menu from "../components/General/Menu";
 
 //Modules imports
 import Inventory from "../Pages/module/Inventory";

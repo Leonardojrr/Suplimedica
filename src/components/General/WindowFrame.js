@@ -8,19 +8,19 @@ function WindowFrame() {
         <div id="minize" className="WindowFrame-button">
           <img
             draggable="false"
-            src={require("../assets/WindowFrame/minimize.svg")}
+            src={require("../../assets/WindowFrame/minimize.svg")}
           />
         </div>
         <div id="maximize" className="WindowFrame-button">
           <img
             draggable="false"
-            src={require("../assets/WindowFrame/maximize.svg")}
+            src={require("../../assets/WindowFrame/maximize.svg")}
           />
         </div>
         <div id="close" className="WindowFrame-button">
           <img
             draggable="false"
-            src={require("../assets/WindowFrame/close.svg")}
+            src={require("../../assets/WindowFrame/close.svg")}
           />
         </div>
       </div>

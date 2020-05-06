@@ -1,4 +1,5 @@
 #inventory-module-container {
+  position: relative;
   display: flex;
   flex: 1 1 auto;
 }
@@ -25,6 +26,12 @@
   z-index: 5;
 }
 
+#inventory-modal-container {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
 /*Animations*/
 
 #inventory-panel-container.hide {

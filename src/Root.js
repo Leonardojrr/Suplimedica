@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import App from "./Pages/App";
-import WindowFrame from "../src/components/WindowFrame";
+import WindowFrame from "../src/components/General/WindowFrame";
 
 function Root() {
   return (

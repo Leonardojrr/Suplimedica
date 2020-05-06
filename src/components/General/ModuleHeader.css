@@ -27,6 +27,7 @@
 }
 
 .module-header-button {
+  position: relative;
   height: 50px;
   width: 50px;
   margin-right: 30px;
@@ -36,6 +37,14 @@
   border-radius: 50%;
   cursor: pointer;
   transition: 0.3s;
+}
+
+.header-button-clickable-area {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 6;
+  background: transparent;
 }
 
 .module-header-button svg {
