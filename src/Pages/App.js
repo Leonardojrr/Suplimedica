@@ -5,7 +5,7 @@ import Menu from "../components/Menu";
 
 //Modules imports
 import Inventory from "../Pages/module/Inventory";
-import Market from "../Pages/module/Market";
+import Market from "./module/Market/Market";
 import Provider from "../Pages/module/Provider";
 import Client from "../Pages/module/Client";
 import Permission from "../Pages/module/Permission";
