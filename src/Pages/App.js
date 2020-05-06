@@ -9,6 +9,7 @@ import Market from "./module/Market/Market";
 import Provider from "../Pages/module/Provider";
 import Client from "../Pages/module/Client";
 import Permission from "../Pages/module/Permission";
+import Buy from "./module/Buy/Buy";
 
 function App() {
   let match = useRouteMatch();
@@ -41,6 +42,11 @@ function App() {
           <Route exact path={`${match.url}/permissions`}>
             <Permission />
           </Route>
+
+          <Route exact path={`${match.url}/market/buy`}>
+            <Buy />
+          </Route>
+
         </Switch>
       </div>
     </div>

@@ -1,0 +1,20 @@
+.container {
+    width: 100%;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+}
+
+.supliers {
+    width: 30%;
+}
+
+.products {
+    width: 35%;
+}
+
+.details {
+    width: 35%;
+}
