@@ -1,0 +1,44 @@
+#inventory-module-container {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+#inventory-panel-container {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  transition: 0.4s;
+}
+
+#inventory-list-container {
+  display: flex;
+  flex-flow: column;
+  flex: 1 1 auto;
+}
+
+#inventory-finder-container {
+  display: flex;
+  flex-flow: column;
+  overflow: hidden;
+  box-shadow: -3px 0px 6px 0px rgba(0, 0, 0, 0.16);
+  transition: 0.4s;
+  z-index: 5;
+}
+
+/*Animations*/
+
+#inventory-panel-container.hide {
+  width: 100%;
+}
+
+#inventory-panel-container.show {
+  width: 70%;
+}
+
+#inventory-finder-container.hide {
+  width: 0;
+}
+
+#inventory-finder-container.show {
+  width: 30%;
+}
