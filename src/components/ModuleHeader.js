@@ -17,7 +17,6 @@ function ModuleHeader(props) {
   return (
     <div className="module-header">
       <span>{props.title.toUpperCase()}</span>
-      <div id="a" onClick={a}></div>
       <div className="module-header-buttons-container">{props.children}</div>
     </div>
   );
