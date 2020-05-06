@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.find {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background: none;
+    border: 1px solid #00e6ff;
+    color: #00e6ff;
+    font-weight: bold;
+    padding-left: 30px;
+    font-size: 25px;
+}
+
+.provider {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background: none;
+    border: 1px solid #00e6ff;
+    color: lightgrey;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.providerSelected {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 17px;
+    padding: 10px;
+    border: 1px solid #00e6ff;
+    font-weight: bold;
+    background: #00e6ff;
+    color: white;
+    outline: none;
+}
