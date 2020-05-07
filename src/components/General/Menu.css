@@ -21,12 +21,17 @@
   border-radius: 50%;
 }
 
-.Menu-button img {
+.Menu-button svg {
   width: 40px;
   height: 40px;
+  fill: white;
   user-select: none;
 }
 
-.on {
+.Menu-button.on {
   background: white;
+}
+
+.Menu-button.on svg {
+  fill: #00e6ff;
 }
