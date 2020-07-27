@@ -1,4 +1,4 @@
-#Menu-container {
+.container {
   width: 5.5%;
   height: 100%;
   max-width: 80px;
@@ -6,11 +6,11 @@
   display: flex;
   flex-flow: column;
   align-items: center;
-  background: #00e6ff;
+  background: #0F52AB;
   z-index: 100;
 }
 
-.Menu-button {
+.button {
   margin: 10px 0 10px 0;
   width: 55px;
   height: 55px;
@@ -21,17 +21,17 @@
   border-radius: 50%;
 }
 
-.Menu-button svg {
+.button svg {
   width: 40px;
   height: 40px;
   fill: white;
   user-select: none;
 }
 
-.Menu-button.on {
+.button.on {
   background: white;
 }
 
-.Menu-button.on svg {
-  fill: #00e6ff;
+.button.on svg {
+  fill: #0F52AB;
 }

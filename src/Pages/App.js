@@ -1,14 +1,14 @@
 import React from "react";
 import "./App.css";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
-import Menu from "../components/General/Menu";
+import Menu from "../components/General/Menu/Menu";
 
 //Modules imports
-import Inventory from "../Pages/module/Inventory";
+import Inventory from "./module/Inventory/Inventory";
 import Market from "./module/Market/Market";
-import Provider from "../Pages/module/Provider";
-import Client from "../Pages/module/Client";
-import Permission from "../Pages/module/Permission";
+import Provider from "./module/Provider/Provider";
+import Client from "./module/Client/Client";
+import Permission from "./module/Permission/Permission";
 
 function App() {
   let match = useRouteMatch();

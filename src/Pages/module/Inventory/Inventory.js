@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import ModuleHeader from "../../components/General/ModuleHeader";
-import InventoryList from "../../components/Inventory/InventoryList";
-import InventoryFinder from "../../components/Inventory/InventoryFinder";
+import ModuleHeader from "../../../components/General/ModuleHeader";
+import InventoryList from "../../../components/Inventory/InventoryList";
+import InventoryFinder from "../../../components/Inventory/InventoryFinder";
 
 import "./Inventory.css";
 

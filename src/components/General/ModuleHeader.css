@@ -13,7 +13,7 @@
   font-family: "Nunito";
   font-weight: bold;
   font-size: 28px;
-  color: #00e6ff;
+  color: #0F52AB;
   margin-left: 50px;
   user-select: none;
 }
@@ -64,7 +64,7 @@
 }
 
 .module-header-button.on {
-  background: #00e6ff;
+  background: #0F52AB;
 }
 
 .module-header-button.on:hover {

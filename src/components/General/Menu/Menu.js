@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useRouteMatch } from "react-router-dom";
-import "./Menu.css";
+import classes from "./Menu.module.css";
 
-let icons = {
-  inventory: require("../assets/Menu/inventory-icon.svg"),
-  market: require("../assets/Menu/market-icon.svg"),
-  provider: require("../assets/Menu/provider-icon.svg"),
-  client: require("../assets/Menu/client-icon.svg"),
-  permission: require("../assets/Menu/permission-icon.svg"),
-};
+import { ListAltOutlined } from '@material-ui/icons';
+import { BsClipboardData } from 'react-icons/bs'
+import { MdAttachMoney } from 'react-icons/md'
+import { TiGroup } from "react-icons/ti"
+import { BsLock } from "react-icons/bs"
 
-function Menu() {
+
+const Menu = (props) => {
   let match = useRouteMatch();
 
   return (
-    <div id="Menu-container">
+    <div id="Menu-container" className={classes.container}>
       <NavLink
         title="Inventario"
         draggable={false}
         id="inventory-module-button"
-        activeClassName="on"
-        className="Menu-button"
+        activeClassName={classes.on}
+        className={classes.button}
         to={`${match.url}/inventory`}
       >
-        <svg
+        <BsClipboardData />
+        {/* <svg
           draggable={false}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 42.54 48.81"
@@ -54,18 +54,19 @@ function Menu() {
               </g>
             </g>
           </g>
-        </svg>
+        </svg> */}
       </NavLink>
 
       <NavLink
         title="Mercado"
         draggable={false}
         id="market-module-button"
-        activeClassName="on"
-        className="Menu-button"
+        activeClassName={classes.on}
+        className={classes.button}
         to={`${match.url}/market`}
       >
-        <svg
+        < MdAttachMoney />
+        {/* <svg
           draggable={false}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 43.85 36.67"
@@ -100,18 +101,19 @@ function Menu() {
               />
             </g>
           </g>
-        </svg>
+        </svg> */}
       </NavLink>
 
       <NavLink
         title="Proveedores"
         draggable={false}
         id="provider-module-button"
-        activeClassName="on"
-        className="Menu-button"
+        activeClassName={classes.on}
+        className={classes.button}
         to={`${match.url}/providers`}
       >
-        <svg
+        < TiGroup />
+        {/* <svg
           draggable={false}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 56.54 37.99"
@@ -164,15 +166,15 @@ function Menu() {
               />
             </g>
           </g>
-        </svg>
+        </svg> */}
       </NavLink>
 
-      <NavLink
+      {/* <NavLink
         title="Clientes"
         draggable={false}
         id="client-module-button"
-        activeClassName="on"
-        className="Menu-button"
+        activeClassName={classes.on}
+        className={classes.button}
         to={`${match.url}/clients`}
       >
         <svg
@@ -223,17 +225,18 @@ function Menu() {
             </g>
           </g>
         </svg>
-      </NavLink>
+      </NavLink> */}
 
       <NavLink
         title="Permisos"
         draggable={false}
         id="permission-module-button"
-        activeClassName="on"
-        className="Menu-button"
+        activeClassName={classes.on}
+        className={classes.button}
         to={`${match.url}/permissions`}
       >
-        <svg
+        < BsLock />
+        {/* <svg
           draggable={false}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 37.12 37.13"
@@ -262,7 +265,7 @@ function Menu() {
               </g>
             </g>
           </g>
-        </svg>
+        </svg> */}
       </NavLink>
     </div>
   );
