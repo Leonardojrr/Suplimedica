@@ -1,0 +1,51 @@
+.ItemContainer {
+    width: 80%;
+    background-color: #0f52ab;
+    align-self: center;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 7px;
+    box-shadow: 0px 0px 5px grey;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Nunito";
+    margin-bottom: 10px;
+}
+
+.ItemData {
+    display: flex;
+    flex-direction: column;
+}
+
+.ItemTitle {
+    font-size: 20px;
+}
+
+.ItemCode {
+    font-size: 15px;
+}
+
+.AddItem {
+    width: 40px;
+    height: 40px;
+}
+
+.AddItemContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: transparent;
+}
+
+.AddItem:active {
+    color: rgb(219, 219, 219);
+}
+
+.AddItemContainer:active {
+    background-color: rgba(0, 0, 0, 0.2);
+}

@@ -1,4 +1,4 @@
-.container {
+.Container {
     width: 100%;
     height: 100%;
     display: flex;
@@ -6,7 +6,7 @@
     justify-content: space-evenly;
 }
 
-.buttonContainer {
+.ButtonContainer {
     width: 30%;
     height: 50%;
     display: flex;
@@ -21,12 +21,12 @@
     font-family: "Nunito";
 }
 
-.buttonActive:focus {
+.ButtonActive:focus {
     border: 2px solid #0f52ab;
     outline: none;
 }
 
-.icon {
+.Icon {
     width: 130px;
     height: 130px;
     display: block;
@@ -34,13 +34,13 @@
     border-radius: 50%;
 }
 
-.iconContainer {
+.IconContainer {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.descriptionContainer {
+.DescriptionContainer {
     display: flex;
     flex-flow: column;
     align-items: center;

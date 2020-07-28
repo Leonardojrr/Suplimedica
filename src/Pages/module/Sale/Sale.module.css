@@ -27,57 +27,56 @@
 .LeftContent {
     display: flex;
     flex-direction: column;
-    padding: 50px 25px;
+    padding: 0px 25px;
+    height: 100%;
+    /* background-color: turquoise; */
 }
 
 .LeftTitle {
     align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #0f52ab;
     text-transform: uppercase;
     font-weight: bold;
     font-family: "Nunito";
     font-size: 25px;
-    margin-bottom: 20px;
+    text-align: center;
+    height: 15%;
+    width: 100%;
+    /* background-color: violet; */
 }
 
-.InputContainer {
-    align-self: center;
+.Inputs {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    box-shadow: 0px 2px 6px 0px #0f52ab;
-    overflow: hidden;
-    border-radius: 7px;
-    width: 75%;
+    justify-content: center;
+    height: 25%;
+    flex-direction: column;
+    /* background-color: white; */
 }
 
-.Input {
-    width: 80%;
-}
-
-.Search {
+.BreakLineContainer {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50px;
-    width: 40px;
-    height: 40px;
-    margin-right: 5px;
-    /* border: 1px solid #0F52AB; */
-    background-color: transparent;
+    height: 2%;
+    width: 100%;
+    align-self: center;
 }
 
-.SearchIcon {
-    width: 30px;
-    height: 30px;
-    color: #0f52ab;
-}
-
-.Search:active {
+.BreakLine {
+    height: 1px;
+    width: 90%;
+    align-self: center;
     background-color: #0f52ab;
 }
 
-.SearchIcon:active {
-    color: white;
+.ItemsList {
+    display: flex;
+    height: 50%;
+    padding: 10px;
+    /* background-color: tomato; */
+    border-top-width: 1px;
+    border-top-color: #0f52ab;
 }

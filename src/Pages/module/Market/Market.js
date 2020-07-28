@@ -16,16 +16,16 @@ const Market = (props) => {
         <React.Fragment>
             <Switch>
                 <Route exact path={`${match.url}`}>
-                    <div className={classes.container}>
+                    <div className={classes.Container}>
                         <NavLink
                             to={`${match.url}/purchase`}
-                            className={`${classes.buttonContainer} ${classes.buttonActive}`}
+                            className={`${classes.ButtonContainer} ${classes.ButtonActive}`}
                         >
-                            <div className={classes.iconContainer}>
-                                <MdShoppingCart className={classes.icon} />
+                            <div className={classes.IconContainer}>
+                                <MdShoppingCart className={classes.Icon} />
                             </div>
 
-                            <div className={`${classes.descriptionContainer}`}>
+                            <div className={`${classes.DescriptionContainer}`}>
                                 <span
                                     style={{
                                         display: "block",
@@ -50,12 +50,12 @@ const Market = (props) => {
 
                         <NavLink
                             to={`${match.url}/sale`}
-                            className={`${classes.buttonContainer} ${classes.buttonActive}`}
+                            className={`${classes.ButtonContainer} ${classes.ButtonActive}`}
                         >
-                            <div className={classes.iconContainer}>
-                                <MdReceipt className={classes.icon} />
+                            <div className={classes.IconContainer}>
+                                <MdReceipt className={classes.Icon} />
                             </div>
-                            <div className={`${classes.descriptionContainer}`}>
+                            <div className={`${classes.DescriptionContainer}`}>
                                 <span
                                     style={{
                                         display: "block",
