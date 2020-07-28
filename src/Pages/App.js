@@ -11,40 +11,40 @@ import Client from "./module/Client/Client";
 import Permission from "./module/Permission/Permission";
 
 function App() {
-  let match = useRouteMatch();
+    let match = useRouteMatch();
 
-  return (
-    <div id="App">
-      <Menu />
-      <div id="module">
-        <Switch>
-          <Route exact path={`${match.url}/`}>
-            <h1>Elije un modulo</h1>
-          </Route>
+    return (
+        <div id="App">
+            <Menu />
+            <div id="module">
+                <Switch>
+                    <Route exact path={`${match.url}/`}>
+                        <h1>Elije un modulo</h1>
+                    </Route>
 
-          <Route exact path={`${match.url}/inventory`}>
-            <Inventory />
-          </Route>
+                    <Route exact path={`${match.url}/inventory`}>
+                        <Inventory />
+                    </Route>
 
-          <Route path={`${match.url}/market`}>
-            <Market />
-          </Route>
+                    <Route path={`${match.url}/market`}>
+                        <Market />
+                    </Route>
 
-          <Route exact path={`${match.url}/providers`}>
-            <Provider />
-          </Route>
+                    <Route exact path={`${match.url}/providers`}>
+                        <Provider />
+                    </Route>
 
-          <Route exact path={`${match.url}/clients`}>
-            <Client />
-          </Route>
+                    <Route exact path={`${match.url}/clients`}>
+                        <Client />
+                    </Route>
 
-          <Route exact path={`${match.url}/permissions`}>
-            <Permission />
-          </Route>
-        </Switch>
-      </div>
-    </div>
-  );
+                    <Route exact path={`${match.url}/permissions`}>
+                        <Permission />
+                    </Route>
+                </Switch>
+            </div>
+        </div>
+    );
 }
 
 export default App;

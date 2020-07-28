@@ -2,28 +2,27 @@ import React, { useState, useEffect } from "react";
 import { NavLink, useRouteMatch } from "react-router-dom";
 import classes from "./Menu.module.css";
 
-import { ListAltOutlined } from '@material-ui/icons';
-import { BsClipboardData } from 'react-icons/bs'
-import { MdAttachMoney } from 'react-icons/md'
-import { TiGroup } from "react-icons/ti"
-import { BsLock } from "react-icons/bs"
-
+import { ListAltOutlined } from "@material-ui/icons";
+import { BsClipboardData } from "react-icons/bs";
+import { MdAttachMoney } from "react-icons/md";
+import { TiGroup } from "react-icons/ti";
+import { BsLock } from "react-icons/bs";
 
 const Menu = (props) => {
-  let match = useRouteMatch();
+    let match = useRouteMatch();
 
-  return (
-    <div id="Menu-container" className={classes.container}>
-      <NavLink
-        title="Inventario"
-        draggable={false}
-        id="inventory-module-button"
-        activeClassName={classes.on}
-        className={classes.button}
-        to={`${match.url}/inventory`}
-      >
-        <BsClipboardData />
-        {/* <svg
+    return (
+        <div id="Menu-container" className={classes.container}>
+            <NavLink
+                title="Inventario"
+                draggable={false}
+                id="inventory-module-button"
+                activeClassName={classes.on}
+                className={classes.button}
+                to={`${match.url}/inventory`}
+            >
+                <BsClipboardData />
+                {/* <svg
           draggable={false}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 42.54 48.81"
@@ -55,18 +54,18 @@ const Menu = (props) => {
             </g>
           </g>
         </svg> */}
-      </NavLink>
+            </NavLink>
 
-      <NavLink
-        title="Mercado"
-        draggable={false}
-        id="market-module-button"
-        activeClassName={classes.on}
-        className={classes.button}
-        to={`${match.url}/market`}
-      >
-        < MdAttachMoney />
-        {/* <svg
+            <NavLink
+                title="Mercado"
+                draggable={false}
+                id="market-module-button"
+                activeClassName={classes.on}
+                className={classes.button}
+                to={`${match.url}/market`}
+            >
+                <MdAttachMoney />
+                {/* <svg
           draggable={false}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 43.85 36.67"
@@ -102,18 +101,18 @@ const Menu = (props) => {
             </g>
           </g>
         </svg> */}
-      </NavLink>
+            </NavLink>
 
-      <NavLink
-        title="Proveedores"
-        draggable={false}
-        id="provider-module-button"
-        activeClassName={classes.on}
-        className={classes.button}
-        to={`${match.url}/providers`}
-      >
-        < TiGroup />
-        {/* <svg
+            <NavLink
+                title="Proveedores"
+                draggable={false}
+                id="provider-module-button"
+                activeClassName={classes.on}
+                className={classes.button}
+                to={`${match.url}/providers`}
+            >
+                <TiGroup />
+                {/* <svg
           draggable={false}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 56.54 37.99"
@@ -167,9 +166,9 @@ const Menu = (props) => {
             </g>
           </g>
         </svg> */}
-      </NavLink>
+            </NavLink>
 
-      {/* <NavLink
+            {/* <NavLink
         title="Clientes"
         draggable={false}
         id="client-module-button"
@@ -227,16 +226,16 @@ const Menu = (props) => {
         </svg>
       </NavLink> */}
 
-      <NavLink
-        title="Permisos"
-        draggable={false}
-        id="permission-module-button"
-        activeClassName={classes.on}
-        className={classes.button}
-        to={`${match.url}/permissions`}
-      >
-        < BsLock />
-        {/* <svg
+            <NavLink
+                title="Permisos"
+                draggable={false}
+                id="permission-module-button"
+                activeClassName={classes.on}
+                className={classes.button}
+                to={`${match.url}/permissions`}
+            >
+                <BsLock />
+                {/* <svg
           draggable={false}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 37.12 37.13"
@@ -266,9 +265,9 @@ const Menu = (props) => {
             </g>
           </g>
         </svg> */}
-      </NavLink>
-    </div>
-  );
-}
+            </NavLink>
+        </div>
+    );
+};
 
 export default Menu;

@@ -4,17 +4,17 @@ import App from "./Pages/App";
 import WindowFrame from "../src/components/General/WindowFrame";
 
 function Root() {
-  return (
-    <Router>
-      <WindowFrame />
-      <Route exact path="/">
-        <Redirect to="/module" />
-      </Route>
-      <Route path="/module">
-        <App />
-      </Route>
-    </Router>
-  );
+    return (
+        <Router>
+            <WindowFrame />
+            <Route exact path="/">
+                <Redirect to="/module" />
+            </Route>
+            <Route path="/module">
+                <App />
+            </Route>
+        </Router>
+    );
 }
 
 export default Root;
