@@ -1,15 +1,20 @@
 import React, { useState } from "react";
-import ModuleHeader from "../../../components/General/ModuleHeader";
 import classes from "./Sale.module.css";
-import { Input } from "../../../Util/Input/Input";
 import { SearchInput } from "./SearchInput/SearchInput";
 import { AddItemList } from "./AddItemList/AddItemList";
-
-import { MdSearch } from "react-icons/md";
 
 const Sale = (props) => {
     const [nameValue, setNameValue] = useState("");
     const [codeValue, setCodeValue] = useState("");
+
+    const list = [
+        { id: 1, name: "Gazas" },
+        { id: 2, name: "Guantes" },
+        { id: 3, name: "Mascarillas" },
+        { id: 4, name: "Jeringas" },
+        { id: 5, name: "Yelco" },
+        { id: 6, name: "Codera" },
+    ];
 
     const onFilterByName = (name) => {
         setNameValue(name);
@@ -19,8 +24,16 @@ const Sale = (props) => {
         setCodeValue(code);
     };
 
-    const onAddSaleProduct = (data) => {
-        console.log(data);
+    let itemsSelected = [{ id: 1, name: "Gazas" }];
+
+    const onAddItem = (itemSelected) => {
+        if (
+            itemsSelected.filter((item) => item.id === itemSelected.id)
+                .length <= 0
+        ) {
+            itemsSelected.push(itemSelected);
+        }
+        console.log(itemsSelected);
     };
 
     return (
@@ -30,6 +43,9 @@ const Sale = (props) => {
                 <div className={classes.LeftContent}>
                     <div className={classes.LeftTitle}>
                         Búsqueda de productos
+                    </div>
+                    <div className={classes.BreakLineContainer}>
+                        <div className={classes.BreakLine} />
                     </div>
                     <div className={classes.Inputs}>
                         <SearchInput
@@ -49,7 +65,12 @@ const Sale = (props) => {
                         <div className={classes.BreakLine} />
                     </div>
                     <div className={classes.ItemsList}>
-                        <AddItemList />
+                        <AddItemList
+                            nameValue={nameValue}
+                            codeValue={codeValue}
+                            onAddItem={onAddItem}
+                            items={list}
+                        />
                     </div>
                 </div>
             </div>

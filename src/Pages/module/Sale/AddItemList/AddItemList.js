@@ -3,39 +3,39 @@ import React, { useState, useEffect } from "react";
 import classes from "./AddItemList.module.css";
 import { Item } from "./Item/Item";
 
-import { MdAdd } from "react-icons/md";
+// import { MdAdd } from "react-icons/md";
 
 export const AddItemList = (props) => {
-    const { nameValue, codeValue, onAdd } = props;
+    const { items = [], onAddItem } = props;
+    const [nameValue, setNameValue] = useState(props.nameValue);
+    const [codeValue, setCodeValue] = useState(props.codeValue);
 
-    const list = [
-        { id: 1, name: "Gazas" },
-        { id: 2, name: "Guantes" },
-        { id: 3, name: "Mascarillas" },
-        { id: 4, name: "Jeringas" },
-    ];
+    useEffect(() => {
+        setNameValue(props.nameValue);
+    }, [props.nameValue]);
+
+    useEffect(() => {
+        setCodeValue(props.codeValue);
+    }, [props.codeValue]);
+
+    let itemsList = [];
+
+    items.map((item) => {
+        if (
+            item.name.toLowerCase().includes(nameValue.toLowerCase()) &&
+            item.id.toString().includes(codeValue)
+        ) {
+            return itemsList.push(
+                <Item key={item.id} item={item} onAddItem={onAddItem} />
+            );
+        }
+    });
+
+    const itemNotFound = <div>No se han encontrado coincidenias</div>;
 
     return (
         <div className={classes.ItemsContainer}>
-            <Item nameValue={"prod 1"} codeValue={"123456"} />
-            <Item nameValue={"prod 1"} codeValue={"123456"} />
-            <Item nameValue={"prod 1"} codeValue={"123456"} />
-            <Item nameValue={"prod 1"} codeValue={"123456"} />
-            <Item nameValue={"prod 1"} codeValue={"123456"} />
-            <Item nameValue={"prod 1"} codeValue={"123456"} />
-            <Item nameValue={"prod 1"} codeValue={"123456"} />
-            <Item nameValue={"prod 1"} codeValue={"123456"} />
-            <Item nameValue={"prod 1"} codeValue={"123456"} />
-            <Item nameValue={"prod 1"} codeValue={"123456"} />
-            <Item nameValue={"prod 1"} codeValue={"123456"} />
-            <Item nameValue={"prod 1"} codeValue={"123456"} />
-            <Item nameValue={"prod 1"} codeValue={"123456"} />
-            <Item nameValue={"prod 1"} codeValue={"123456"} />
-            <Item nameValue={"prod 1"} codeValue={"123456"} />
-            <Item nameValue={"prod 1"} codeValue={"123456"} />
-            <Item nameValue={"prod 1"} codeValue={"123456"} />
-            <Item nameValue={"prod 1"} codeValue={"123456"} />
-            <Item nameValue={"prod 1"} codeValue={"123456"} />
+            {itemsList.length > 0 ? itemsList : itemNotFound}
         </div>
     );
 };

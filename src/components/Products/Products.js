@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./Products.module.css";
 
 const Products = (props) => {
-    const { selectProv } = props;
-    const [selectedId, setSelectedId] = useState(null);
+    // const { selectProv } = props;
+    // const [selectedId, setSelectedId] = useState(null);
 
     const list = [
         { id: 1, name: "Gazas" },

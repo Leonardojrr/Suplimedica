@@ -1,19 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import classes from "./Item.module.css";
 
 import { MdAdd } from "react-icons/md";
 
 export const Item = (props) => {
-    const { nameValue, codeValue, onAdd } = props;
+    const { item, onAddItem = () => {} } = props;
 
     return (
         <div className={classes.ItemContainer}>
             <div className={classes.ItemData}>
-                <div className={classes.ItemTitle}>{nameValue}</div>
-                <div className={classes.ItemCode}>{codeValue}</div>
+                <div className={classes.ItemTitle}>{item.name}</div>
+                <div className={classes.ItemCode}>{item.id}</div>
             </div>
-            <div className={classes.AddItemContainer} onClick={() => {}}>
+            <div
+                className={classes.AddItemContainer}
+                onClick={() => {
+                    onAddItem(item);
+                }}
+            >
                 <MdAdd className={classes.AddItem} />
             </div>
         </div>

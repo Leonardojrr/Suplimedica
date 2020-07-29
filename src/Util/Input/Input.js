@@ -32,8 +32,8 @@ export const Input = (props) => {
         position: "absolute",
         zIndex: 90,
         left: 10,
-        top: !focused && inputValue == "" ? "20%" : 0,
-        fontSize: !focused && inputValue == "" ? 20 : 12,
+        top: !focused && inputValue === "" ? "20%" : 0,
+        fontSize: !focused && inputValue === "" ? 20 : 12,
         color: placeholderTextColor ? placeholderTextColor : "rgba(0,0,0,0.6)",
     };
 
