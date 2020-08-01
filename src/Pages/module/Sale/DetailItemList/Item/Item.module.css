@@ -1,0 +1,121 @@
+.ItemContainer {
+    width: 80%;
+    background-color: #0f52ab;
+    align-self: center;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 7px;
+    box-shadow: 0px 0px 5px grey;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    align-items: center;
+    font-family: "Nunito";
+    margin-bottom: 10px;
+}
+
+.ItemData,
+.ItemCuantity {
+    display: flex;
+    flex-direction: column;
+}
+
+.ItemData {
+    width: 55%;
+}
+
+.ItemCuantity {
+    justify-content: flex-end;
+    width: 35%;
+}
+
+.ItemTitle {
+    font-size: 20px;
+}
+
+.ItemPrice {
+    font-size: 15px;
+}
+
+.AddItem {
+    width: 40px;
+    height: 40px;
+}
+
+.AddItemContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: transparent;
+}
+
+.AddItem:active {
+    color: rgb(219, 219, 219);
+}
+
+.AddItemContainer:active {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.InputContainer {
+    display: flex;
+    align-items: center;
+    height: 35px;
+    /* background-color: lightskyblue; */
+}
+
+.Input {
+    width: 40px;
+    height: 25px;
+    padding-left: 5px;
+    padding-right: 5px;
+    outline: none;
+    border: none;
+    text-align: end;
+}
+
+.PlusButtonContainer,
+.LessButtonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 27px;
+    width: 27px;
+    background-color: lightgray;
+    user-select: none;
+}
+
+/* .LessButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 26px;
+    width: 26px;
+    background-color: lightgray;
+} */
+
+.PlusButton,
+.LessButton {
+    width: 20px;
+    height: 20px;
+    font-weight: bold;
+}
+
+.DeleteButton {
+    width: 30px;
+    height: 30px;
+    position: relative;
+}
+
+.DeleteButtonContainer {
+    background-color: maroon;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+}

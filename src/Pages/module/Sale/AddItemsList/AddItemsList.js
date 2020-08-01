@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import classes from "./AddItemList.module.css";
+import classes from "./AddItemsList.module.css";
 import { Item } from "./Item/Item";
 
 // import { MdAdd } from "react-icons/md";
 
-export const AddItemList = (props) => {
+export const AddItemsList = (props) => {
     const { items = [], onAddItem } = props;
     const [nameValue, setNameValue] = useState(props.nameValue);
     const [codeValue, setCodeValue] = useState(props.codeValue);
@@ -31,7 +31,7 @@ export const AddItemList = (props) => {
         }
     });
 
-    const itemNotFound = <div>No se han encontrado coincidenias</div>;
+    const itemNotFound = <div>No se han encontrado coincidencias</div>;
 
     return (
         <div className={classes.ItemsContainer}>
