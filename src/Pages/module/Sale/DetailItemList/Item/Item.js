@@ -9,7 +9,7 @@ import { MdClose } from "react-icons/md";
 // import { Input } from "../../../../../Util/Input/Input";
 
 export const Item = (props) => {
-    const { item, onChange } = props;
+    const { item, onChange, onRemove } = props;
     const [inputValue, setInputValue] = useState(1);
 
     const plusInputValue = () => {
@@ -72,7 +72,10 @@ export const Item = (props) => {
                 </div>
                 <div>disponible: {item.cuantity}</div>
             </div>
-            <div className={classes.DeleteButtonContainer}>
+            <div
+                className={classes.DeleteButtonContainer}
+                onClick={() => onRemove(item.id)}
+            >
                 <MdClose className={classes.DeleteButton} />
             </div>
         </div>

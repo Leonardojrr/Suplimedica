@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./Sale.module.css";
 import { SearchInput } from "./SearchInput/SearchInput";
 import { AddItemsList } from "./AddItemsList/AddItemsList";
@@ -13,16 +13,16 @@ const Sale = (props) => {
         { id: 4, name: "Jeringas", price: 0.5, cuantity: 10 },
         { id: 5, name: "Yelco", price: 4, cuantity: 10 },
         { id: 6, name: "Codera", price: 10, cuantity: 10 },
-        { id: 12, name: "Guantes", price: 1.7, cuantity: 10 },
-        { id: 13, name: "Mascarillas", price: 4, cuantity: 10 },
-        { id: 14, name: "Jeringas", price: 0.5, cuantity: 10 },
-        { id: 15, name: "Yelco", price: 4, cuantity: 10 },
-        { id: 16, name: "Codera", price: 10, cuantity: 10 },
+        { id: 12, name: "Andadera", price: 1.7, cuantity: 10 },
+        { id: 13, name: "Escabel", price: 4, cuantity: 10 },
+        { id: 14, name: "Traqueotomo", price: 0.5, cuantity: 10 },
+        { id: 15, name: "Camilla", price: 4, cuantity: 10 },
+        { id: 16, name: "Gel antibacterial", price: 10, cuantity: 10 },
     ];
     const [nameValue, setNameValue] = useState("");
     const [codeValue, setCodeValue] = useState("");
     const [itemsSelected, setItemsSelected] = useState([]);
-    const [saleDetails, setSaleDetails] = useState([]);
+    // const [saleDetails, setSaleDetails] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
 
     const onFilterByName = (name) => {
@@ -34,33 +34,43 @@ const Sale = (props) => {
     };
 
     const onAddItem = (itemSelected) => {
-        console.log(itemSelected);
-        if (saleDetails.findIndex((item) => item.id == itemSelected.id) < 0) {
-            setSaleDetails((prevSaleDetails) => [
-                ...prevSaleDetails,
-                { id: itemSelected.id, price: itemSelected.price, cuantity: 1 },
+        if (itemsSelected.findIndex((item) => item.id == itemSelected.id) < 0) {
+            setItemsSelected((prevItems) => [
+                ...prevItems,
+                { ...itemSelected, selling: 1 },
             ]);
         }
-        if (
-            itemsSelected.filter((item) => item.id === itemSelected.id)
-                .length <= 0
-        ) {
-            setItemsSelected((actualItems) => [...actualItems, itemSelected]);
-        }
     };
 
-    const onChangeSaleDetailItem = (id, value) => {
-        let saleDetailsCopy = [...saleDetails];
-        let itemIndex = saleDetails.findIndex((item) => item.id == id);
-        const copy = Object.assign({}, saleDetails[itemIndex]);
-        saleDetailsCopy[itemIndex] = {
+    const onRemoveItem = (itemId) => {
+        let newitemsArray = itemsSelected.filter((item) => item.id != itemId);
+        setItemsSelected([...newitemsArray]);
+    };
+
+    const onChangeItem = (id, value) => {
+        let itemsSelectedCopy = [...itemsSelected];
+        let itemIndex = itemsSelected.findIndex((item) => item.id == id);
+        const copy = Object.assign({}, itemsSelected[itemIndex]);
+        itemsSelectedCopy[itemIndex] = {
             ...copy,
-            cuantity: value,
+            selling: value,
         };
-        setSaleDetails(saleDetailsCopy);
+        setItemsSelected(itemsSelectedCopy);
     };
 
-    console.log("sale details", saleDetails);
+    useEffect(() => {
+        let total = 0;
+
+        itemsSelected.map((item) => {
+            return (total += item.price * item.selling);
+        });
+
+        setTotalPrice(total.toFixed(2));
+    }, [itemsSelected]);
+
+    console.log(totalPrice);
+
+    console.log("sale details", itemsSelected);
 
     return (
         <div className={classes.Container}>
@@ -111,8 +121,8 @@ const Sale = (props) => {
                             <div className={classes.ItemsAddedList}>
                                 <DetailItemsList
                                     // detailHandler={setSaleDetailsHandler}
-                                    onChangeHandler={onChangeSaleDetailItem}
-                                    // onAddItem={onAddItem}
+                                    onChangeHandler={onChangeItem}
+                                    onRemoveItem={onRemoveItem}
                                     // saleDetails={saleDetails}
                                     items={itemsSelected}
                                 />
