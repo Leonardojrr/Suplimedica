@@ -1,0 +1,33 @@
+.ProviderContainer {
+    width: 80%;
+    background-color: #0f52ab;
+    align-self: center;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 7px;
+    box-shadow: 0px 0px 5px grey;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Nunito";
+    margin-bottom: 10px;
+}
+
+.ProviderContainer:active {
+    background-color: #0d4894;
+    color: rgb(212, 212, 212);
+}
+
+.ProviderData {
+    display: flex;
+    flex-direction: column;
+}
+
+.ProviderTitle {
+    font-size: 20px;
+}
+
+.ProviderCode {
+    font-size: 15px;
+}

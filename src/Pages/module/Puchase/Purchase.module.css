@@ -1,24 +1,286 @@
-.container {
+.Container {
     width: 100%;
+    height: 100%;
+    user-select: none;
 }
 
-.content {
+.Content {
+    width: 100%;
+    height: 90%;
     display: flex;
-    height: 80%;
     flex-direction: row;
+    /* background-color: lightcoral; */
 }
 
-.providers {
+.Header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    font-family: "Nunito";
+    font-weight: bold;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #0f52ab;
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+}
+
+.LeftContainer {
+    display: inline-block;
     width: 30%;
-    box-shadow: 0px 0px 1px grey;
+    height: 100%;
+    border-right: 2px solid rgba(0, 0, 0, 0.16);
 }
 
-.products {
-    width: 35%;
-    box-shadow: 0px 0px 1px grey;
+.RightContainer {
+    display: inline-block;
+    width: 70%;
+    height: 100%;
+    /* background-color: lawngreen; */
 }
 
-.details {
-    width: 35%;
-    box-shadow: 0px 0px 1px grey;
+.LeftContent {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 25px;
+    height: 100%;
+    /* background-color: turquoise; */
+}
+
+.LeftTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0f52ab;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: "Nunito";
+    font-size: 25px;
+    height: 10%;
+    margin-top: 20px;
+    width: 100%;
+    /* background-color: violet; */
+}
+
+.Inputs {
+    display: flex;
+    justify-content: center;
+    height: 25%;
+    flex-direction: column;
+    /* background-color: violet; */
+}
+
+.BreakLineContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2%;
+    width: 100%;
+    align-self: center;
+}
+
+.BreakLine {
+    height: 1px;
+    width: 90%;
+    align-self: center;
+    background-color: #0f52ab;
+    box-shadow: 0px 0px 5px 0px rgb(177, 177, 177);
+}
+
+.ItemsList {
+    display: flex;
+    height: 50%;
+    padding: 10px;
+    /* background-color: tomato; */
+    border-top-width: 1px;
+    border-top-color: #0f52ab;
+}
+
+.RightTitle {
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0f52ab;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: "Nunito";
+    font-size: 25px;
+    text-align: center;
+    height: 10%;
+    margin-top: 20px;
+    width: 100%;
+    /* background-color: violet; */
+}
+
+.RightContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    /* padding: 0px 25px; */
+    height: 85%;
+    /* background-color: turquoise; */
+}
+
+.ItemsAddedContainer {
+    width: 55%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: lightblue; */
+}
+
+.SaleDetailContainer {
+    width: 45%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: initial;
+    /* background-color: lightslategrey; */
+}
+
+.ItemsAddedList {
+    width: 80%;
+    height: 80%;
+    /* background-color: lime; */
+    overflow: hidden;
+    padding-bottom: 18px;
+}
+
+.SaleDetail {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 80%;
+    height: 60%;
+    margin-top: 10%;
+    border-radius: 7px;
+    border: 1px solid lightgray;
+    box-shadow: 0 0 5px gray;
+    /* background-color: lime; */
+    overflow: hidden;
+    padding: 20px;
+}
+
+.ProviderContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 85%;
+}
+
+.ProviderDataContainer {
+    display: flex;
+    justify-content: center;
+    width: 91%;
+    padding: 40px;
+    height: 65%;
+    /* background-color: grey; */
+}
+
+.ProviderData {
+    width: 72%;
+    padding: 40px;
+    height: 65%;
+    color: #0f52ab;
+    border-radius: 7px;
+    border: 1px solid lightgray;
+    box-shadow: 0 0 5px grey;
+    /* background-color: black; */
+}
+
+.ProviderFieldDetail {
+    font-size: 30px;
+    font-weight: bold;
+    font-family: "Nunito";
+}
+
+.ContinueButtonContainer {
+    width: 98%;
+    height: 20%;
+    background-color: rgb(15, 82, 171, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ContinueButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 50px;
+    background-color: #0f52ab;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: "Nunito";
+    text-transform: uppercase;
+    border-radius: 7px;
+    color: white;
+    box-shadow: 0 0 5px grey;
+}
+
+.ContinueButton:active {
+    background-color: #0d4894;
+    color: rgb(212, 212, 212);
+}
+
+.BackButtonContainer {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: red; */
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+}
+
+.BackButton {
+    width: 40px;
+    height: 40px;
+    color: #0f52ab;
+}
+
+.BackButtonContainer:active {
+    background-color: rgba(160, 160, 160, 0.2);
+}
+
+.BackButton:active {
+    color: rgb(219, 219, 219);
+}
+
+.DetailProviderData,
+.DetailSaleTotal {
+    font-weight: bold;
+    font-size: 20px;
+    font-family: "Nunito";
+    color: #0f52ab;
+}
+
+.ConfirmSaleContainer {
+    font-family: "Nunito";
+    font-size: 30px;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 85%;
+    height: 10%;
+    border-radius: 7px;
+    margin-top: 10px;
+    padding: 10px;
+    box-shadow: 0 0 5px gray;
+    background-color: #0f52ab;
+    color: white;
+}
+
+.ConfirmSaleContainer:active {
+    background-color: #0d4894;
+    color: rgb(212, 212, 212);
 }

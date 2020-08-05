@@ -31,11 +31,3 @@
     height: 30px;
     color: #0f52ab;
 }
-
-.Search:active {
-    background-color: #0f52ab;
-}
-
-.SearchIcon:active {
-    color: white;
-}

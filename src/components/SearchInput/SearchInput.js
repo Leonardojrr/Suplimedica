@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./SearchInput.module.css";
 
-import { Input } from "../../../../Util/Input/Input";
+import { Input } from "../../Util/Input/Input";
 
 import { MdSearch } from "react-icons/md";
 

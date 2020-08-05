@@ -1,0 +1,35 @@
+.ProvidersContainer {
+    height: 280px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: "Nunito";
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.Container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+}
+
+.AddNewProvider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0f52ab;
+    margin-top: 20px;
+    height: 40px;
+    font-size: 20px;
+    color: white;
+    font-family: "Nunito";
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+.AddNewProvider:active {
+    background-color: #0d4894;
+    color: rgb(212, 212, 212);
+}

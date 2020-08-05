@@ -1,33 +1,381 @@
-import React, { useState } from "react";
-import ModuleHeader from "../../../components/General/ModuleHeader";
+import React, { useState, useEffect } from "react";
 import classes from "./Purchase.module.css";
-import Providers from "../../../components/Providers/Providers";
-import Products from "../../../components/Products/Products";
+import { SearchInput } from "../../../components/SearchInput/SearchInput";
+import { AddItemsList } from "./AddItemsList/AddItemsList";
+import { DetailItemsList } from "./DetailItemList/DetailItemsList";
+import { ProvidersList } from "./SelectProvider/ProvidersList/ProvidersList";
+import { AddProviderModal } from "./AddProviderModal/AddProviderModal";
+
+import { MdArrowBack } from "react-icons/md";
 
 const Purchase = (props) => {
-    const [provider, setProvider] = useState(null);
+    const [providersList, setProvidersList] = useState([
+        { name: "Wisam Mozalbat", id: "V. 27.030.643" },
+        { name: "Leonardo Rodrigues", id: "V. 26.123.456" },
+        { name: "Carlos Suarez", id: "V. 25.234.567" },
+        { name: "Suplimedica", id: "J. 78.945.612-3" },
+        { name: "Wasim", id: "V. 30.030.643" },
+        { name: "Fadi", id: "V. 82.030.643" },
+    ]);
 
-    const selectProviderHandler = (provider) => {
-        setProvider(provider);
+    const list = [
+        { id: 1, name: "Gazas", price: 0.7, cuantity: 10 },
+        { id: 2, name: "Guantes", price: 1.7, cuantity: 10 },
+        { id: 3, name: "Mascarillas", price: 4, cuantity: 10 },
+        { id: 4, name: "Jeringas", price: 0.5, cuantity: 10 },
+        { id: 5, name: "Yelco", price: 4, cuantity: 10 },
+        { id: 6, name: "Codera", price: 10, cuantity: 10 },
+        { id: 12, name: "Andadera", price: 1.7, cuantity: 10 },
+        { id: 13, name: "Escabel", price: 4, cuantity: 10 },
+        { id: 14, name: "Traqueotomo", price: 0.5, cuantity: 10 },
+        { id: 15, name: "Camilla", price: 4, cuantity: 10 },
+        { id: 16, name: "Gel antibacterial", price: 10, cuantity: 10 },
+    ];
+
+    const [nameValue, setNameValue] = useState("");
+    const [codeValue, setCodeValue] = useState("");
+    const [providerNameValue, setProviderNameValue] = useState("");
+    const [providerIdValue, setProviderIdValue] = useState("");
+    const [itemsSelected, setItemsSelected] = useState([]);
+    const [providerSelected, setProviderSelected] = useState({});
+    const [providerConfirmed, setProviderConfirmed] = useState(false);
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    useEffect(() => {
+        let total = 0;
+
+        itemsSelected.map((item) => {
+            return (total += item.price * item.selling);
+        });
+
+        setTotalPrice(total.toFixed(2));
+    }, [itemsSelected]);
+
+    const onOpenAddProviderModal = () => {
+        setModalIsOpen(true);
     };
 
-    return (
-        <div className={classes.container}>
-            <ModuleHeader title="Compra" />
-            <div className={classes.content}>
-                <div className={classes.providers}>
-                    <Providers selectProv={selectProviderHandler} />
-                </div>
-                {provider ? (
-                    <div className={classes.products}>
-                        <Products />
+    const onCloseAddProviderModal = () => {
+        setModalIsOpen(false);
+    };
+
+    const onFilterByProviderName = (name) => {
+        setProviderNameValue(name);
+    };
+
+    const onFilterProviderId = (id) => {
+        setProviderIdValue(id);
+    };
+
+    const onFilterByName = (name) => {
+        setNameValue(name);
+    };
+
+    const onFilterByCode = (code) => {
+        setCodeValue(code);
+    };
+
+    const onSelectProvider = (provider) => {
+        setProviderSelected(provider);
+    };
+    const onConfirmProviderSelected = () => {
+        setProviderConfirmed(true);
+    };
+
+    const onAddNewProvider = (newProvider) => {
+        if (
+            providersList.findIndex(
+                (provider) => provider.id === newProvider.id
+            ) < 0
+        )
+            setProvidersList((prevProvidersList) => [
+                ...prevProvidersList,
+                newProvider,
+            ]);
+        else {
+            alert("Este proveedor ya existe!");
+        }
+    };
+
+    const onAddItem = (itemSelected) => {
+        if (
+            itemsSelected.findIndex((item) => item.id === itemSelected.id) < 0
+        ) {
+            setItemsSelected((prevItems) => [
+                ...prevItems,
+                { ...itemSelected, selling: 1 },
+            ]);
+        }
+    };
+
+    const onRemoveItem = (itemId) => {
+        let newitemsArray = itemsSelected.filter((item) => item.id !== itemId);
+        setItemsSelected([...newitemsArray]);
+    };
+
+    const onChangeItem = (id, value) => {
+        let itemsSelectedCopy = [...itemsSelected];
+        let itemIndex = itemsSelected.findIndex((item) => item.id === id);
+        const copy = Object.assign({}, itemsSelected[itemIndex]);
+        itemsSelectedCopy[itemIndex] = {
+            ...copy,
+            selling: value,
+        };
+        setItemsSelected(itemsSelectedCopy);
+    };
+
+    const onConfirmSale = () => {
+        console.log(
+            "sale done",
+            providerSelected,
+            (totalPrice * 1.16).toFixed(2)
+        );
+    };
+
+    let saleDetailComponents = null;
+    let selectProviderComponent = null;
+    let providerDetails = null;
+
+    if (providerSelected.name) {
+        providerDetails = (
+            <div className={classes.ProviderContent}>
+                <div className={classes.ProviderDataContainer}>
+                    <div className={classes.ProviderData}>
+                        <div
+                            className={classes.ProviderFieldDetail}
+                            style={{ fontSize: 40 }}
+                        >
+                            {providerSelected.name}
+                        </div>
+                        <div className={classes.ProviderFieldDetail}>
+                            {providerSelected.id.toLowerCase().startsWith("j")
+                                ? "RIF: " + providerSelected.id
+                                : "CI: " + providerSelected.id}
+                        </div>
+                        <div className={classes.ProviderFieldDetail}>
+                            {providerSelected.address
+                                ? "direccion: " + providerSelected.address
+                                : null}
+                        </div>
+                        <div className={classes.ProviderFieldDetail}>
+                            {providerSelected.number
+                                ? "numero: " + providerSelected.number
+                                : null}
+                        </div>
                     </div>
-                ) : (
-                    <div className={classes.products}>Select a provider</div>
-                )}
-                <div className={classes.details}>detalle</div>
+                </div>
+                <div className={classes.ContinueButtonContainer}>
+                    <div
+                        className={classes.ContinueButton}
+                        onClick={onConfirmProviderSelected}
+                    >
+                        continuar
+                    </div>
+                </div>
             </div>
-        </div>
+        );
+    }
+
+    let saleDate = new Date().toLocaleString();
+
+    if (!providerConfirmed) {
+        selectProviderComponent = (
+            <div className={classes.Content}>
+                <div className={classes.LeftContainer}>
+                    <div className={classes.LeftContent}>
+                        <div className={classes.LeftTitle}>
+                            Seleccione algun proveedor
+                        </div>
+                        <div className={classes.BreakLineContainer}>
+                            <div className={classes.BreakLine} />
+                        </div>
+                        <div className={classes.Inputs}>
+                            <SearchInput
+                                label={"Nombre"}
+                                onChange={(value) => {
+                                    onFilterByProviderName(value);
+                                }}
+                            />
+                            <SearchInput
+                                label={"Identificación"}
+                                onChange={(value) => {
+                                    onFilterProviderId(value);
+                                }}
+                            />
+                        </div>
+                        <div className={classes.BreakLineContainer}>
+                            <div className={classes.BreakLine} />
+                        </div>
+                        <div className={classes.ItemsList}>
+                            <ProvidersList
+                                onModalOpen={onOpenAddProviderModal}
+                                nameValue={providerNameValue}
+                                idValue={providerIdValue}
+                                onSelectProvider={onSelectProvider}
+                                providers={providersList}
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div className={classes.RightContainer}>
+                    <div className={classes.RightTitle}>
+                        datos del proveedor
+                    </div>
+                    <div className={classes.BreakLineContainer}>
+                        <div className={classes.BreakLine} />
+                    </div>
+                    {providerDetails}
+                </div>
+            </div>
+        );
+    }
+
+    // console.log();
+
+    if (providerConfirmed) {
+        saleDetailComponents = (
+            <div className={classes.Content}>
+                <div className={classes.LeftContainer}>
+                    <div className={classes.LeftContent}>
+                        <div className={classes.LeftTitle}>
+                            Búsqueda de productos
+                        </div>
+                        <div className={classes.BreakLineContainer}>
+                            <div className={classes.BreakLine} />
+                        </div>
+                        <div className={classes.Inputs}>
+                            <SearchInput
+                                label={"Nombre"}
+                                onChange={(value) => {
+                                    onFilterByName(value);
+                                }}
+                            />
+                            <SearchInput
+                                label={"Código"}
+                                onChange={(value) => {
+                                    onFilterByCode(value);
+                                }}
+                            />
+                        </div>
+                        <div className={classes.BreakLineContainer}>
+                            <div className={classes.BreakLine} />
+                        </div>
+                        <div className={classes.ItemsList}>
+                            <AddItemsList
+                                nameValue={nameValue}
+                                codeValue={codeValue}
+                                onAddItem={onAddItem}
+                                items={list}
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div className={classes.RightContainer}>
+                    <div className={classes.RightTitle}>detalle de compra</div>
+                    <div className={classes.BreakLineContainer}>
+                        <div className={classes.BreakLine} />
+                    </div>
+                    <div className={classes.RightContent}>
+                        <div className={classes.ItemsAddedContainer}>
+                            <div className={classes.ItemsAddedList}>
+                                <DetailItemsList
+                                    onChangeHandler={onChangeItem}
+                                    onRemoveItem={onRemoveItem}
+                                    items={itemsSelected}
+                                />
+                            </div>
+                        </div>
+                        <div className={classes.SaleDetailContainer}>
+                            <div className={classes.SaleDetail}>
+                                <div className={classes.DetailProviderData}>
+                                    <div>
+                                        Nombre:{" "}
+                                        <span style={{ fontWeight: 100 }}>
+                                            {providerSelected.name}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        {providerSelected.id.startsWith("J")
+                                            ? "RIF: "
+                                            : "CI: "}
+                                        <span style={{ fontWeight: 100 }}>
+                                            {providerSelected.id}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        Fecha:{" "}
+                                        <span style={{ fontWeight: 100 }}>
+                                            {saleDate}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className={classes.DetailSaleTotal}>
+                                    <div>
+                                        Total: $
+                                        <span style={{ fontWeight: 100 }}>
+                                            {totalPrice}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        IVA: $
+                                        <span style={{ fontWeight: 100 }}>
+                                            {(totalPrice * 0.16).toFixed(2)}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        MONTO A PAGAR: $
+                                        <span style={{ fontWeight: 100 }}>
+                                            {(totalPrice * 1.16).toFixed(2)}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                className={classes.ConfirmSaleContainer}
+                                onClick={onConfirmSale}
+                            >
+                                confirmar compra
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    let goBack = null;
+
+    const goToSelectProvider = () => {
+        setProviderConfirmed(false);
+        setProviderSelected("");
+    };
+
+    if (providerConfirmed) {
+        goBack = (
+            <div
+                className={classes.BackButtonContainer}
+                onClick={goToSelectProvider}
+            >
+                <MdArrowBack className={classes.BackButton} />
+            </div>
+        );
+    }
+
+    return (
+        <React.Fragment>
+            <AddProviderModal
+                modalVisible={modalIsOpen}
+                onCloseModal={onCloseAddProviderModal}
+                onAddNewProvider={onAddNewProvider}
+            />
+            <div className={classes.Container}>
+                {goBack}
+                <div className={classes.Header}>Compra</div>
+                {selectProviderComponent}
+                {saleDetailComponents}
+            </div>
+        </React.Fragment>
     );
 };
 
