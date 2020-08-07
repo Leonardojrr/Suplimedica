@@ -19,7 +19,12 @@ const Sale = (props) => {
     ]);
 
     const list = [
-        { id: 1, name: "Gazas", price: 0.7, cuantity: 10 },
+        {
+            id: 1,
+            name: "Gazas de la mejor calidad, hechas en el zulia papa",
+            price: 0.7,
+            cuantity: 10,
+        },
         { id: 2, name: "Guantes", price: 1.7, cuantity: 10 },
         { id: 3, name: "Mascarillas", price: 4, cuantity: 10 },
         { id: 4, name: "Jeringas", price: 0.5, cuantity: 10 },

@@ -1,0 +1,49 @@
+.DataRow {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    font-family: "Nunito";
+    color: #0f52ab;
+}
+
+.DataField,
+.ViewMore {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18%;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
+.DataField:nth-child(1) {
+    border-left: 1px solid black;
+}
+
+.DataContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    height: 95%;
+    text-align: center;
+}
+
+.Text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+.ViewMore {
+    width: 10%;
+}
+
+.ViewMore:active {
+    color: #0d4894;
+    background-color: lightgray;
+}

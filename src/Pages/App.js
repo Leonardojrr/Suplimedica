@@ -4,7 +4,7 @@ import { Route, Switch, useRouteMatch } from "react-router-dom";
 import Menu from "../components/General/Menu/Menu";
 
 //Modules imports
-import Inventory from "./module/Inventory/Inventory";
+import Warehouse from "./module/Warehouse/Warehouse";
 import Market from "./module/Market/Market";
 import Provider from "./module/Provider/Provider";
 import Client from "./module/Client/Client";
@@ -22,8 +22,8 @@ function App() {
                         <h1>Elije un modulo</h1>
                     </Route>
 
-                    <Route exact path={`${match.url}/inventory`}>
-                        <Inventory />
+                    <Route path={`${match.url}/warehouse`}>
+                        <Warehouse />
                     </Route>
 
                     <Route path={`${match.url}/market`}>

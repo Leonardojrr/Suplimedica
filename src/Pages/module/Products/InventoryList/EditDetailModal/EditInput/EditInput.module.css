@@ -1,0 +1,31 @@
+.InputAndLabelContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 40%;
+    margin: 20px;
+}
+
+.InputLabel {
+    margin-bottom: 10px;
+}
+
+.InputContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border: 1px solid lightgray;
+    box-shadow: 0 0 5px gray;
+    border-radius: 7px;
+}
+
+.Input {
+    height: 30px;
+    width: 90%;
+    padding: 10px;
+    font-size: 20px;
+    color: black;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}

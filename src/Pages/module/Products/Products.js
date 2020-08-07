@@ -4,11 +4,13 @@ import { InventoryList } from "./InventoryList/InventoryList";
 import { AiOutlineArrowDown } from "react-icons/ai";
 import { AiOutlineArrowUp } from "react-icons/ai";
 
-import classes from "./Inventory.module.css";
+import classes from "./Products.module.css";
 import { DetailModal } from "./InventoryList/DetailModal/DetailModal";
+import { EditDetailModal } from "./InventoryList/EditDetailModal/EditDetailModal";
 import { SearchInput } from "../../../components/SearchInput/SearchInput";
+import { MdAdd } from "react-icons/md";
 
-const Inventory = (props) => {
+const Products = (props) => {
     const items = [
         {
             codigo: 1,
@@ -64,6 +66,7 @@ const Inventory = (props) => {
     const [searchBarVisible, setSearchBarVisible] = useState(false);
 
     const [modalVisible, setModalVisible] = useState(false);
+    const [editModalVisible, setEditModalVisible] = useState(false);
     const [itemSelected, setItemSelected] = useState({});
     const [nameValue, setItemNameValue] = useState("");
     const [codeValue, setItemCodeValue] = useState("");
@@ -78,6 +81,16 @@ const Inventory = (props) => {
         setModalVisible(false);
     };
 
+    const onEditProduct = () => {
+        setModalVisible(false);
+        setEditModalVisible(true);
+    };
+
+    const onCloseEditModal = () => {
+        setModalVisible(true);
+        setEditModalVisible(false);
+    };
+
     const onFilterByItemName = (name) => {
         setItemNameValue(name);
     };
@@ -89,7 +102,10 @@ const Inventory = (props) => {
     return (
         <React.Fragment>
             <div className={classes.Container}>
-                <div className={classes.Header}>Inventario</div>
+                <div className={classes.Header}>Productos internos</div>
+                <div className={classes.AddNewProduct}>
+                    <MdAdd className={classes.AddIcon} />
+                </div>
                 <div
                     className={classes.SearchContainer}
                     style={{ height: searchBarVisible ? "20%" : "10%" }}
@@ -156,6 +172,13 @@ const Inventory = (props) => {
                 <DetailModal
                     modalVisible={modalVisible}
                     onClose={onCloseModal}
+                    onEdit={onEditProduct}
+                    item={itemSelected}
+                />
+
+                <EditDetailModal
+                    modalVisible={editModalVisible}
+                    onClose={onCloseEditModal}
                     item={itemSelected}
                 />
             </div>
@@ -163,4 +186,4 @@ const Inventory = (props) => {
     );
 };
 
-export default Inventory;
+export default Products;

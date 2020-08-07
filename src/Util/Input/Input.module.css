@@ -2,7 +2,7 @@
     position: relative;
     font-family: "Nunito";
     padding-top: 5px;
-    z-index: 150;
+    /* z-index: 150; */
 }
 
 .Input {
@@ -13,6 +13,6 @@
     font-size: 20px;
     border: none;
     outline: none;
-    z-index: 150;
+    /* z-index: 150; */
     background-color: transparent;
 }

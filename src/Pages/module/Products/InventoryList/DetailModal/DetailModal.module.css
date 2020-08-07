@@ -1,0 +1,187 @@
+.ModalContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    z-index: 200;
+    font-family: "Nunito";
+}
+
+.Backdrop {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.Modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background-color: white;
+    z-index: 250;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.TitleContainer {
+    font-size: 25px;
+    font-weight: bold;
+    min-height: 50px;
+    max-height: 150px;
+    padding: 20px;
+    width: 100% - 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    background-color: #0f52ab;
+    color: white;
+    user-select: none;
+}
+
+.Content {
+    width: 90%;
+    height: 90%;
+}
+
+.Name {
+    display: flex;
+    align-items: center;
+    width: 60%;
+}
+
+.Code {
+    display: flex;
+    align-items: center;
+    width: 30%;
+    padding-left: 20px;
+}
+
+.Price,
+.Brand,
+.Available {
+    color: black;
+}
+
+.BottomLabel {
+    color: #0f52ab;
+    font-weight: bold;
+}
+
+.ContentLabel {
+    color: #0f52ab;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.ContentContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 56%;
+    width: 100%;
+    background-color: white;
+}
+
+.BottomContainer {
+    height: 20%;
+    width: 90%;
+    font-size: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: rgb(15, 82, 171, 0.3);
+    user-select: none;
+    position: fixed;
+    bottom: 0;
+}
+
+.ExitButtonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: #0f52ab;
+    border-radius: 50px;
+    user-select: none;
+}
+
+.ExitButton {
+    width: 40px;
+    height: 40px;
+    color: white;
+}
+
+.ExitButtonContainer:active {
+    background-color: #0d4894;
+}
+
+.ExitButton:active {
+    color: rgb(212, 212, 212);
+}
+
+.EditButtonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    background-color: #0f52ab;
+    border-radius: 50px;
+    user-select: none;
+}
+
+.EditButton {
+    width: 40px;
+    height: 40px;
+    color: white;
+}
+
+.EditButtonContainer:active {
+    background-color: #0d4894;
+}
+
+.EditButton:active {
+    color: rgb(212, 212, 212);
+}
+.ProvidersContainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    border-radius: 7px;
+    overflow-y: scroll;
+    background-color: transparent;
+    box-shadow: 0 0 5px grey;
+}
+
+.Provider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    width: 25%;
+    height: 60px;
+    border-radius: 7px;
+    background-color: #0f52ab;
+    color: white;
+    font-size: 25px;
+}
