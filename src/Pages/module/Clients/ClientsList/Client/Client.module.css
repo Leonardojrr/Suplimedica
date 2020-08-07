@@ -1,0 +1,27 @@
+.ClientContainer {
+    width: 20%;
+    margin: 36px;
+    background-color: rgb(240, 240, 240);
+    overflow: hidden;
+    border-radius: 7px;
+    font-family: "Nunito";
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 0 5px gray;
+}
+
+.ClientName {
+    color: white;
+    font-size: 25px;
+    background-color: #0f52ab;
+    padding: 20px 30px;
+}
+
+.ClientId {
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    height: 75px;
+    color: #0f52ab;
+    font-size: 20px;
+}

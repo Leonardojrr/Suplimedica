@@ -1,0 +1,10 @@
+.Content {
+    width: 90%;
+    height: 75%;
+    overflow-y: scroll;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    box-shadow: 0 0 5px grey;
+    border-radius: 7px;
+}

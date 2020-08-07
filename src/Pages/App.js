@@ -6,8 +6,7 @@ import Menu from "../components/General/Menu/Menu";
 //Modules imports
 import Warehouse from "./module/Warehouse/Warehouse";
 import Market from "./module/Market/Market";
-import Provider from "./module/Provider/Provider";
-import Client from "./module/Client/Client";
+import People from "./module/People/People";
 import Permission from "./module/Permission/Permission";
 
 function App() {
@@ -30,12 +29,8 @@ function App() {
                         <Market />
                     </Route>
 
-                    <Route exact path={`${match.url}/providers`}>
-                        <Provider />
-                    </Route>
-
-                    <Route exact path={`${match.url}/clients`}>
-                        <Client />
+                    <Route path={`${match.url}/people`}>
+                        <People />
                     </Route>
 
                     <Route exact path={`${match.url}/permissions`}>

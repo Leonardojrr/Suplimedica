@@ -36,12 +36,12 @@ const Menu = (props) => {
             </NavLink>
 
             <NavLink
-                title="Proveedores"
+                title="Personas"
                 draggable={false}
-                id="provider-module-button"
+                id="people-module-button"
                 activeClassName={classes.on}
                 className={classes.button}
-                to={`${match.url}/providers`}
+                to={`${match.url}/people`}
             >
                 <TiGroup />
             </NavLink>
