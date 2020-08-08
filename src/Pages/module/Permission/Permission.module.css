@@ -1,0 +1,70 @@
+.Container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* background-color: blue; */
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+
+.HeaderContainer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 10%;
+  width: 100%;
+}
+
+.ContentContainer {
+  width: 100%;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: margin 1s;
+
+  /* background-color: beige; */
+}
+
+.Icon {
+  width: 30px;
+  height: 30px;
+  color: white;
+}
+
+.Input {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+}
+
+.AddNewClient {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translate(-50%, -50%);
+  background-color: #0f52ab;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  z-index: 150;
+}
+
+.AddIcon {
+  color: white;
+  width: 50px;
+  height: 50px;
+}
+
+.AddNewClient:active {
+  background-color: #0d4894;
+}
+
+.AddIcon:active {
+  color: rgb(212, 212, 212);
+}

@@ -10,85 +10,85 @@ import Purchase from "../Puchase/Purchase";
 import Sale from "../Sale/Sale";
 
 const Market = (props) => {
-    let match = useRouteMatch();
+  let match = useRouteMatch();
 
-    return (
-        <React.Fragment>
-            <Switch>
-                <Route exact path={`${match.url}`}>
-                    <div className={classes.Container}>
-                        <NavLink
-                            to={`${match.url}/purchase`}
-                            className={`${classes.ButtonContainer} ${classes.ButtonActive}`}
-                        >
-                            <div className={classes.IconContainer}>
-                                <MdShoppingCart className={classes.Icon} />
-                            </div>
+  return (
+    <React.Fragment>
+      <Switch>
+        <Route exact path={`${match.url}`}>
+          <div className={classes.Container}>
+            <NavLink
+              to={`${match.url}/purchase`}
+              className={`${classes.ButtonContainer} ${classes.ButtonActive}`}
+            >
+              <div className={classes.IconContainer}>
+                <MdShoppingCart className={classes.Icon} />
+              </div>
 
-                            <div className={`${classes.DescriptionContainer}`}>
-                                <span
-                                    style={{
-                                        display: "block",
-                                        color: "#0F52AB",
-                                        fontSize: 30,
-                                    }}
-                                >
-                                    COMPRA
-                                </span>
+              <div className={`${classes.DescriptionContainer}`}>
+                <span
+                  style={{
+                    display: "block",
+                    color: "#0F52AB",
+                    fontSize: 30,
+                  }}
+                >
+                  COMPRA
+                </span>
 
-                                <span
-                                    style={{
-                                        display: "block",
-                                        marginTop: 15,
-                                        color: "lightgrey",
-                                    }}
-                                >
-                                    Realizar una nueva compra
-                                </span>
-                            </div>
-                        </NavLink>
+                <span
+                  style={{
+                    display: "block",
+                    marginTop: 15,
+                    color: "lightgrey",
+                  }}
+                >
+                  Realizar una nueva compra
+                </span>
+              </div>
+            </NavLink>
 
-                        <NavLink
-                            to={`${match.url}/sale`}
-                            className={`${classes.ButtonContainer} ${classes.ButtonActive}`}
-                        >
-                            <div className={classes.IconContainer}>
-                                <MdReceipt className={classes.Icon} />
-                            </div>
-                            <div className={`${classes.DescriptionContainer}`}>
-                                <span
-                                    style={{
-                                        display: "block",
-                                        color: "#0F52AB",
-                                        fontSize: 30,
-                                    }}
-                                >
-                                    VENTA
-                                </span>
-                                <span
-                                    style={{
-                                        display: "block",
-                                        marginTop: 15,
-                                        color: "lightgrey",
-                                    }}
-                                >
-                                    Realizar una nueva venta
-                                </span>
-                            </div>
-                        </NavLink>
-                    </div>
-                </Route>
+            <NavLink
+              to={`${match.url}/sale`}
+              className={`${classes.ButtonContainer} ${classes.ButtonActive}`}
+            >
+              <div className={classes.IconContainer}>
+                <MdReceipt className={classes.Icon} />
+              </div>
+              <div className={`${classes.DescriptionContainer}`}>
+                <span
+                  style={{
+                    display: "block",
+                    color: "#0F52AB",
+                    fontSize: 30,
+                  }}
+                >
+                  VENTA
+                </span>
+                <span
+                  style={{
+                    display: "block",
+                    marginTop: 15,
+                    color: "lightgrey",
+                  }}
+                >
+                  Realizar una nueva venta
+                </span>
+              </div>
+            </NavLink>
+          </div>
+        </Route>
 
-                <Route exact path={`${match.url}/purchase`}>
-                    <Purchase />
-                </Route>
+        <Route exact path={`${match.url}/purchase`}>
+          <Purchase />
+        </Route>
 
-                <Route exact path={`${match.url}/sale`}>
-                    <Sale />
-                </Route>
-            </Switch>
-        </React.Fragment>
-    );
+        <Route exact path={`${match.url}/sale`}>
+          <Sale />
+        </Route>
+      </Switch>
+    </React.Fragment>
+  );
 };
 
 export default Market;
