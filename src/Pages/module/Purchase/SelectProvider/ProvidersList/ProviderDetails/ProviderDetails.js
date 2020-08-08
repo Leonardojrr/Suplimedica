@@ -15,8 +15,8 @@ export const ProviderDetails = (props) => {
             }}
         >
             <div className={classes.ProviderData}>
-                <div className={classes.ProviderTitle}>{provider.name}</div>
-                <div className={classes.ProviderCode}>{provider.id}</div>
+                <div className={classes.ProviderTitle}>{provider.nombre}</div>
+                <div className={classes.ProviderCode}>{provider.ci}</div>
             </div>
         </div>
     );

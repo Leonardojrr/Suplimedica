@@ -10,12 +10,42 @@ import { MdArrowBack } from "react-icons/md";
 
 const Purchase = (props) => {
     const [providersList, setProvidersList] = useState([
-        { name: "Wisam Mozalbat", id: "V. 27.030.643" },
-        { name: "Leonardo Rodrigues", id: "V. 26.123.456" },
-        { name: "Carlos Suarez", id: "V. 25.234.567" },
-        { name: "Suplimedica", id: "J. 78.945.612-3" },
-        { name: "Wasim", id: "V. 30.030.643" },
-        { name: "Fadi", id: "V. 82.030.643" },
+        {
+            nombre: "Wisam Mozalbat",
+            ci: "V. 27.030.643",
+            direccion: "tierra negra",
+            numero: "04242108555",
+        },
+        {
+            nombre: "Leonardo Rodrigues",
+            ci: "V. 26.123.456",
+            direccion: "tierra negra",
+            numero: "04242108555",
+        },
+        {
+            nombre: "Brandon Lugo",
+            ci: "V. 25.234.567",
+            direccion: "tierra negra",
+            numero: "04242108555",
+        },
+        {
+            nombre: "Suplimedica",
+            ci: "J. 01234567-3",
+            direccion: "tierra negra",
+            numero: "04242108555",
+        },
+        {
+            nombre: "Wasim",
+            ci: "V. 30.030.643",
+            direccion: "tierra negra",
+            numero: "04242108555",
+        },
+        {
+            nombre: "Fadi",
+            ci: "E. 82.030.643",
+            direccion: "tierra negra",
+            numero: "04242108555",
+        },
     ]);
 
     const list = [
@@ -86,7 +116,7 @@ const Purchase = (props) => {
     const onAddNewProvider = (newProvider) => {
         if (
             providersList.findIndex(
-                (provider) => provider.id === newProvider.id
+                (provider) => provider.ci === newProvider.ci
             ) < 0
         )
             setProvidersList((prevProvidersList) => [
@@ -146,21 +176,21 @@ const Purchase = (props) => {
                             className={classes.ProviderFieldDetail}
                             style={{ fontSize: 40 }}
                         >
-                            {providerSelected.name}
+                            {providerSelected.nombre}
                         </div>
                         <div className={classes.ProviderFieldDetail}>
-                            {providerSelected.id.toLowerCase().startsWith("j")
-                                ? "RIF: " + providerSelected.id
-                                : "CI: " + providerSelected.id}
+                            {providerSelected.ci.toLowerCase().startsWith("j")
+                                ? "RIF: " + providerSelected.ci
+                                : "CI: " + providerSelected.ci}
                         </div>
                         <div className={classes.ProviderFieldDetail}>
-                            {providerSelected.address
-                                ? "direccion: " + providerSelected.address
+                            {providerSelected.direccion
+                                ? "direccion: " + providerSelected.direccion
                                 : null}
                         </div>
                         <div className={classes.ProviderFieldDetail}>
-                            {providerSelected.number
-                                ? "numero: " + providerSelected.number
+                            {providerSelected.numero
+                                ? "numero: " + providerSelected.numero
                                 : null}
                         </div>
                     </div>
@@ -292,15 +322,15 @@ const Purchase = (props) => {
                                     <div>
                                         Nombre:{" "}
                                         <span style={{ fontWeight: 100 }}>
-                                            {providerSelected.name}
+                                            {providerSelected.nombre}
                                         </span>
                                     </div>
                                     <div>
-                                        {providerSelected.id.startsWith("J")
+                                        {providerSelected.ci.startsWith("J")
                                             ? "RIF: "
                                             : "CI: "}
                                         <span style={{ fontWeight: 100 }}>
-                                            {providerSelected.id}
+                                            {providerSelected.ci}
                                         </span>
                                     </div>
                                     <div>

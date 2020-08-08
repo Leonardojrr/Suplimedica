@@ -29,8 +29,8 @@ export const ProvidersList = (props) => {
 
     providers.map((provider) => {
         if (
-            provider.name.toLowerCase().includes(nameValue.toLowerCase()) &&
-            provider.id
+            provider.nombre.toLowerCase().includes(nameValue.toLowerCase()) &&
+            provider.ci
                 .toLowerCase()
                 .replace(/[\.\-\s]+/g, "")
                 .toString()
@@ -38,7 +38,7 @@ export const ProvidersList = (props) => {
         ) {
             return providersList.push(
                 <ProviderDetails
-                    key={provider.id}
+                    key={provider.ci}
                     provider={provider}
                     onSelectProvider={onSelectProvider}
                 />

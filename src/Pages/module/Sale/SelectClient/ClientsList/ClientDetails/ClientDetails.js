@@ -13,8 +13,8 @@ export const ClientDetails = (props) => {
             }}
         >
             <div className={classes.ClientData}>
-                <div className={classes.ClientTitle}>{client.name}</div>
-                <div className={classes.ClientCode}>{client.id}</div>
+                <div className={classes.ClientTitle}>{client.nombre}</div>
+                <div className={classes.ClientCode}>{client.ci}</div>
             </div>
         </div>
     );

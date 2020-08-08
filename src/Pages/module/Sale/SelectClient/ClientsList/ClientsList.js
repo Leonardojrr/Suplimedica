@@ -29,8 +29,8 @@ export const ClientsList = (props) => {
 
     clients.map((client) => {
         if (
-            client.name.toLowerCase().includes(nameValue.toLowerCase()) &&
-            client.id
+            client.nombre.toLowerCase().includes(nameValue.toLowerCase()) &&
+            client.ci
                 .toLowerCase()
                 .replace(/[\.\-\s]+/g, "")
                 .toString()
@@ -38,7 +38,7 @@ export const ClientsList = (props) => {
         ) {
             return clientsList.push(
                 <ClientDetails
-                    key={client.id}
+                    key={client.ci}
                     client={client}
                     onSelectClient={onSelectClient}
                 />

@@ -10,12 +10,42 @@ import { MdArrowBack } from "react-icons/md";
 
 const Sale = (props) => {
     const [clientsList, setClientsList] = useState([
-        { name: "Wisam Mozalbat", id: "V. 27.030.643" },
-        { name: "Leonardo Rodrigues", id: "V. 26.123.456" },
-        { name: "Carlos Suarez", id: "V. 25.234.567" },
-        { name: "Suplimedica", id: "J. 78.945.612-3" },
-        { name: "Wasim", id: "V. 30.030.643" },
-        { name: "Fadi", id: "V. 82.030.643" },
+        {
+            nombre: "Wisam Mozalbat",
+            ci: "V. 27.030.643",
+            direccion: "tierra negra",
+            numero: "04242108555",
+        },
+        {
+            nombre: "Leonardo Rodrigues",
+            ci: "V. 26.123.456",
+            direccion: "tierra negra",
+            numero: "04242108555",
+        },
+        {
+            nombre: "Brandon Lugo",
+            ci: "V. 25.234.567",
+            direccion: "tierra negra",
+            numero: "04242108555",
+        },
+        {
+            nombre: "Suplimedica",
+            ci: "J. 01234567-3",
+            direccion: "tierra negra",
+            numero: "04242108555",
+        },
+        {
+            nombre: "Wasim",
+            ci: "V. 30.030.643",
+            direccion: "tierra negra",
+            numero: "04242108555",
+        },
+        {
+            nombre: "Fadi",
+            ci: "E. 82.030.643",
+            direccion: "tierra negra",
+            numero: "04242108555",
+        },
     ]);
 
     const list = [
@@ -89,7 +119,7 @@ const Sale = (props) => {
     };
 
     const onAddNewClient = (newClient) => {
-        if (clientsList.findIndex((client) => client.id === newClient.id) < 0)
+        if (clientsList.findIndex((client) => client.ci === newClient.ci) < 0)
             setClientsList((prevClientsList) => [
                 ...prevClientsList,
                 newClient,
@@ -139,7 +169,7 @@ const Sale = (props) => {
     let selectClientComponent = null;
     let clientDetails = null;
 
-    if (clientSelected.name) {
+    if (clientSelected.nombre) {
         clientDetails = (
             <div className={classes.ClientContent}>
                 <div className={classes.ClientDataContainer}>
@@ -148,21 +178,21 @@ const Sale = (props) => {
                             className={classes.ClientFieldDetail}
                             style={{ fontSize: 40 }}
                         >
-                            {clientSelected.name}
+                            {clientSelected.nombre}
                         </div>
                         <div className={classes.ClientFieldDetail}>
-                            {clientSelected.id.toLowerCase().startsWith("j")
-                                ? "RIF: " + clientSelected.id
-                                : "CI: " + clientSelected.id}
+                            {clientSelected.ci.toLowerCase().startsWith("j")
+                                ? "RIF: " + clientSelected.ci
+                                : "CI: " + clientSelected.ci}
                         </div>
                         <div className={classes.ClientFieldDetail}>
-                            {clientSelected.address
-                                ? "direccion: " + clientSelected.address
+                            {clientSelected.direccion
+                                ? "direccion: " + clientSelected.direccion
                                 : null}
                         </div>
                         <div className={classes.ClientFieldDetail}>
-                            {clientSelected.number
-                                ? "numero: " + clientSelected.number
+                            {clientSelected.numero
+                                ? "numero: " + clientSelected.numero
                                 : null}
                         </div>
                     </div>
@@ -292,15 +322,15 @@ const Sale = (props) => {
                                     <div>
                                         Nombre:{" "}
                                         <span style={{ fontWeight: 100 }}>
-                                            {clientSelected.name}
+                                            {clientSelected.nombre}
                                         </span>
                                     </div>
                                     <div>
-                                        {clientSelected.id.startsWith("J")
+                                        {clientSelected.ci.startsWith("J")
                                             ? "RIF: "
                                             : "CI: "}
                                         <span style={{ fontWeight: 100 }}>
-                                            {clientSelected.id}
+                                            {clientSelected.ci}
                                         </span>
                                     </div>
                                     <div>
@@ -312,13 +342,13 @@ const Sale = (props) => {
                                 </div>
                                 <div className={classes.DetailSaleTotal}>
                                     <div>
-                                        Total: $
+                                        Base: $
                                         <span style={{ fontWeight: 100 }}>
                                             {totalPrice}
                                         </span>
                                     </div>
                                     <div>
-                                        IVA: $
+                                        IVA(16.00%): $
                                         <span style={{ fontWeight: 100 }}>
                                             {(totalPrice * 0.16).toFixed(2)}
                                         </span>
