@@ -7,20 +7,6 @@ import { FaBarcode } from "react-icons/fa";
 
 export const DetailModal = (props) => {
     let { modalVisible, onClose, onEdit, item } = props;
-    item.proveedores = [
-        "Juan",
-        "Pedro",
-        "Farmacias SAS",
-        "Juan",
-        "Pedro",
-        "Farmacias SAS",
-        "Juan",
-        "Pedro",
-        "Farmacias SAS",
-        "Juan",
-        "Pedro",
-        "Farmacias SAS",
-    ];
 
     let providersList = [];
 
@@ -43,11 +29,6 @@ export const DetailModal = (props) => {
             <div className={classes.Modal}>
                 <div className={classes.TitleContainer}>
                     <div className={classes.Name}>{item.nombre}</div>
-                    <div className={classes.Code}>
-                        <FaBarcode className={classes.BarCode} />
-                        &nbsp;
-                        {item.codigo}
-                    </div>
                     <div
                         className={classes.EditButtonContainer}
                         onClick={onEdit}
