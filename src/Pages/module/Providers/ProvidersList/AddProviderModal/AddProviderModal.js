@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
-import classes from "./AddClientModal.module.css";
+import classes from "./AddProviderModal.module.css";
 
 import { MdClose } from "react-icons/md";
 
 import { Input } from "../../../../../Util/Input/Input";
 import { ExitIcon } from "../../../../../components/Icons/ExitIcon/ExitIcon";
 
-export const AddClientModal = (props) => {
-    let { modalVisible, onCloseModal, onAddNewClient } = props;
+export const AddProviderModal = (props) => {
+    let { modalVisible, onCloseModal, onAddNewProvider } = props;
     const [nameValue, setNameValue] = useState("");
     const [idValue, setIdValue] = useState("");
     const [addressValue, setAddressValue] = useState("");
@@ -30,9 +30,9 @@ export const AddClientModal = (props) => {
         setNumberValue(newVal);
     };
 
-    const onAddClient = () => {
+    const onAddProvider = () => {
         if (nameValue && idValue) {
-            onAddNewClient({
+            onAddNewProvider({
                 name: nameValue,
                 id: idValue,
                 address: addressValue,
@@ -61,7 +61,7 @@ export const AddClientModal = (props) => {
             <div className={classes.Modal}>
                 <div className={classes.Header}>
                     <div className={classes.Title}>
-                        Añadir a un nuevo cliente
+                        Añadir a un nuevo proveedor
                     </div>
                     <div className={classes.IconsContainer}>
                         <ExitIcon onClick={onCloseModal} />
@@ -109,7 +109,10 @@ export const AddClientModal = (props) => {
                     >
                         Cancelar
                     </div>
-                    <div className={classes.AcceptButton} onClick={onAddClient}>
+                    <div
+                        className={classes.AcceptButton}
+                        onClick={onAddProvider}
+                    >
                         Añadir
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-.ClientContainer {
+.ProviderContainer {
     width: 85%;
     margin: 36px;
     background-color: rgb(240, 240, 240);
@@ -9,11 +9,11 @@
     box-shadow: 0 0 5px gray;
 }
 
-.ClientName:active {
+.ProviderName:active {
     background-color: #0d4894;
 }
 
-.ClientName {
+.ProviderName {
     color: white;
     font-size: 20px;
     background-color: #0f52ab;
@@ -22,7 +22,7 @@
     padding: 20px 30px;
 }
 
-.ClientId {
+.ProviderId {
     display: flex;
     align-items: center;
     height: 70px;

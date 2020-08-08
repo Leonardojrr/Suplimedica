@@ -5,8 +5,6 @@ import classes from "./ClientDetails.module.css";
 export const ClientDetails = (props) => {
     const { client, onSelectClient = () => {} } = props;
 
-    // console.log(client);
-
     return (
         <div
             className={classes.ClientContainer}

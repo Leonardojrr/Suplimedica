@@ -5,6 +5,7 @@ import classes from "./DetailModal.module.css";
 import { MdClose } from "react-icons/md";
 import { FaBarcode } from "react-icons/fa";
 
+import { ExitIcon } from "../../../../../components/Icons/ExitIcon/ExitIcon";
 export const DetailModal = (props) => {
     let { modalVisible, onClose, item } = props;
 
@@ -49,11 +50,8 @@ export const DetailModal = (props) => {
                         &nbsp;
                         {item.codigo}
                     </div>
-                    <div
-                        className={classes.ExitButtonContainer}
-                        onClick={onClose}
-                    >
-                        <MdClose className={classes.ExitButton} />
+                    <div className={classes.IconsContainer}>
+                        <ExitIcon onClick={onClose} />
                     </div>
                 </div>
 

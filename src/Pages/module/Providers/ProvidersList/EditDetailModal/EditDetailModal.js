@@ -2,33 +2,31 @@ import React, { useState, useEffect } from "react";
 
 import classes from "./EditDetailModal.module.css";
 
-import { MdClose, MdEdit } from "react-icons/md";
-import { FaBarcode } from "react-icons/fa";
-import { Input } from "../../../../../Util/Input/Input";
+import { MdClose } from "react-icons/md";
 import { EditInput } from "./EditInput/EditInput";
 import { ExitIcon } from "../../../../../components/Icons/ExitIcon/ExitIcon";
 
 export const EditDetailModal = (props) => {
-    let { modalVisible, onClose, item } = props;
-    const [editNameValue, setEditNameValue] = useState(props.item.nombre);
-    const [editBrandValue, setEditBrandValue] = useState(props.item.marca);
-    const [editCodeValue, setEditCodeValue] = useState(props.item.codigo);
-    const [editPriceValue, setEditPriceValue] = useState(props.item.precio);
+    let { modalVisible, onClose } = props;
+    const [editNameValue, setEditNameValue] = useState("");
+    const [editIdValue, setEditIdValue] = useState("");
+    const [editAddressValue, setEditAddressValue] = useState("");
+    const [editNumberValue, setEditNumberValue] = useState("");
 
     const handleChange = () => {};
 
     useEffect(() => {
-        setEditNameValue(props.item.nombre);
-        setEditBrandValue(props.item.marca);
-        setEditCodeValue(props.item.codigo);
-        setEditPriceValue(props.item.precio);
-    }, [props.item]);
+        setEditNameValue(props.provider.nombre);
+        setEditIdValue(props.provider.ci);
+        setEditAddressValue(props.provider.direccion);
+        setEditNumberValue(props.provider.numero);
+    }, [props.provider]);
 
     const onCancelHandler = () => {
-        setEditNameValue(props.item.nombre);
-        setEditBrandValue(props.item.marca);
-        setEditCodeValue(props.item.codigo);
-        setEditPriceValue(props.item.precio);
+        setEditNameValue(props.provider.nombre);
+        setEditIdValue(props.provider.ci);
+        setEditAddressValue(props.provider.direccion);
+        setEditNumberValue(props.provider.numero);
         onClose();
     };
 
@@ -36,19 +34,19 @@ export const EditDetailModal = (props) => {
         setEditNameValue(val);
     };
 
-    const onCodeChangeHandler = (val) => {
-        setEditCodeValue(val);
+    const onIdChangeHandler = (val) => {
+        setEditIdValue(val);
     };
 
-    const onPriceChangeHandler = (val) => {
-        setEditPriceValue(val);
+    const onAddressChangeHandler = (val) => {
+        setEditAddressValue(val);
     };
 
-    const onBrandChangeHandler = (val) => {
-        setEditBrandValue(val);
+    const onNumberChangeHandler = (val) => {
+        setEditNumberValue(val);
     };
 
-    console.log(item);
+    // console.log(item);
     console.log(editNameValue);
 
     return (
@@ -60,7 +58,7 @@ export const EditDetailModal = (props) => {
             <div className={classes.Modal}>
                 <div className={classes.TitleContainer}>
                     <div className={classes.Title}>
-                        Edita los datos de este producto
+                        Edita los datos de este proveedor
                     </div>
                     <div className={classes.IconsContainer}>
                         <ExitIcon onClick={onClose} />
@@ -75,19 +73,19 @@ export const EditDetailModal = (props) => {
                             onChange={onNameChangeHandler}
                         />
                         <EditInput
-                            label={"Codigo"}
-                            value={editCodeValue}
-                            onChange={onCodeChangeHandler}
+                            label={"Identificación"}
+                            value={editIdValue}
+                            onChange={onIdChangeHandler}
                         />
                         <EditInput
-                            label={"Marca"}
-                            value={editBrandValue}
-                            onChange={onBrandChangeHandler}
+                            label={"Direccion"}
+                            value={editAddressValue}
+                            onChange={onAddressChangeHandler}
                         />
                         <EditInput
-                            label={"Precio"}
-                            value={editPriceValue}
-                            onChange={onPriceChangeHandler}
+                            label={"Numero"}
+                            value={editNumberValue}
+                            onChange={onNumberChangeHandler}
                         />
                     </div>
                 </div>
@@ -101,7 +99,7 @@ export const EditDetailModal = (props) => {
                     </div>
                     <div
                         className={classes.AcceptButton}
-                        // onClick={onAddClient}
+                        // onClick={onAddprovider}
                     >
                         Editar
                     </div>

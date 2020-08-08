@@ -41,10 +41,11 @@
     min-height: 50px;
     max-height: 150px;
     padding: 20px;
-    width: 100% - 40px;
+    width: calc(100%-40px);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
     flex-direction: row;
     background-color: #0f52ab;
     color: white;
@@ -110,31 +111,6 @@
     bottom: 0;
 }
 
-.ExitButtonContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    background-color: #0f52ab;
-    border-radius: 50px;
-    user-select: none;
-}
-
-.ExitButton {
-    width: 40px;
-    height: 40px;
-    color: white;
-}
-
-.ExitButtonContainer:active {
-    background-color: #0d4894;
-}
-
-.ExitButton:active {
-    color: rgb(212, 212, 212);
-}
-
 .ProvidersContainer {
     display: flex;
     flex-wrap: wrap;
@@ -159,4 +135,15 @@
     background-color: #0f52ab;
     color: white;
     font-size: 25px;
+}
+
+.IconsContainer {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }

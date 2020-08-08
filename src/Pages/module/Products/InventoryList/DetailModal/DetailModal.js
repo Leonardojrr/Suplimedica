@@ -2,8 +2,9 @@ import React, { useState } from "react";
 
 import classes from "./DetailModal.module.css";
 
-import { MdClose, MdEdit } from "react-icons/md";
 import { FaBarcode } from "react-icons/fa";
+import { EditIcon } from "../../../../../components/Icons/EditIcon/EditIcon";
+import { ExitIcon } from "../../../../../components/Icons/ExitIcon/ExitIcon";
 
 export const DetailModal = (props) => {
     let { modalVisible, onClose, onEdit, item } = props;
@@ -48,17 +49,9 @@ export const DetailModal = (props) => {
                         &nbsp;
                         {item.codigo}
                     </div>
-                    <div
-                        className={classes.EditButtonContainer}
-                        onClick={onEdit}
-                    >
-                        <MdEdit className={classes.EditButton} />
-                    </div>
-                    <div
-                        className={classes.ExitButtonContainer}
-                        onClick={onClose}
-                    >
-                        <MdClose className={classes.ExitButton} />
+                    <div className={classes.IconsContainer}>
+                        <EditIcon onClick={onEdit} />
+                        <ExitIcon onClick={onClose} />
                     </div>
                 </div>
 

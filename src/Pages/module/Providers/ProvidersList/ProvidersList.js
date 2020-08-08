@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-import classes from "./ClientsList.module.css";
-import { Client } from "./Client/Client";
-import { Item } from "./Client/Client";
+import classes from "./ProvidersList.module.css";
+import { Provider } from "./Provider/Provider";
 
 // import { MdAdd } from "react-icons/md";
 
-export const ClientsList = (props) => {
-    const { clients = [], onViewDetails } = props;
+export const ProvidersList = (props) => {
+    const { providers = [], onViewDetails } = props;
     const [nameValue, setNameValue] = useState("");
     const [idValue, setIdValue] = useState("");
 
@@ -19,24 +18,26 @@ export const ClientsList = (props) => {
         setIdValue(props.idValue);
     }, [props.idValue]);
 
-    let clientsList = [];
-    console.log(clients);
+    let providersList = [];
+    console.log(providers);
 
-    if (clients.length > 0) {
-        clients.map((client) => {
+    if (providers.length > 0) {
+        providers.map((provider) => {
             if (
-                client.nombre.toLowerCase().includes(nameValue.toLowerCase()) &&
-                client.ci
+                provider.nombre
+                    .toLowerCase()
+                    .includes(nameValue.toLowerCase()) &&
+                provider.ci
                     .toLowerCase()
                     .replace(/[\.\-\s]+/g, "")
                     .toString()
                     .includes(idValue.toLowerCase().replace(/[\.\-\s]+/g, ""))
             ) {
-                return clientsList.push(
-                    <Client
-                        key={client.ci}
-                        client={client}
-                        onSelectClient={onViewDetails}
+                return providersList.push(
+                    <Provider
+                        key={provider.ci}
+                        provider={provider}
+                        onSelectProvider={onViewDetails}
                     />
                 );
             }
@@ -46,5 +47,5 @@ export const ClientsList = (props) => {
 
     const itemNotFound = <div>No se han encontrado coincidencias</div>;
 
-    return <div className={classes.Content}>{clientsList}</div>;
+    return <div className={classes.Content}>{providersList}</div>;
 };

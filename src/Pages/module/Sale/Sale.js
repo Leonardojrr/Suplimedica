@@ -130,7 +130,8 @@ const Sale = (props) => {
         console.log(
             "sale done",
             clientSelected,
-            (totalPrice * 1.16).toFixed(2)
+            (totalPrice * 1.16).toFixed(2),
+            itemsSelected
         );
     };
 

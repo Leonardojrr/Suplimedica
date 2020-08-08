@@ -1,14 +1,13 @@
 import React, { Fragment, useState } from "react";
 import { InventoryList } from "./InventoryList/InventoryList";
 
-import { AiOutlineArrowDown } from "react-icons/ai";
-import { AiOutlineArrowUp } from "react-icons/ai";
-
 import classes from "./Products.module.css";
 import { DetailModal } from "./InventoryList/DetailModal/DetailModal";
 import { EditDetailModal } from "./InventoryList/EditDetailModal/EditDetailModal";
 import { SearchInput } from "../../../components/SearchInput/SearchInput";
-import { MdAdd } from "react-icons/md";
+import { DropableSearchHeader } from "../../../components/DropableSearchHeader/DropableSearchHeader";
+import { Header } from "../../../components/Header/Header";
+import { AddIcon } from "../../../components/Icons/AddIcon/AddIcon";
 
 const Products = (props) => {
     const items = [
@@ -102,56 +101,35 @@ const Products = (props) => {
     return (
         <React.Fragment>
             <div className={classes.Container}>
-                <div className={classes.Header}>Productos internos</div>
-                <div className={classes.AddNewProduct}>
-                    <MdAdd className={classes.AddIcon} />
-                </div>
-                <div
-                    className={classes.SearchContainer}
-                    style={{ height: searchBarVisible ? "20%" : "10%" }}
-                >
-                    <div className={classes.SearchInputsContainer}>
-                        <div
-                            className={classes.InputsContainer}
-                            style={{
-                                height: searchBarVisible ? "50%" : "100%",
-                            }}
-                        >
-                            <div className={classes.Input}>
-                                <SearchInput
-                                    // style={{ height: 20 }}
-                                    inputStyle={{ height: 20 }}
-                                    label={"Nombre"}
-                                    onChange={(value) => {
-                                        onFilterByItemName(value);
-                                    }}
-                                />
-                            </div>
-                            <div className={classes.Input}>
-                                <SearchInput
-                                    // style={{ width: 30 }}
-                                    inputStyle={{ height: 20 }}
-                                    label={"Código"}
-                                    onChange={(value) => {
-                                        onFilterItemCode(value);
-                                    }}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        className={classes.ToggleButtonContainer}
-                        onClick={() =>
+                <div className={classes.HeaderContainer}>
+                    <Header title={"Productos internos"} />
+                    <DropableSearchHeader
+                        searchBarVisible={searchBarVisible}
+                        onToggle={() =>
                             setSearchBarVisible((actualValue) => !actualValue)
                         }
                     >
-                        <div className={classes.ToggleButton}>
-                            {searchBarVisible ? (
-                                <AiOutlineArrowUp className={classes.Icon} />
-                            ) : (
-                                <AiOutlineArrowDown className={classes.Icon} />
-                            )}
+                        <div className={classes.Input}>
+                            <SearchInput
+                                inputStyle={{ height: 20 }}
+                                label={"Nombre"}
+                                onChange={(value) => {
+                                    onFilterByItemName(value);
+                                }}
+                            />
                         </div>
+                        <div className={classes.Input}>
+                            <SearchInput
+                                inputStyle={{ height: 20 }}
+                                label={"Código"}
+                                onChange={(value) => {
+                                    onFilterItemCode(value);
+                                }}
+                            />
+                        </div>
+                    </DropableSearchHeader>
+                    <div className={classes.IconsContainer}>
+                        <AddIcon onClick={() => {}} />
                     </div>
                 </div>
                 <div

@@ -1,0 +1,33 @@
+.IconContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    margin: 0 5px;
+    background-color: #0f52ab;
+    border-radius: 50px;
+    user-select: none;
+    z-index: 200;
+}
+
+.Icon {
+    width: 40px;
+    height: 40px;
+    color: white;
+}
+
+.IconContainer:active {
+    background-color: #0d4894;
+}
+
+.Icon:active {
+    color: rgb(212, 212, 212);
+}
+
+.Absolute {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translate(-50%, -50%);
+}

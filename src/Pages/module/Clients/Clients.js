@@ -7,6 +7,9 @@ import { Header } from "../../../components/Header/Header";
 import { ClientsList } from "./ClientsList/ClientsList";
 import { DropableSearchHeader } from "../../../components/DropableSearchHeader/DropableSearchHeader";
 import { AddClientModal } from "./ClientsList/AddClientModal/AddClientModal";
+import { DetailModal } from "./ClientsList/DetailModal/DetailModal";
+import { EditDetailModal } from "./ClientsList/EditDetailModal/EditDetailModal";
+import { AddIcon } from "../../../components/Icons/AddIcon/AddIcon";
 
 const Clients = (props) => {
     const [clientsList, setClientsList] = useState([
@@ -23,14 +26,14 @@ const Clients = (props) => {
             numero: "04242108555",
         },
         {
-            nombre: "Carlos Suarez",
+            nombre: "Brandon Lugo",
             ci: "V. 25.234.567",
             direccion: "tierra negra",
             numero: "04242108555",
         },
         {
             nombre: "Suplimedica",
-            ci: "J. 78.945.612-3",
+            ci: "J. 01234567-3",
             direccion: "tierra negra",
             numero: "04242108555",
         },
@@ -42,7 +45,7 @@ const Clients = (props) => {
         },
         {
             nombre: "Fadi",
-            ci: "V. 82.030.643",
+            ci: "E. 82.030.643",
             direccion: "tierra negra",
             numero: "04242108555",
         },
@@ -50,51 +53,44 @@ const Clients = (props) => {
 
     const [searchBarVisible, setSearchBarVisible] = useState(false);
 
-    const [modalVisible, setModalVisible] = useState(false);
     const [addClientModalVisible, setAddClientModalVisible] = useState(false);
     const [editModalVisible, setEditModalVisible] = useState(false);
-    const [itemSelected, setItemSelected] = useState({});
-    const [nameValue, setItemNameValue] = useState("");
-    const [codeValue, setItemCodeValue] = useState("");
+    const [detailModalVisible, setDetailModalVisible] = useState(false);
+    const [clientSelected, setClientSelected] = useState({});
+    const [nameValue, setProviderNameValue] = useState("");
+    const [idValue, setProviderIdValue] = useState("");
 
-    const onViewDetails = (item) => {
-        setItemSelected(item);
-        setModalVisible(true);
-    };
-
-    const onCloseModal = () => {
-        setItemSelected({});
-        setModalVisible(false);
-    };
-
-    const onAddNewClient = () => {
-        // setAddClientModalVisible(true);
+    const onOpenAddClientModal = () => {
+        setAddClientModalVisible(true);
     };
 
     const onCloseAddClientModal = () => {
         setAddClientModalVisible(false);
     };
 
-    const onOpenAddClientModal = () => {
-        setAddClientModalVisible(true);
+    const onOpenDetailModal = (client) => {
+        setClientSelected(client);
+        setDetailModalVisible(true);
+    };
+    const onCloseDetailModal = () => {
+        setDetailModalVisible(false);
     };
 
-    const onEditProduct = () => {
-        setModalVisible(false);
+    const onOpenEditModal = () => {
         setEditModalVisible(true);
+        setDetailModalVisible(false);
     };
-
     const onCloseEditModal = () => {
-        setModalVisible(true);
         setEditModalVisible(false);
+        setDetailModalVisible(true);
     };
 
-    const onFilterByItemName = (name) => {
-        setItemNameValue(name);
+    const onFilterByProviderName = (name) => {
+        setProviderNameValue(name);
     };
 
-    const onFilterItemCode = (code) => {
-        setItemCodeValue(code);
+    const onFilterProviderId = (code) => {
+        setProviderIdValue(code);
     };
 
     return (
@@ -113,7 +109,7 @@ const Clients = (props) => {
                                 inputStyle={{ height: 20 }}
                                 label={"Nombre"}
                                 onChange={(value) => {
-                                    onFilterByItemName(value);
+                                    onFilterByProviderName(value);
                                 }}
                             />
                         </div>
@@ -122,16 +118,13 @@ const Clients = (props) => {
                                 inputStyle={{ height: 20 }}
                                 label={"Código"}
                                 onChange={(value) => {
-                                    onFilterItemCode(value);
+                                    onFilterProviderId(value);
                                 }}
                             />
                         </div>
                     </DropableSearchHeader>
-                    <div
-                        className={classes.AddNewClient}
-                        onClick={onOpenAddClientModal}
-                    >
-                        <MdAdd className={classes.AddIcon} />
+                    <div className={classes.IconsContainer}>
+                        <AddIcon onClick={onOpenAddClientModal} />
                     </div>
                 </div>
 
@@ -144,32 +137,28 @@ const Clients = (props) => {
                 >
                     <ClientsList
                         clients={clientsList}
-                        // onViewDetails={onViewDetails}
-                        // onCloseModal={onCloseModal}
-                        nameValue={""}
-                        codeValue={""}
+                        nameValue={nameValue}
+                        idValue={idValue}
+                        onViewDetails={onOpenDetailModal}
                     />
                 </div>
                 <AddClientModal
                     modalVisible={addClientModalVisible}
                     onCloseModal={onCloseAddClientModal}
+                    onAddNewClient={(client) => console.log(client)}
+                />
+                <DetailModal
+                    modalVisible={detailModalVisible}
+                    onClose={onCloseDetailModal}
+                    onEdit={onOpenEditModal}
+                    client={clientSelected}
+                />
+                <EditDetailModal
+                    modalVisible={editModalVisible}
+                    onClose={onCloseEditModal}
+                    client={clientSelected}
                 />
             </div>
-            {/* <div
-          className={classes.ContentContainer}
-          style={{
-            height: searchBarVisible ? 600 : 700,
-            marginTop: searchBarVisible ? 85 : 0,
-          }}
-        >
-          <ClientsList
-            clients={clientsList}
-            // onViewDetails={onViewDetails}
-            // onCloseModal={onCloseModal}
-            nameValue={""}
-            codeValue={""}
-          />
-        </div> */}
         </React.Fragment>
     );
 };

@@ -10,33 +10,35 @@ import { EditIcon } from "../../../../../components/Icons/EditIcon/EditIcon";
 
 export const DetailModal = (props) => {
     let { modalVisible, onClose, onEdit } = props;
-    const [client, setClient] = useState({});
+    const [provider, setProvider] = useState({});
 
     useEffect(() => {
-        setClient(props.client);
-    }, [props.client]);
+        setProvider(props.provider);
+    }, [props.provider]);
 
-    let clientData = null;
+    let providerData = null;
 
-    if (client.nombre) {
-        clientData = (
-            <div className={classes.ClientData}>
-                <div className={classes.ClientFieldDetail}>
-                    {client.ci.toLowerCase().startsWith("j")
-                        ? "RIF: " + client.ci
-                        : "CI: " + client.ci}
+    if (provider.nombre) {
+        providerData = (
+            <div className={classes.ProviderData}>
+                <div className={classes.ProviderFieldDetail}>
+                    {provider.ci.toLowerCase().startsWith("j")
+                        ? "RIF: " + provider.ci
+                        : "CI: " + provider.ci}
                 </div>
-                <div className={classes.ClientFieldDetail}>
-                    {client.direccion ? "direccion: " + client.direccion : null}
+                <div className={classes.ProviderFieldDetail}>
+                    {provider.direccion
+                        ? "direccion: " + provider.direccion
+                        : null}
                 </div>
-                <div className={classes.ClientFieldDetail}>
-                    {client.numero ? "numero: " + client.numero : null}
+                <div className={classes.ProviderFieldDetail}>
+                    {provider.numero ? "numero: " + provider.numero : null}
                 </div>
             </div>
         );
     }
 
-    let clientReceipts = [
+    let providerReceipts = [
         {
             id_operacion: 1,
             fecha_operacion: "24/10/2020",
@@ -85,10 +87,10 @@ export const DetailModal = (props) => {
         },
     ];
 
-    let clientReceiptsList = [];
+    let providerReceiptsList = [];
 
-    clientReceipts.map((receipt) => {
-        return clientReceiptsList.push(<Receipt receipt={receipt} />);
+    providerReceipts.map((receipt) => {
+        return providerReceiptsList.push(<Receipt receipt={receipt} />);
     });
 
     return (
@@ -99,7 +101,7 @@ export const DetailModal = (props) => {
             <div className={classes.Backdrop} onClick={onClose}></div>
             <div className={classes.Modal}>
                 <div className={classes.TitleContainer}>
-                    <div className={classes.Name}>{client.nombre}</div>
+                    <div className={classes.Name}>{provider.nombre}</div>
                     <div className={classes.IconsContainer}>
                         <EditIcon onClick={onEdit} />
                         <ExitIcon onClick={onClose} />
@@ -108,12 +110,12 @@ export const DetailModal = (props) => {
 
                 <div className={classes.ContentContainer}>
                     <div className={classes.Content}>
-                        <div className={classes.ClientDataContainer}>
-                            {clientData}
+                        <div className={classes.ProviderDataContainer}>
+                            {providerData}
                         </div>
-                        <div className={classes.ClientReceipts}>
+                        <div className={classes.ProviderReceipts}>
                             <div className={classes.Gap} />
-                            {clientReceiptsList}
+                            {providerReceiptsList}
                             <div className={classes.Gap} />
                         </div>
                     </div>
