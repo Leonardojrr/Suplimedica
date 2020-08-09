@@ -1,11 +1,18 @@
 .Container {
-  position: relative;
   display: flex;
   flex-direction: column;
-  /* background-color: blue; */
   width: 100%;
   height: 100%;
   user-select: none;
+}
+
+.Content {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  height: 90%;
+  overflow: auto;
 }
 
 .HeaderContainer {
@@ -16,16 +23,47 @@
   width: 100%;
 }
 
-.ContentContainer {
-  width: 100%;
-  height: 700px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: margin 1s;
+.ButtonsContainer {
+}
 
-  /* background-color: beige; */
+.SearchContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  transition: height 1s;
+  z-index: 100;
+  background-color: green;
+  margin: 0;
+  padding: 0;
+}
+
+.ToggleButtonContainer {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #0f52ab;
+  padding-bottom: 10px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  overflow: hidden;
+}
+
+.ToggleButton {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: flex-end;
+  justify-content: center;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  overflow: hidden;
 }
 
 .Icon {
