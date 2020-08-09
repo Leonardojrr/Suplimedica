@@ -305,82 +305,33 @@ const Sale = (props) => {
                   <div>
                     Nombre:{" "}
                     <span style={{ fontWeight: 100 }}>
-                      {clientSelected.name}
+                      {clientSelected.nombre}
                     </span>
                   </div>
                   <div>
-                    {clientSelected.id.startsWith("J") ? "RIF: " : "CI: "}
-                    <span style={{ fontWeight: 100 }}>{clientSelected.id}</span>
+                    {clientSelected.ci.startsWith("J") ? "RIF: " : "CI: "}
+                    <span style={{ fontWeight: 100 }}>{clientSelected.ci}</span>
                   </div>
                   <div>
                     Fecha: <span style={{ fontWeight: 100 }}>{saleDate}</span>
                   </div>
                 </div>
-                <div className={classes.RightContainer}>
-                  <div className={classes.RightTitle}>detalle de venta</div>
-                  <div className={classes.BreakLineContainer}>
-                    <div className={classes.BreakLine} />
+
+                <div className={classes.DetailSaleTotal}>
+                  <div>
+                    Base: $<span style={{ fontWeight: 100 }}>{totalPrice}</span>
                   </div>
-                  <div className={classes.RightContent}>
-                    <div className={classes.ItemsAddedContainer}>
-                      <div className={classes.ItemsAddedList}>
-                        <DetailItemsList
-                          onChangeHandler={onChangeItem}
-                          onRemoveItem={onRemoveItem}
-                          items={itemsSelected}
-                        />
-                      </div>
-                    </div>
-                    <div className={classes.SaleDetailContainer}>
-                      <div className={classes.SaleDetail}>
-                        <div className={classes.DetailClientData}>
-                          <div>
-                            Nombre:{" "}
-                            <span style={{ fontWeight: 100 }}>
-                              {clientSelected.nombre}
-                            </span>
-                          </div>
-                          <div>
-                            {clientSelected.ci.startsWith("J")
-                              ? "RIF: "
-                              : "CI: "}
-                            <span style={{ fontWeight: 100 }}>
-                              {clientSelected.ci}
-                            </span>
-                          </div>
-                          <div>
-                            Fecha:{" "}
-                            <span style={{ fontWeight: 100 }}>{saleDate}</span>
-                          </div>
-                        </div>
-                        <div className={classes.DetailSaleTotal}>
-                          <div>
-                            Base: $
-                            <span style={{ fontWeight: 100 }}>
-                              {totalPrice}
-                            </span>
-                          </div>
-                          <div>
-                            IVA(16.00%): $
-                            <span style={{ fontWeight: 100 }}>
-                              {(totalPrice * 0.16).toFixed(2)}
-                            </span>
-                          </div>
-                          <div>
-                            MONTO A PAGAR: $
-                            <span style={{ fontWeight: 100 }}>
-                              {(totalPrice * 1.16).toFixed(2)}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        className={classes.ConfirmSaleContainer}
-                        onClick={onConfirmSale}
-                      >
-                        confirmar venta
-                      </div>
-                    </div>
+                  <div>
+                    IVA(16.00%): $
+                    <span style={{ fontWeight: 100 }}>
+                      {(totalPrice * 0.16).toFixed(2)}
+                    </span>
+                  </div>
+                  <div>
+                    MONTO A PAGAR: $
+                    <span style={{ fontWeight: 100 }}>
+                      {(totalPrice * 1.16).toFixed(2)}
+                    </span>
                   </div>
                 </div>
               </div>

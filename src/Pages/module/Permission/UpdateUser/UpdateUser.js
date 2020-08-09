@@ -14,9 +14,7 @@ const useQuery = () => {
 };
 
 export const UpdateUser = (props) => {
-  let match = useRouteMatch();
   let query = useQuery();
-  props.changeRoute(match.url);
 
   const [state, setState] = useState({
     name: query.get("name"),
@@ -215,6 +213,7 @@ export const UpdateUser = (props) => {
         <Input
           name={"Password"}
           handleChange={onChangePassword}
+          password={true}
           value={state.password}
         />
       </div>
@@ -243,6 +242,7 @@ export const UpdateUser = (props) => {
             {getPermissionsModule(state.modules)}
           </div>
         </div>
+        <div className={classes.Button}>Actualizar Usuario</div>
       </div>
     </Fragment>
   );

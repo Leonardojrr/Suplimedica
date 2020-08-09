@@ -31,3 +31,22 @@
 .Input:focus {
   border: 3px #0f52ab solid;
 }
+
+.PasswordContainer {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  height: 40%;
+}
+
+.PasswordContainer .Input {
+  width: 90%;
+  height: 100%;
+}
+
+.PasswordContainer svg {
+  margin-left: 15px;
+  width: 30px;
+  height: 30px;
+  color: #0f52ab;
+}

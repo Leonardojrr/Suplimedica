@@ -1,19 +1,23 @@
 import React, { useState } from "react";
-import { useRouteMatch, matchPath, Switch, Route } from "react-router-dom";
+import { useRouteMatch, useHistory, Switch, Route } from "react-router-dom";
 
 import { UpdateUser } from "./UpdateUser/UpdateUser";
-import AddUser from "./AddUser/AddUser";
+import { AddUser } from "./AddUser/AddUser";
 import { PermissionList } from "./PermissionList/PermissionList";
 import { DropableSearchHeader } from "../../../components/DropableSearchHeader/DropableSearchHeader";
 import { SearchInput } from "../../../components/SearchInput/SearchInput";
 import { Header } from "../../../components/Header/Header";
 
+//import icons
+
+import { MdArrowBack, MdAdd } from "react-icons/md";
+
 import classes from "./Permission.module.css";
 
 const Permission = () => {
+  let history = useHistory();
   let match = useRouteMatch();
 
-  const [routePermission, setPermissionRoute] = useState(match.url);
   const [searchBarVisible, setSearchBarVisible] = useState(false);
   const [nameValue, setUserNameValue] = useState("");
   const [ciValue, setUserCiValue] = useState("");
@@ -32,8 +36,36 @@ const Permission = () => {
     setUserUsernameValue(code);
   };
 
-  const isInHome = () => {
-    if (routePermission === "/module/permissions") {
+  const goBack = () => {
+    history.push("/module/permissions");
+  };
+
+  const goAdd = () => {
+    history.push("/module/permissions/add");
+  };
+
+  const showArrowBack = () => {
+    if (history.location.pathname !== "/module/permissions") {
+      return (
+        <div onClick={goBack} className={classes.HeaderButton}>
+          <MdArrowBack />
+        </div>
+      );
+    } else return null;
+  };
+
+  const showAdd = () => {
+    if (history.location.pathname === "/module/permissions") {
+      return (
+        <div onClick={goAdd} className={classes.HeaderButton}>
+          <MdAdd />
+        </div>
+      );
+    } else return null;
+  };
+
+  const showSearch = () => {
+    if (history.location.pathname === "/module/permissions") {
       return (
         <DropableSearchHeader
           searchBarVisible={searchBarVisible}
@@ -74,9 +106,12 @@ const Permission = () => {
   return (
     <div className={classes.Container}>
       <div className={classes.HeaderContainer}>
-        <div className={classes.ButtonsContainer}></div>
+        <div className={classes.ButtonsContainer}>
+          <div className={classes.LeftButtons}>{showArrowBack()}</div>
+          <div className={classes.RigthButtons}>{showAdd()}</div>
+        </div>
         <Header title={"Permisos"} />
-        {isInHome()}
+        {showSearch()}
       </div>
 
       <div className={classes.Content}>
@@ -90,10 +125,10 @@ const Permission = () => {
             />
           </Route>
           <Route exact path={`${match.url}/add`}>
-            <AddUser changeRoute={setPermissionRoute} />
+            <AddUser />
           </Route>
           <Route exact path={`${match.url}/update`}>
-            <UpdateUser changeRoute={setPermissionRoute} />
+            <UpdateUser />
           </Route>
         </Switch>
       </div>

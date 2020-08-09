@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from "react";
-import { useRouteMatch, NavLink } from "react-router-dom";
+import { useRouteMatch, NavLink, Router, Route } from "react-router-dom";
 import classes from "./UserRow.module.css";
+import { UpdateUser } from "../UpdateUser/UpdateUser";
 
 export const UserRow = (props) => {
   let match = useRouteMatch();
