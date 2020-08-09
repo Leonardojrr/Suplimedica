@@ -10,36 +10,36 @@ import People from "./module/People/People";
 import Permission from "./module/Permission/Permission";
 
 function App() {
-    let match = useRouteMatch();
+  let match = useRouteMatch();
 
-    return (
-        <div id="App">
-            <Menu />
-            <div id="module">
-                <Switch>
-                    <Route exact path={`${match.url}/`}>
-                        <Redirect to={`${match.url}/market`} />
-                    </Route>
+  return (
+    <div id="App">
+      <Menu />
+      <div id="module">
+        <Switch>
+          <Route exact path={`${match.url}/`}>
+            <Redirect to={`${match.url}/market`} />
+          </Route>
 
-                    <Route path={`${match.url}/warehouse`}>
-                        <Warehouse />
-                    </Route>
+          <Route path={`${match.url}/warehouse`}>
+            <Warehouse />
+          </Route>
 
-                    <Route path={`${match.url}/market`}>
-                        <Market />
-                    </Route>
+          <Route path={`${match.url}/market`}>
+            <Market />
+          </Route>
 
-                    <Route path={`${match.url}/people`}>
-                        <People />
-                    </Route>
+          <Route path={`${match.url}/people`}>
+            <People />
+          </Route>
 
-                    <Route exact path={`${match.url}/permissions`}>
-                        <Permission />
-                    </Route>
-                </Switch>
-            </div>
-        </div>
-    );
+          <Route exact path={`${match.url}/permissions`}>
+            <Permission />
+          </Route>
+        </Switch>
+      </div>
+    </div>
+  );
 }
 
 export default App;
