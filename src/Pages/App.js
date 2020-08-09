@@ -33,7 +33,7 @@ function App() {
             <People />
           </Route>
 
-          <Route path={`${match.url}/permissions`}>
+          <Route exact path={`${match.url}/permissions`}>
             <Permission />
           </Route>
         </Switch>
