@@ -14,7 +14,7 @@ const Inventory = (props) => {
     const items = [
         {
             codigo: 1,
-            nombre: "Producto 1 pero si lo fuerzas no te dire mas nada",
+            nombre: "Producto 1",
             marca: "Marca 1",
             precio: 1,
             cantidad: 100,
@@ -122,7 +122,7 @@ const Inventory = (props) => {
                 <div
                     className={classes.ContentContainer}
                     style={{
-                        height: searchBarVisible ? 600 : 700,
+                        maxHeight: searchBarVisible ? "70%" : "75%",
                         marginTop: searchBarVisible ? 85 : 0,
                     }}
                 >

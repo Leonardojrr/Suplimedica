@@ -131,7 +131,7 @@ const Clients = (props) => {
                 <div
                     className={classes.ContentContainer}
                     style={{
-                        height: searchBarVisible ? 600 : 700,
+                        maxHeight: searchBarVisible ? "70%" : "75%",
                         marginTop: searchBarVisible ? 85 : 0,
                     }}
                 >

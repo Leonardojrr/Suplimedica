@@ -33,8 +33,6 @@ export const DetailModal = (props) => {
         );
     });
 
-    console.log(item);
-
     return (
         <div
             className={classes.ModalContainer}

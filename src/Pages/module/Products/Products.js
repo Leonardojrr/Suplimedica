@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { InventoryList } from "./InventoryList/InventoryList";
+import { AddNewProduct } from "./InventoryList/AddNewProduct/AddNewProduct";
 
 import classes from "./Products.module.css";
 import { DetailModal } from "./InventoryList/DetailModal/DetailModal";
@@ -13,7 +14,7 @@ const Products = (props) => {
     const items = [
         {
             codigo: 1,
-            nombre: "Producto 1 pero si lo fuerzas no te dire mas nada",
+            nombre: "Producto 1",
             marca: "Marca 1",
             precio: 1,
             cantidad: 100,
@@ -66,6 +67,7 @@ const Products = (props) => {
 
     const [modalVisible, setModalVisible] = useState(false);
     const [editModalVisible, setEditModalVisible] = useState(false);
+    const [addModalVisible, setAddModalVisible] = useState(false);
     const [itemSelected, setItemSelected] = useState({});
     const [nameValue, setItemNameValue] = useState("");
     const [codeValue, setItemCodeValue] = useState("");
@@ -73,6 +75,14 @@ const Products = (props) => {
     const onViewDetails = (item) => {
         setItemSelected(item);
         setModalVisible(true);
+    };
+
+    const onCloseAddModalVisible = () => {
+        setAddModalVisible(false);
+    };
+
+    const onOpenAddNewProduct = () => {
+        setAddModalVisible(true);
     };
 
     const onCloseModal = () => {
@@ -96,6 +106,11 @@ const Products = (props) => {
 
     const onFilterItemCode = (code) => {
         setItemCodeValue(code);
+    };
+
+    const onAddNewProduct = (product) => {
+        setAddModalVisible(false);
+        console.log(product);
     };
 
     return (
@@ -129,13 +144,13 @@ const Products = (props) => {
                         </div>
                     </DropableSearchHeader>
                     <div className={classes.IconsContainer}>
-                        <AddIcon onClick={() => {}} />
+                        <AddIcon onClick={onOpenAddNewProduct} />
                     </div>
                 </div>
                 <div
                     className={classes.ContentContainer}
                     style={{
-                        height: searchBarVisible ? 600 : 700,
+                        height: searchBarVisible ? "70%" : "75%",
                         marginTop: searchBarVisible ? 85 : 0,
                     }}
                 >
@@ -158,6 +173,11 @@ const Products = (props) => {
                     modalVisible={editModalVisible}
                     onClose={onCloseEditModal}
                     item={itemSelected}
+                />
+                <AddNewProduct
+                    onClose={onCloseAddModalVisible}
+                    modalVisible={addModalVisible}
+                    onAddProduct={onAddNewProduct}
                 />
             </div>
         </React.Fragment>

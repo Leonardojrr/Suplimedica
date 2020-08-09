@@ -49,17 +49,17 @@ const Purchase = (props) => {
     ]);
 
     const list = [
-        { id: 1, name: "Gazas", price: 0.7, cuantity: 10 },
-        { id: 2, name: "Guantes", price: 1.7, cuantity: 10 },
-        { id: 3, name: "Mascarillas", price: 4, cuantity: 10 },
-        { id: 4, name: "Jeringas", price: 0.5, cuantity: 10 },
-        { id: 5, name: "Yelco", price: 4, cuantity: 10 },
-        { id: 6, name: "Codera", price: 10, cuantity: 10 },
-        { id: 12, name: "Andadera", price: 1.7, cuantity: 10 },
-        { id: 13, name: "Escabel", price: 4, cuantity: 10 },
-        { id: 14, name: "Traqueotomo", price: 0.5, cuantity: 10 },
-        { id: 15, name: "Camilla", price: 4, cuantity: 10 },
-        { id: 16, name: "Gel antibacterial", price: 10, cuantity: 10 },
+        { id: 1213501, name: "Gazas", price: 0.7, cuantity: 10 },
+        { id: 1213502, name: "Guantes", price: 1.7, cuantity: 10 },
+        { id: 1213503, name: "Mascarillas", price: 4, cuantity: 10 },
+        { id: 1213504, name: "Jeringas", price: 0.5, cuantity: 10 },
+        { id: 1213505, name: "Yelco", price: 4, cuantity: 10 },
+        { id: 1213506, name: "Codera", price: 10, cuantity: 10 },
+        { id: 1213512, name: "Andadera", price: 1.7, cuantity: 10 },
+        { id: 1213513, name: "Escabel", price: 4, cuantity: 10 },
+        { id: 1213514, name: "Traqueotomo", price: 0.5, cuantity: 10 },
+        { id: 1213515, name: "Camilla", price: 4, cuantity: 10 },
+        { id: 1213516, name: "Gel antibacterial", price: 10, cuantity: 10 },
     ];
 
     const [nameValue, setNameValue] = useState("");

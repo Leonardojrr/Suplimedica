@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Route, Switch, useRouteMatch } from "react-router-dom";
+import { Route, Switch, useRouteMatch, Redirect } from "react-router-dom";
 import Menu from "../components/General/Menu/Menu";
 
 //Modules imports
@@ -18,7 +18,7 @@ function App() {
             <div id="module">
                 <Switch>
                     <Route exact path={`${match.url}/`}>
-                        <h1>Elije un modulo</h1>
+                        <Redirect to={`${match.url}/market`} />
                     </Route>
 
                     <Route path={`${match.url}/warehouse`}>

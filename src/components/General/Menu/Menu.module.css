@@ -6,8 +6,17 @@
     display: flex;
     flex-flow: column;
     align-items: center;
+    justify-content: space-between;
     background: #0f52ab;
+    position: relative;
     z-index: 100;
+}
+
+.ModuleIcons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .button {
@@ -34,4 +43,30 @@
 
 .button.on svg {
     fill: #0f52ab;
+}
+
+.LogOutButton {
+    margin: 10px 0 20px 0;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #c40303;
+    border-radius: 50%;
+}
+
+.LogOutIcon {
+    width: 40px;
+    height: 40px;
+    color: white;
+    user-select: none;
+}
+
+.LogOutButton:active {
+    background-color: #b10000;
+}
+
+.LogOutIcon:active {
+    color: rgb(212, 212, 212);
 }

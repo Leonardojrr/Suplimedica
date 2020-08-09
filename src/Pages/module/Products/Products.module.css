@@ -33,14 +33,15 @@
 
 .ContentContainer {
     width: 100%;
-    height: 700px;
+    height: 75%;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     transition: margin 1s;
-
-    /* background-color: beige; */
+    transition: height 1s;
+    margin-bottom: 20px;
 }
 
 .Input {

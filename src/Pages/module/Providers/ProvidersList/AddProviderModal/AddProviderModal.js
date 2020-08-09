@@ -71,7 +71,7 @@ export const AddProviderModal = (props) => {
                 <div className={classes.InputsContainer}>
                     <div className={classes.InputContainer}>
                         <Input
-                            label="nombre"
+                            label="Nombre"
                             onChange={(value) => {
                                 onNameChangeHandler(value);
                             }}
@@ -79,7 +79,7 @@ export const AddProviderModal = (props) => {
                     </div>
                     <div className={classes.InputContainer}>
                         <Input
-                            label="ci"
+                            label="Identificación"
                             onChange={(value) => {
                                 onIdChangeHandler(value);
                             }}
@@ -87,7 +87,7 @@ export const AddProviderModal = (props) => {
                     </div>
                     <div className={classes.InputContainer}>
                         <Input
-                            label="direccion"
+                            label="Dirección"
                             onChange={(value) => {
                                 onAddressChangeHandler(value);
                             }}
@@ -95,7 +95,7 @@ export const AddProviderModal = (props) => {
                     </div>
                     <div className={classes.InputContainer}>
                         <Input
-                            label="numero"
+                            label="Número"
                             onChange={(value) => {
                                 onNumberChangeHandler(value);
                             }}

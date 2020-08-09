@@ -83,7 +83,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 65%;
+    flex: 1;
     background-color: lightgray;
     border-left: 1px solid grey;
     border-right: 1px solid grey;
@@ -94,7 +94,7 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    flex: 1;
+    height: 15%;
     padding-left: 5%;
     padding-right: 5%;
     background-color: rgb(15, 82, 171, 0.3);

@@ -1,51 +1,38 @@
 import React, { useState, useEffect } from "react";
 
-import classes from "./EditDetailModal.module.css";
+import classes from "./AddNewProduct.module.css";
 
-import { MdClose, MdEdit } from "react-icons/md";
-import { FaBarcode } from "react-icons/fa";
-import { Input } from "../../../../../Util/Input/Input";
 import { EditInput } from "./EditInput/EditInput";
 import { ExitIcon } from "../../../../../components/Icons/ExitIcon/ExitIcon";
 
-export const EditDetailModal = (props) => {
-    let { modalVisible, onClose, item } = props;
-    const [editNameValue, setEditNameValue] = useState(props.item.nombre);
-    const [editBrandValue, setEditBrandValue] = useState(props.item.marca);
-    const [editCodeValue, setEditCodeValue] = useState(props.item.codigo);
-    const [editPriceValue, setEditPriceValue] = useState(props.item.precio);
-
-    const handleChange = () => {};
-
-    useEffect(() => {
-        setEditNameValue(props.item.nombre);
-        setEditBrandValue(props.item.marca);
-        setEditCodeValue(props.item.codigo);
-        setEditPriceValue(props.item.precio);
-    }, [props.item]);
+export const AddNewProduct = (props) => {
+    let { modalVisible, onClose, onAddProduct = () => {} } = props;
+    const [state, setState] = useState({
+        nombre: "",
+        codigo: "",
+        marca: "",
+        precio: 0,
+    });
 
     const onCancelHandler = () => {
-        setEditNameValue(props.item.nombre);
-        setEditBrandValue(props.item.marca);
-        setEditCodeValue(props.item.codigo);
-        setEditPriceValue(props.item.precio);
+        setState({});
         onClose();
     };
 
     const onNameChangeHandler = (val) => {
-        setEditNameValue(val);
+        setState({ ...state, nombre: val });
     };
 
     const onCodeChangeHandler = (val) => {
-        setEditCodeValue(val);
+        setState({ ...state, codigo: val });
     };
 
     const onPriceChangeHandler = (val) => {
-        setEditPriceValue(val);
+        setState({ ...state, precio: val });
     };
 
     const onBrandChangeHandler = (val) => {
-        setEditBrandValue(val);
+        setState({ ...state, marca: val });
     };
 
     return (
@@ -57,7 +44,7 @@ export const EditDetailModal = (props) => {
             <div className={classes.Modal}>
                 <div className={classes.TitleContainer}>
                     <div className={classes.Title}>
-                        Edita los datos de este producto
+                        Añadir un nuevo producto
                     </div>
                     <div className={classes.IconsContainer}>
                         <ExitIcon onClick={onClose} />
@@ -68,22 +55,22 @@ export const EditDetailModal = (props) => {
                     <div className={classes.Content}>
                         <EditInput
                             label={"Nombre"}
-                            value={editNameValue}
+                            value={state.nombre}
                             onChange={onNameChangeHandler}
                         />
                         <EditInput
                             label={"Codigo"}
-                            value={editCodeValue}
+                            value={state.codigo}
                             onChange={onCodeChangeHandler}
                         />
                         <EditInput
                             label={"Marca"}
-                            value={editBrandValue}
+                            value={state.marca}
                             onChange={onBrandChangeHandler}
                         />
                         <EditInput
                             label={"Precio"}
-                            value={editPriceValue}
+                            value={state.precio}
                             onChange={onPriceChangeHandler}
                         />
                     </div>
@@ -98,9 +85,9 @@ export const EditDetailModal = (props) => {
                     </div>
                     <div
                         className={classes.AcceptButton}
-                        // onClick={onAddClient}
+                        onClick={() => onAddProduct(state)}
                     >
-                        Editar
+                        Añadir
                     </div>
                 </div>
             </div>
