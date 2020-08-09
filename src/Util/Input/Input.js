@@ -32,7 +32,9 @@ export const Input = (props) => {
         position: "absolute",
         zIndex: 90,
         left: 10,
-        top: !focused && inputValue === "" ? "20%" : 0,
+        top: !focused && inputValue === "" ? "50%" : 0,
+        transform:
+            !focused && inputValue === "" ? `translate(0, -50%)` : "none",
         fontSize: !focused && inputValue === "" ? 20 : 12,
         color: placeholderTextColor ? placeholderTextColor : "rgba(0,0,0,0.6)",
     };

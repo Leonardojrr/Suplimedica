@@ -15,7 +15,7 @@
 
 .ClientName {
     color: white;
-    font-size: 20px;
+    font-size: 22px;
     background-color: #0f52ab;
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
@@ -28,5 +28,5 @@
     height: 70px;
     padding: 0 30px;
     color: #0f52ab;
-    font-size: 18px;
+    font-size: 20px;
 }

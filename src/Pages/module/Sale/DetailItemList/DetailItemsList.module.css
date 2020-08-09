@@ -6,13 +6,12 @@
     flex-direction: column;
     font-family: "Nunito";
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .NotSelected {
     font-family: "Nunito";
     height: 500px;
-    border-right: 1px solid #0f52ab;
     font-size: 30px;
     color: #0f52ab;
     text-transform: uppercase;

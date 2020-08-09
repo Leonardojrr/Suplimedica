@@ -167,7 +167,7 @@ const Purchase = (props) => {
     let selectProviderComponent = null;
     let providerDetails = null;
 
-    if (providerSelected.name) {
+    if (providerSelected.nombre) {
         providerDetails = (
             <div className={classes.ProviderContent}>
                 <div className={classes.ProviderDataContainer}>

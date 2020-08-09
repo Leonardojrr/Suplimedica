@@ -5,5 +5,5 @@
     flex-direction: column;
     font-family: "Nunito";
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
 }

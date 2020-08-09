@@ -1,26 +1,28 @@
 #App {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  overflow: hidden;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+    font-family: "Nunito";
 }
 
 #module {
-  position: relative;
-  display: flex;
-  flex: 1 1 auto;
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    font-family: "Nunito";
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
+    width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  border-radius: 50px;
-  background-color: #e4e4e4;
+    border-radius: 50px;
+    background-color: #e4e4e4;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #0f52ab;
-  border-radius: 50px;
+    background-color: #0f52ab;
+    border-radius: 50px;
 }

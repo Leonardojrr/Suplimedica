@@ -1,14 +1,18 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import App from "./Pages/App";
 import WindowFrame from "../src/components/General/WindowFrame";
+import Session from "./Pages/Session/Session";
+import App from "./Pages/App";
 
 function Root() {
     return (
         <Router>
             <WindowFrame />
             <Route exact path="/">
-                <Redirect to="/module" />
+                <Redirect to="/session" />
+            </Route>
+            <Route path="/session">
+                <Session />
             </Route>
             <Route path="/module">
                 <App />
