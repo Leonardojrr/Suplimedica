@@ -17,19 +17,20 @@ const Market = (props) => {
     venta: false,
   });
 
-  const { modules } = sessionContext.user;
-
   useEffect(() => {
-    let compra = false;
-    let venta = false;
-    if (modules.includes(3)) {
-      compra = true;
-    }
-    if (modules.includes(4)) {
-      venta = true;
-    }
+    if (sessionContext.user) {
+      const { modules } = sessionContext.user;
+      let compra = false;
+      let venta = false;
+      if (modules.includes(3)) {
+        compra = true;
+      }
+      if (modules.includes(4)) {
+        venta = true;
+      }
 
-    setValidModules({ compra, venta });
+      setValidModules({ compra, venta });
+    }
   }, []);
   let match = useRouteMatch();
 

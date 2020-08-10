@@ -21,7 +21,21 @@ const App = (props) => {
       <div id="module">
         <Switch>
           <Route exact path={`${match.url}/`}>
-            <Redirect to={`${match.url}/market`} />
+            <div
+              style={{
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <div
+                style={{ fontSize: 50, color: "#0f52ab", fontWeight: "bold" }}
+              >
+                Seleccione un modulo
+              </div>
+            </div>
           </Route>
 
           <Route path={`${match.url}/warehouse`}>

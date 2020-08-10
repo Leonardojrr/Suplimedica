@@ -14,11 +14,8 @@ export const Input = (props) => {
   const [inputValue, setInputValue] = useState("");
   const [focused, setFocused] = useState(false);
 
-  useEffect(() => {
-    setInputValue(props.value);
-  }, [props.value]);
-
   const handleChange = (text) => {
+    setInputValue(text.target.value);
     onChange(text.target.value);
   };
 

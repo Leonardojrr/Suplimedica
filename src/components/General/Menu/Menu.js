@@ -1,5 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
-import { NavLink, useRouteMatch } from "react-router-dom";
+import {
+  NavLink,
+  useRouteMatch,
+  withRouter,
+  useHistory,
+} from "react-router-dom";
 import classes from "./Menu.module.css";
 import { SessionContext } from "../../../context/SessionContext";
 
@@ -12,6 +17,7 @@ import { RiLogoutCircleLine } from "react-icons/ri";
 
 const Menu = (props) => {
   let match = useRouteMatch();
+  const history = useHistory();
   const sessionContext = useContext(SessionContext);
   const [validModules, setValidModules] = useState({
     mercado: false,
@@ -20,27 +26,29 @@ const Menu = (props) => {
     permisos: false,
   });
 
-  const { modules } = sessionContext.user;
-  console.log(modules);
-
   useEffect(() => {
-    let almacen = false;
-    let mercado = false;
-    let permisos = false;
-    let personas = false;
-    if (modules.includes(1) || modules.includes(2)) {
-      almacen = true;
+    if (sessionContext.user) {
+      const { modules } = sessionContext.user;
+      let almacen = false;
+      let mercado = false;
+      let permisos = false;
+      let personas = false;
+      if (modules.includes(1) || modules.includes(2)) {
+        almacen = true;
+      }
+      if (modules.includes(3) || modules.includes(4)) {
+        mercado = true;
+      }
+      if (modules.includes(5) || modules.includes(6)) {
+        personas = true;
+      }
+      if (modules.includes(7)) {
+        permisos = true;
+      }
+      setValidModules({ almacen, mercado, personas, permisos });
+    } else {
+      history.push("/session");
     }
-    if (modules.includes(3) || modules.includes(4)) {
-      mercado = true;
-    }
-    if (modules.includes(5) || modules.includes(6)) {
-      personas = true;
-    }
-    if (modules.includes(7)) {
-      permisos = true;
-    }
-    setValidModules({ almacen, mercado, personas, permisos });
   }, []);
 
   return (
@@ -105,4 +113,4 @@ const Menu = (props) => {
   );
 };
 
-export default Menu;
+export default withRouter(Menu);
