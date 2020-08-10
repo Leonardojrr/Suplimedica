@@ -9,21 +9,6 @@ import { ExitIcon } from "../../../../../components/Icons/ExitIcon/ExitIcon";
 export const DetailModal = (props) => {
   let { modalVisible, onClose, item, productProviders } = props;
 
-  // item.proveedores = [
-  //     "Juan",
-  //     "Pedro",
-  //     "Farmacias SAS",
-  //     "Juan",
-  //     "Pedro",
-  //     "Farmacias SAS",
-  //     "Juan",
-  //     "Pedro",
-  //     "Farmacias SAS",
-  //     "Juan",
-  //     "Pedro",
-  //     "Farmacias SAS",
-  // ];
-
   let providersList = [];
 
   productProviders.map((proveedor, index) => {
@@ -33,8 +18,6 @@ export const DetailModal = (props) => {
       </div>
     );
   });
-
-  console.log(item);
 
   return (
     <div

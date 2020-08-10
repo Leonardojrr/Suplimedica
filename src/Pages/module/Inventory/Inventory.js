@@ -32,7 +32,6 @@ const Inventory = (props) => {
       },
     }).then((resp) => resp.json());
     setItems(res.data);
-    console.log(res.data);
   };
 
   const onViewDetails = async (item) => {
