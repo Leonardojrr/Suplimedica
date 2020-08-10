@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./App.css";
 import { Route, Switch, useRouteMatch, Redirect } from "react-router-dom";
 import Menu from "../components/General/Menu/Menu";
@@ -8,9 +8,12 @@ import Warehouse from "./module/Warehouse/Warehouse";
 import Market from "./module/Market/Market";
 import People from "./module/People/People";
 import Permission from "./module/Permission/Permission";
+import { SessionContext } from "../context/SessionContext";
 
-function App() {
+const App = (props) => {
   let match = useRouteMatch();
+  const sessionContext = useContext(SessionContext);
+  console.log(sessionContext.user);
 
   return (
     <div id="App">
@@ -40,6 +43,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;

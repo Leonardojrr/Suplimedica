@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import classes from "./Session.module.css";
 import { useHistory } from "react-router-dom";
 import { Input } from "../../Util/Input/Input";
+import { SessionContext } from "../../context/SessionContext";
 
 export const Session = (props) => {
+  const sessionContext = useContext(SessionContext);
   let history = useHistory();
   let { onLogIn } = props;
 
@@ -38,12 +40,13 @@ export const Session = (props) => {
       }),
     }).then((resp) => resp.json());
 
+    await sessionContext.setUser(resp.data);
     console.log(resp);
-  };
 
-  if (state.redirect) {
-    history.push("/module");
-  }
+    if (resp.status === 200) {
+      history.push("/module");
+    }
+  };
 
   return (
     <div className={classes.Container}>
