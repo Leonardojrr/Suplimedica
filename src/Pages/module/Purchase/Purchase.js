@@ -7,6 +7,7 @@ import { ProvidersList } from "./SelectProvider/ProvidersList/ProvidersList";
 import { AddProviderModal } from "./AddProviderModal/AddProviderModal";
 
 import { MdArrowBack } from "react-icons/md";
+import { AddProductModal } from "./AddProductModal/AddProductModal";
 
 const Purchase = (props) => {
     const [providersList, setProvidersList] = useState([
@@ -71,6 +72,7 @@ const Purchase = (props) => {
     const [providerConfirmed, setProviderConfirmed] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [addProductModalVisible, setAddProductModalVisible] = useState(false);
 
     useEffect(() => {
         let total = 0;
@@ -88,6 +90,14 @@ const Purchase = (props) => {
 
     const onCloseAddProviderModal = () => {
         setModalIsOpen(false);
+    };
+
+    const onOpenAddProductModal = () => {
+        setAddProductModalVisible(true);
+    };
+
+    const onCloseAddProductModal = () => {
+        setAddProductModalVisible(false);
     };
 
     const onFilterByProviderName = (name) => {
@@ -298,7 +308,10 @@ const Purchase = (props) => {
                                 onAddItem={onAddItem}
                                 items={list}
                             />
-                            <div className={classes.AddProduct}>
+                            <div
+                                className={classes.AddProduct}
+                                onClick={onOpenAddProductModal}
+                            >
                                 añadir producto a este proveedor
                             </div>
                         </div>
@@ -401,6 +414,10 @@ const Purchase = (props) => {
                 modalVisible={modalIsOpen}
                 onCloseModal={onCloseAddProviderModal}
                 onAddNewProvider={onAddNewProvider}
+            />
+            <AddProductModal
+                modalVisible={addProductModalVisible}
+                onCloseModal={onCloseAddProductModal}
             />
             <div className={classes.Container}>
                 {goBack}
