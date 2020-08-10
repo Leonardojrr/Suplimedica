@@ -16,6 +16,7 @@
 
 .ContentContainer {
     width: 100%;
+    /* flex: 1; */
     height: 75%;
     position: relative;
     display: flex;

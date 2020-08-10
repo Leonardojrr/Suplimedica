@@ -1,5 +1,5 @@
 .ItemsContainer {
-    max-height: 500px;
+    max-height: 80%;
     width: 100%;
     display: flex;
     flex-direction: column;

@@ -90,6 +90,8 @@
 
 .ItemsList {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 50%;
     padding: 10px;
     /* background-color: tomato; */
@@ -281,6 +283,24 @@
 }
 
 .ConfirmSaleContainer:active {
+    background-color: #0d4894;
+    color: rgb(212, 212, 212);
+}
+
+.AddProduct {
+    width: 100%;
+    height: 12%;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 7px;
+    background-color: #0f52ab;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.AddProduct:active {
     background-color: #0d4894;
     color: rgb(212, 212, 212);
 }

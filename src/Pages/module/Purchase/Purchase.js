@@ -298,6 +298,9 @@ const Purchase = (props) => {
                                 onAddItem={onAddItem}
                                 items={list}
                             />
+                            <div className={classes.AddProduct}>
+                                añadir producto a este proveedor
+                            </div>
                         </div>
                     </div>
                 </div>
