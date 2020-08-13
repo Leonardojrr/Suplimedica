@@ -41,6 +41,7 @@ const Market = (props) => {
           <div className={classes.Container}>
             {validModules.compra ? (
               <NavLink
+                draggable={false}
                 to={`${match.url}/purchase`}
                 className={`${classes.ButtonContainer} ${classes.ButtonActive}`}
               >
@@ -74,6 +75,7 @@ const Market = (props) => {
 
             {validModules.venta ? (
               <NavLink
+                draggable={false}
                 to={`${match.url}/sale`}
                 className={`${classes.ButtonContainer} ${classes.ButtonActive}`}
               >

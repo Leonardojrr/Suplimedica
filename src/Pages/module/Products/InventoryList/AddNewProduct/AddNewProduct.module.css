@@ -1,140 +1,142 @@
 .ModalContainer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    z-index: 200;
-    font-family: "Nunito";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  font-family: "Nunito";
 }
 
 .Backdrop {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .Modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    display: flex;
-    flex-direction: column;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    height: 80%;
-    background-color: white;
-    z-index: 250;
-    border-radius: 10px;
-    overflow: hidden;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background-color: white;
+  z-index: 250;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .TitleContainer {
-    position: relative;
-    font-size: 25px;
-    font-weight: bold;
-    height: 50px;
-    padding: 20px;
-    width: 100% - 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    background-color: #0f52ab;
-    color: white;
-    user-select: none;
+  position: relative;
+  font-size: 25px;
+  font-weight: bold;
+  height: 50px;
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  background-color: #0f52ab;
+  color: white;
+  user-select: none;
 }
 
 .Content {
-    display: flex;
-    flex-wrap: wrap;
-    width: 70%;
-    height: 80%;
-    background-color: aliceblue;
-    border-radius: 7px;
-    padding: 20px 40px;
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  height: 100%;
+  width: 80%;
+  background-color: aliceblue;
+  border-radius: 7px;
 }
 
 .Title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-transform: uppercase;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  width: 100%;
 }
 
 .ContentContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    width: 100%;
-    background-color: lightgray;
-    border-left: 1px solid grey;
-    border-right: 1px solid grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 80%;
+  background-color: lightgray;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
 }
 
 .BottomContainer {
-    height: 15%;
-    width: 90%;
-    font-size: 23px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    padding-left: 5%;
-    padding-right: 5%;
-    background-color: rgb(15, 82, 171, 0.3);
-    border-top: 1px solid grey;
-    user-select: none;
+  height: 15%;
+  width: 90%;
+  font-size: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-left: 5%;
+  padding-right: 5%;
+  background-color: rgb(15, 82, 171, 0.3);
+  border-top: 1px solid grey;
+  user-select: none;
 }
 
 .AcceptButton,
 .CancelButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20%;
-    height: 50px;
-    color: white;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-family: "Nunito";
-    font-size: 25px;
-    border-radius: 7px;
-    box-shadow: 0px 0px 5px rgb(109, 109, 109);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+  height: 50px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: "Nunito";
+  font-size: 25px;
+  border-radius: 7px;
+  box-shadow: 0px 0px 5px rgb(109, 109, 109);
 }
 
 .AcceptButton {
-    background-color: #0f52ab;
+  background-color: #0f52ab;
 }
 
 .AcceptButton:active {
-    background-color: #0d4894;
-    color: rgb(212, 212, 212);
+  background-color: #0d4894;
+  color: rgb(212, 212, 212);
 }
 
 .CancelButton:active {
-    background-color: #b10000;
-    color: rgb(212, 212, 212);
+  background-color: #b10000;
+  color: rgb(212, 212, 212);
 }
 
 .CancelButton {
-    background-color: #c40303;
+  background-color: #c40303;
 }
 
 .IconsContainer {
-    position: absolute;
-    top: 0;
-    right: 20px;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  top: 0;
+  right: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }

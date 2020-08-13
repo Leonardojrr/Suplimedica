@@ -1,46 +1,48 @@
 .Container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .ButtonContainer {
-    width: 30%;
-    height: 50%;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: space-evenly;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px 1px lightgray;
-    border: 0px solid transparent;
-    text-decoration: none;
-    font-weight: bold;
-    font-family: "Nunito";
+  width: 30%;
+  height: 50%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 1px lightgray;
+  border: 0px solid transparent;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: "Nunito";
+  user-select: none;
+  text-align: center;
 }
 
 .ButtonActive:focus {
-    border: 2px solid #0f52ab;
-    outline: none;
+  border: 2px solid #0f52ab;
+  outline: none;
 }
 
 .Icon {
-    width: 130px;
-    height: 130px;
-    display: block;
-    fill: #0f52ab;
+  width: 130px;
+  height: 130px;
+  display: block;
+  fill: #0f52ab;
 }
 
 .IconContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .DescriptionContainer {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 }

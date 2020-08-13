@@ -11,7 +11,7 @@ export const getModules = (id, active = true) => {
     //Inventario
     case 1:
       return (
-        <div module_id={1} className={classes.Module}>
+        <div key={1} module_id={1} className={classes.Module}>
           <FaWarehouse />
         </div>
       );
@@ -19,7 +19,7 @@ export const getModules = (id, active = true) => {
     //Productos
     case 2:
       return (
-        <div module_id={2} className={classes.Module}>
+        <div key={2} module_id={2} className={classes.Module}>
           <FaDatabase />
         </div>
       );
@@ -27,7 +27,7 @@ export const getModules = (id, active = true) => {
     //Compra
     case 3:
       return (
-        <div module_id={3} className={classes.Module}>
+        <div key={3} module_id={3} className={classes.Module}>
           <MdShoppingCart />
         </div>
       );
@@ -35,7 +35,7 @@ export const getModules = (id, active = true) => {
     //Venta
     case 4:
       return (
-        <div module_id={4} className={classes.Module}>
+        <div key={4} module_id={4} className={classes.Module}>
           <MdReceipt />
         </div>
       );
@@ -43,7 +43,7 @@ export const getModules = (id, active = true) => {
     //Proveedores
     case 5:
       return (
-        <div module_id={5} className={classes.Module}>
+        <div key={5} module_id={5} className={classes.Module}>
           <FaTruck />
         </div>
       );
@@ -51,7 +51,7 @@ export const getModules = (id, active = true) => {
     //Clientes
     case 6:
       return (
-        <div module_id={6} className={classes.Module}>
+        <div key={6} module_id={6} className={classes.Module}>
           <BsFillPersonFill />
         </div>
       );
@@ -59,7 +59,7 @@ export const getModules = (id, active = true) => {
     //Permisos
     case 7:
       return (
-        <div module_id={7} className={classes.Module}>
+        <div key={7} module_id={7} className={classes.Module}>
           <BsLock />
         </div>
       );

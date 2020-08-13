@@ -1,22 +1,30 @@
 import React, { useState, Fragment } from "react";
 import { useRouteMatch, NavLink, Router, Route } from "react-router-dom";
 import classes from "./UserRow.module.css";
-import { UpdateUser } from "../UpdateUser/UpdateUser";
 
 export const UserRow = (props) => {
   let match = useRouteMatch();
-  const { name, username, ci, password, address, number, modules } = props.user;
+  let {
+    id_persona,
+    nombre_persona,
+    nombre_usuario,
+    ci_persona,
+    direccion_persona,
+    numero_persona,
+    modules,
+  } = props.user;
 
   return (
     <Fragment>
       <NavLink
+        draggable={false}
         className={classes.Link}
-        to={`${match.url}/update?name=${name}&username=${username}&ci=${ci}&password=${password}&address=${address}&number=${number}&modules=${modules}`}
+        to={`${match.url}/update?id_persona=${id_persona}&nombre_persona=${nombre_persona}&nombre_usuario=${nombre_usuario}&ci_persona=${ci_persona}&direccion_persona=${direccion_persona}&numero_persona=${numero_persona}&modules=${modules}`}
       >
         <div className={classes.Fields}>
-          <span>{name}</span>
-          <span>{username}</span>
-          <span>{ci}</span>
+          <span>{nombre_persona}</span>
+          <span>{nombre_usuario}</span>
+          <span>{ci_persona}</span>
         </div>
       </NavLink>
     </Fragment>

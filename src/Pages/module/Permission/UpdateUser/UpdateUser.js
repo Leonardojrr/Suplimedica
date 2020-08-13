@@ -1,5 +1,5 @@
-import React, { Fragment, useState } from "react";
-import { useRouteMatch, useLocation } from "react-router-dom";
+import React, { Fragment, useState, useContext } from "react";
+import { useLocation, useHistory } from "react-router-dom";
 import { Input } from "../Input/Input";
 
 //icons imports
@@ -14,43 +14,77 @@ const useQuery = () => {
 };
 
 export const UpdateUser = (props) => {
+  const history = useHistory();
   let query = useQuery();
 
   const [state, setState] = useState({
-    name: query.get("name"),
-    ci: query.get("ci"),
-    username: query.get("username"),
-    password: query.get("password"),
-    number: query.get("number"),
-    direccion: query.get("address"),
+    id_persona: query.get("id_persona"),
+    nombre_persona: query.get("nombre_persona"),
+    ci_persona: query.get("ci_persona"),
+    nombre_usuario: query.get("nombre_usuario"),
+    numero_persona: query.get("numero_persona"),
+    contrasena_usuario: "",
+    direccion_persona: query.get("direccion_persona"),
     modules: query
       .get("modules")
       .split(",")
       .map((string) => parseInt(string)),
   });
 
+  const updateUser = async () => {
+    if (!state.nombre_persona) {
+      alert("El usuario tiene que tener un nombre");
+      return null;
+    }
+
+    if (!state.ci_persona) {
+      alert("El usuario tiene que tener un ci");
+      return null;
+    }
+
+    if (!state.nombre_usuario) {
+      alert("El usuario tiene que tener un nombre de usuario");
+      return null;
+    }
+
+    if (state.modules.length === 0) {
+      alert("El usuario tiene que tener acceso al menos a 1 modulo");
+      return null;
+    }
+
+    const res = await fetch("http://localhost:3000/user/" + state.id_persona, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(state),
+    }).then((resp) => resp.json());
+
+    if (res.status === 200) {
+      history.push("/module/permissions");
+    }
+  };
+
   const onChangeName = (e) => {
-    setState({ ...state, name: e.target.value });
+    setState({ ...state, nombre_persona: e.target.value });
   };
 
   const onChangeCi = (e) => {
-    setState({ ...state, ci: e.target.value });
+    setState({ ...state, ci_persona: e.target.value });
   };
 
   const onChangeUsername = (e) => {
-    setState({ ...state, username: e.target.value });
+    setState({ ...state, nombre_usuario: e.target.value });
   };
 
   const onChangePassword = (e) => {
-    setState({ ...state, password: e.target.value });
+    setState({ ...state, contrasena_usuario: e.target.value });
   };
 
   const onChangeNumber = (e) => {
-    setState({ ...state, number: e.target.value });
+    setState({ ...state, numero_persona: e.target.value });
   };
 
   const onChangeAddress = (e) => {
-    setState({ ...state, address: e.target.value });
+    setState({ ...state, direccion_persona: e.target.value });
   };
 
   const ChangeModules = (id) => {
@@ -200,34 +234,42 @@ export const UpdateUser = (props) => {
   return (
     <Fragment>
       <div className={classes.FirstColumn}>
-        <Input name={"Nombre"} handleChange={onChangeName} value={state.name} />
+        <Input
+          name={"Nombre"}
+          handleChange={onChangeName}
+          value={state.nombre_persona}
+        />
 
-        <Input name={"Cedula"} handleChange={onChangeCi} value={state.ci} />
+        <Input
+          name={"Cedula"}
+          handleChange={onChangeCi}
+          value={state.ci_persona}
+        />
 
         <Input
           name={"Usuario"}
           handleChange={onChangeUsername}
-          value={state.username}
+          value={state.nombre_usuario}
         />
 
         <Input
-          name={"Password"}
+          name={"Cambiar Contraseña"}
           handleChange={onChangePassword}
           password={true}
-          value={state.password}
+          value={state.contrasena_usuario}
         />
       </div>
       <div className={classes.SecondColumn}>
         <Input
           name={"Telefono"}
           handleChange={onChangeNumber}
-          value={state.number}
+          value={state.numero_persona}
         />
 
         <Input
           name={"Direccion"}
           handleChange={onChangeAddress}
-          value={state.address}
+          value={state.direccion_persona}
         />
 
         <div className={classes.ModulesField}>
@@ -242,7 +284,9 @@ export const UpdateUser = (props) => {
             {getPermissionsModule(state.modules)}
           </div>
         </div>
-        <div className={classes.Button}>Actualizar Usuario</div>
+        <div className={classes.Button} onClick={updateUser}>
+          Actualizar Usuario
+        </div>
       </div>
     </Fragment>
   );

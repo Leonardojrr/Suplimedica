@@ -6,41 +6,46 @@ import { Item } from "./Item/Item";
 // import { MdAdd } from "react-icons/md";
 
 export const DetailItemsList = (props) => {
-    const { onChangeHandler, onRemoveItem } = props;
-    // const [itemsList, setItemsList] = useState([]);
+  const { onChangeHandler, onRemoveItem } = props;
+  const [items, setItems] = useState([]);
 
-    let itemsList = [];
+  useEffect(() => {
+    setItems(props.items);
+  }, [props.items]);
 
-    props.items.map((item) => {
-        if (
-            itemsList.findIndex(
-                (element) => element.props.item.id === item.id
-            ) < 0
-        ) {
-            return itemsList.push(
-                <Item
-                    key={item.id}
-                    item={item}
-                    onChange={onChangeHandler}
-                    onRemove={onRemoveItem}
-                />
-            );
-        } else {
-            return null;
-        }
+  let itemsList = [];
+  if (items) {
+    items.map((item) => {
+      if (
+        itemsList.findIndex(
+          (element) => element.id_producto === item.id_producto
+        ) < 0
+      ) {
+        return itemsList.push(
+          <Item
+            key={item.id_producto}
+            item={item}
+            onChange={onChangeHandler}
+            onRemove={onRemoveItem}
+          />
+        );
+      } else {
+        return null;
+      }
     });
+  }
 
-    const itemNotFound = (
-        <div className={classes.NotSelected}>Seleccione algun producto</div>
-    );
+  const itemNotFound = (
+    <div className={classes.NotSelected}>Seleccione algun producto</div>
+  );
 
-    return (
-        <React.Fragment>
-            {itemsList.length > 0 ? (
-                <div className={classes.ItemsContainer}>{itemsList}</div>
-            ) : (
-                itemNotFound
-            )}
-        </React.Fragment>
-    );
+  return (
+    <React.Fragment>
+      {itemsList.length > 0 ? (
+        <div className={classes.ItemsContainer}>{itemsList}</div>
+      ) : (
+        itemNotFound
+      )}
+    </React.Fragment>
+  );
 };

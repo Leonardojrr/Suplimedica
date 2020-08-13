@@ -13,7 +13,6 @@ import { SessionContext } from "../context/SessionContext";
 const App = (props) => {
   let match = useRouteMatch();
   const sessionContext = useContext(SessionContext);
-  console.log(sessionContext.user);
 
   return (
     <div id="App">

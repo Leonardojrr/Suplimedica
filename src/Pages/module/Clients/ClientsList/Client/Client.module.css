@@ -1,32 +1,33 @@
 .ClientContainer {
-    width: 85%;
-    margin: 36px;
-    background-color: rgb(240, 240, 240);
-    border-radius: 7px;
-    font-family: "Nunito";
-    font-weight: bold;
-    text-transform: uppercase;
-    box-shadow: 0 0 5px gray;
+  width: 85%;
+  margin: 36px;
+  background-color: rgb(240, 240, 240);
+  border-radius: 7px;
+  font-family: "Nunito";
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 0 5px gray;
+  /* flex: 0 0 auto; */
 }
 
 .ClientName:active {
-    background-color: #0d4894;
+  background-color: #0d4894;
 }
 
 .ClientName {
-    color: white;
-    font-size: 22px;
-    background-color: #0f52ab;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-    padding: 20px 30px;
+  color: white;
+  font-size: 22px;
+  background-color: #0f52ab;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  padding: 20px 30px;
 }
 
 .ClientId {
-    display: flex;
-    align-items: center;
-    height: 70px;
-    padding: 0 30px;
-    color: #0f52ab;
-    font-size: 20px;
+  display: flex;
+  align-items: center;
+  height: 70px;
+  padding: 0 30px;
+  color: #0f52ab;
+  font-size: 20px;
 }

@@ -107,7 +107,13 @@ const Menu = (props) => {
       </div>
 
       <div className={classes.LogOutButton}>
-        <RiLogoutCircleLine className={classes.LogOutIcon} />
+        <RiLogoutCircleLine
+          className={classes.LogOutIcon}
+          onClick={() => {
+            sessionContext.setUser({});
+            history.push("/session");
+          }}
+        />
       </div>
     </div>
   );

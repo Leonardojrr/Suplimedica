@@ -5,118 +5,123 @@ import classes from "./AddProviderModal.module.css";
 import { MdClose } from "react-icons/md";
 
 import { Input } from "../../../../../Util/Input/Input";
-import { ExitIcon } from "../../../../../components/Icons/ExitIcon/ExitIcon";
+import { formatId } from "../../../../../Util/FormatId/FormatId";
 
 export const AddProviderModal = (props) => {
-    let { modalVisible, onCloseModal, onAddNewProvider } = props;
-    const [nameValue, setNameValue] = useState("");
-    const [idValue, setIdValue] = useState("");
-    const [addressValue, setAddressValue] = useState("");
-    const [numberValue, setNumberValue] = useState(0);
+  let { modalVisible, onCloseModal, updateList } = props;
+  const [state, setState] = useState({
+    name: "",
+    ci: "",
+    address: "",
+    number: 0,
+  });
 
-    const onNameChangeHandler = (newVal) => {
-        setNameValue(newVal);
-    };
+  const onNameChangeHandler = (newVal) => {
+    setState({ ...state, name: newVal });
+  };
 
-    const onIdChangeHandler = (newVal) => {
-        setIdValue(newVal);
-    };
+  const onIdChangeHandler = (newVal) => {
+    setState({ ...state, ci: newVal });
+  };
 
-    const onAddressChangeHandler = (newVal) => {
-        setAddressValue(newVal);
-    };
+  const onAddressChangeHandler = (newVal) => {
+    setState({ ...state, address: newVal });
+  };
 
-    const onNumberChangeHandler = (newVal) => {
-        setNumberValue(newVal);
-    };
+  const onNumberChangeHandler = (newVal) => {
+    setState({ ...state, number: newVal });
+  };
 
-    const onAddProvider = () => {
-        if (nameValue && idValue) {
-            onAddNewProvider({
-                name: nameValue,
-                id: idValue,
-                address: addressValue,
-                number: numberValue,
-            });
-        } else {
-            alert("no se ingresaron datos");
-        }
-        onCloseModal();
-    };
+  const onAddNewProvider = async (newProvider) => {
+    const res = await fetch("http://localhost:3000/provider", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...newProvider,
+      }),
+    }).then((resp) => resp.json());
+    if (res.status === 200) {
+      updateList();
+      onCloseModal();
+    }
+  };
 
-    const onCancelHandler = () => {
-        setNameValue("");
-        setIdValue("");
-        setAddressValue("");
-        setNumberValue(0);
-        onCloseModal();
-    };
+  const onAddProvider = () => {
+    if (formatId(state.ci)) {
+      if (state.name && state.ci) {
+        onAddNewProvider({
+          ...state,
+          ci: formatId(state.ci),
+        });
+      } else {
+        alert("no se ingresaron datos");
+      }
+    } else {
+      alert("Cedula invalida");
+    }
+  };
 
-    return (
-        <div
-            className={classes.ModalContainer}
-            style={{ display: modalVisible ? "block" : "none" }}
-        >
-            <div className={classes.Backdrop} onClick={onCloseModal}></div>
-            <div className={classes.Modal}>
-                <div className={classes.Header}>
-                    <div className={classes.Title}>
-                        Añadir a un nuevo proveedor
-                    </div>
-                    <div className={classes.IconsContainer}>
-                        <ExitIcon onClick={onCloseModal} />
-                    </div>
-                </div>
+  const onCancelHandler = () => {
+    setState({});
+    onCloseModal();
+  };
 
-                <div className={classes.InputsContainer}>
-                    <div className={classes.InputContainer}>
-                        <Input
-                            label="Nombre"
-                            onChange={(value) => {
-                                onNameChangeHandler(value);
-                            }}
-                        />
-                    </div>
-                    <div className={classes.InputContainer}>
-                        <Input
-                            label="Identificación"
-                            onChange={(value) => {
-                                onIdChangeHandler(value);
-                            }}
-                        />
-                    </div>
-                    <div className={classes.InputContainer}>
-                        <Input
-                            label="Dirección"
-                            onChange={(value) => {
-                                onAddressChangeHandler(value);
-                            }}
-                        />
-                    </div>
-                    <div className={classes.InputContainer}>
-                        <Input
-                            label="Número"
-                            onChange={(value) => {
-                                onNumberChangeHandler(value);
-                            }}
-                        />
-                    </div>
-                </div>
-                <div className={classes.BottomContainer}>
-                    <div
-                        className={classes.CancelButton}
-                        onClick={onCancelHandler}
-                    >
-                        Cancelar
-                    </div>
-                    <div
-                        className={classes.AcceptButton}
-                        onClick={onAddProvider}
-                    >
-                        Añadir
-                    </div>
-                </div>
-            </div>
+  return (
+    <div
+      className={classes.ModalContainer}
+      style={{ display: modalVisible ? "block" : "none" }}
+    >
+      <div className={classes.Backdrop} onClick={onCloseModal}></div>
+      <div className={classes.Modal}>
+        <div className={classes.Title}>Añadir a un nuevo proveedor</div>
+        <div className={classes.InputsContainer}>
+          <div className={classes.InputContainer}>
+            <Input
+              label="Nombre"
+              onChange={(value) => {
+                onNameChangeHandler(value);
+              }}
+            />
+          </div>
+          <div className={classes.InputContainer}>
+            <Input
+              label="Identificación"
+              onChange={(value) => {
+                onIdChangeHandler(value);
+              }}
+            />
+          </div>
+          <div className={classes.InputContainer}>
+            <Input
+              label="Dirección"
+              onChange={(value) => {
+                onAddressChangeHandler(value);
+              }}
+            />
+          </div>
+          <div className={classes.InputContainer}>
+            <Input
+              label="Número"
+              onChange={(value) => {
+                onNumberChangeHandler(value);
+              }}
+            />
+          </div>
         </div>
-    );
+        <div className={classes.BottomContainer}>
+          <div className={classes.CancelButton} onClick={onCancelHandler}>
+            Cancelar
+          </div>
+          <div className={classes.AcceptButton} onClick={onAddProvider}>
+            Añadir
+          </div>
+        </div>
+        <div className={classes.ExitButtonContainer} onClick={onCloseModal}>
+          <MdClose className={classes.ExitButton} />
+        </div>
+      </div>
+    </div>
+  );
 };

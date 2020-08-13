@@ -6,37 +6,44 @@ import { Item } from "./Item/Item";
 // import { MdAdd } from "react-icons/md";
 
 export const AddItemsList = (props) => {
-    const { items = [], onAddItem } = props;
-    const [nameValue, setNameValue] = useState(props.nameValue);
-    const [codeValue, setCodeValue] = useState(props.codeValue);
+  const { onAddItem } = props;
+  const [nameValue, setNameValue] = useState(props.nameValue);
+  const [codeValue, setCodeValue] = useState(props.codeValue);
+  const [items, setItems] = useState([]);
 
-    useEffect(() => {
-        setNameValue(props.nameValue);
-    }, [props.nameValue]);
+  useEffect(() => {
+    setItems(props.items);
+  }, [props.items]);
 
-    useEffect(() => {
-        setCodeValue(props.codeValue);
-    }, [props.codeValue]);
+  useEffect(() => {
+    setNameValue(props.nameValue);
+  }, [props.nameValue]);
 
-    let itemsList = [];
+  useEffect(() => {
+    setCodeValue(props.codeValue);
+  }, [props.codeValue]);
 
+  let itemsList = [];
+
+  if (items) {
     items.map((item) => {
-        if (
-            item.name.toLowerCase().includes(nameValue.toLowerCase()) &&
-            item.id.toString().includes(codeValue)
-        ) {
-            return itemsList.push(
-                <Item key={item.id} item={item} onAddItem={onAddItem} />
-            );
-        }
-        return null;
+      if (
+        item.nombre.toLowerCase().includes(nameValue.toLowerCase()) &&
+        item.codigo.toString().includes(codeValue)
+      ) {
+        return itemsList.push(
+          <Item key={item.id_producto} item={item} onAddItem={onAddItem} />
+        );
+      }
+      return null;
     });
+  }
 
-    const itemNotFound = <div>No se han encontrado coincidencias</div>;
+  const itemNotFound = <div>No se han encontrado coincidencias</div>;
 
-    return (
-        <div className={classes.ItemsContainer}>
-            {itemsList.length > 0 ? itemsList : itemNotFound}
-        </div>
-    );
+  return (
+    <div className={classes.ItemsContainer}>
+      {itemsList.length > 0 ? itemsList : itemNotFound}
+    </div>
+  );
 };

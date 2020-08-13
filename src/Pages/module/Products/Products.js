@@ -81,9 +81,8 @@ const Products = (props) => {
     setItemCodeValue(code);
   };
 
-  const onAddNewProduct = (product) => {
+  const onAddNewProduct = () => {
     setAddModalVisible(false);
-    console.log(product);
   };
 
   return (
@@ -148,6 +147,7 @@ const Products = (props) => {
           item={itemSelected}
         />
         <AddNewProduct
+          updateList={getProducts}
           onClose={onCloseAddModalVisible}
           modalVisible={addModalVisible}
           onAddProduct={onAddNewProduct}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./Providers.module.css";
 
 import { SearchInput } from "../../../components/SearchInput/SearchInput";
@@ -11,157 +11,141 @@ import { EditDetailModal } from "./ProvidersList/EditDetailModal/EditDetailModal
 import { AddIcon } from "../../../components/Icons/AddIcon/AddIcon";
 
 const Providers = (props) => {
-    const [providersList, setProvidersList] = useState([
-        {
-            nombre: "Wisam Mozalbat",
-            ci: "V. 27.030.643",
-            direccion: "tierra negra",
-            numero: "04242108555",
-        },
-        {
-            nombre: "Leonardo Rodrigues",
-            ci: "V. 26.123.456",
-            direccion: "tierra negra",
-            numero: "04242108555",
-        },
-        {
-            nombre: "Brandon Lugo",
-            ci: "V. 25.234.567",
-            direccion: "tierra negra",
-            numero: "04242108555",
-        },
-        {
-            nombre: "Suplimedica",
-            ci: "J. 01234567-3",
-            direccion: "tierra negra",
-            numero: "04242108555",
-        },
-        {
-            nombre: "Wasim",
-            ci: "V. 30.030.643",
-            direccion: "tierra negra",
-            numero: "04242108555",
-        },
-        {
-            nombre: "Fadi",
-            ci: "E. 82.030.643",
-            direccion: "tierra negra",
-            numero: "04242108555",
-        },
-    ]);
+  const [providersList, setProvidersList] = useState([]);
 
-    const [searchBarVisible, setSearchBarVisible] = useState(false);
+  const [searchBarVisible, setSearchBarVisible] = useState(false);
+  const [addProviderModalVisible, setAddProviderModalVisible] = useState(false);
+  const [editModalVisible, setEditModalVisible] = useState(false);
+  const [detailModalVisible, setDetailModalVisible] = useState(false);
+  const [providerSelected, setProviderSelected] = useState({});
+  const [nameValue, setProviderNameValue] = useState("");
+  const [idValue, setProviderIdValue] = useState("");
 
-    const [addProviderModalVisible, setAddProviderModalVisible] = useState(
-        false
+  useEffect(() => {
+    getProviders();
+  }, []);
+
+  useEffect(() => {
+    let provider = providersList.filter(
+      (provider) => provider.id_persona == providerSelected.id_persona
     );
-    const [editModalVisible, setEditModalVisible] = useState(false);
-    const [detailModalVisible, setDetailModalVisible] = useState(false);
-    const [providerSelected, setProviderSelected] = useState({});
-    const [nameValue, setProviderNameValue] = useState("");
-    const [idValue, setProviderIdValue] = useState("");
+    console.log(provider);
+    setProviderSelected(provider);
+  }, [providersList]);
 
-    const onOpenAddProviderModal = () => {
-        setAddProviderModalVisible(true);
-    };
+  const getProviders = async () => {
+    let res = await fetch("http://localhost:3000/provider", {
+      method: "GET",
+      headers: { "Content-Type": "aplication/json" },
+    }).then((resp) => resp.json());
 
-    const onCloseAddProviderModal = () => {
-        setAddProviderModalVisible(false);
-    };
+    setProvidersList(res);
+  };
 
-    const onOpenDetailModal = (provider) => {
-        setProviderSelected(provider);
-        setDetailModalVisible(true);
-    };
-    const onCloseDetailModal = () => {
-        setDetailModalVisible(false);
-    };
+  const updateList = () => {
+    getProviders();
+  };
 
-    const onOpenEditModal = () => {
-        setEditModalVisible(true);
-        setDetailModalVisible(false);
-    };
-    const onCloseEditModal = () => {
-        setEditModalVisible(false);
-        setDetailModalVisible(true);
-    };
+  const onOpenAddProviderModal = () => {
+    setAddProviderModalVisible(true);
+  };
 
-    const onFilterByProviderName = (name) => {
-        setProviderNameValue(name);
-    };
+  const onCloseAddProviderModal = () => {
+    setAddProviderModalVisible(false);
+  };
 
-    const onFilterProviderId = (code) => {
-        setProviderIdValue(code);
-    };
+  const onOpenDetailModal = (provider) => {
+    setProviderSelected(provider);
+    setDetailModalVisible(true);
+  };
+  const onCloseDetailModal = () => {
+    setDetailModalVisible(false);
+  };
 
-    return (
-        <React.Fragment>
-            <div className={classes.Container}>
-                <div className={classes.HeaderContainer}>
-                    <Header title={"Proveedores"} />
-                    <DropableSearchHeader
-                        searchBarVisible={searchBarVisible}
-                        onToggle={() =>
-                            setSearchBarVisible((actualValue) => !actualValue)
-                        }
-                    >
-                        <div className={classes.Input}>
-                            <SearchInput
-                                inputStyle={{ height: 20 }}
-                                label={"Nombre"}
-                                onChange={(value) => {
-                                    onFilterByProviderName(value);
-                                }}
-                            />
-                        </div>
-                        <div className={classes.Input}>
-                            <SearchInput
-                                inputStyle={{ height: 20 }}
-                                label={"Identificacion"}
-                                onChange={(value) => {
-                                    onFilterProviderId(value);
-                                }}
-                            />
-                        </div>
-                    </DropableSearchHeader>
-                    <div className={classes.IconsContainer}>
-                        <AddIcon onClick={onOpenAddProviderModal} />
-                    </div>
-                </div>
+  const onOpenEditModal = () => {
+    setEditModalVisible(true);
+    setDetailModalVisible(false);
+  };
 
-                <div
-                    className={classes.ContentContainer}
-                    style={{
-                        maxHeight: searchBarVisible ? "70%" : "75%",
-                        marginTop: searchBarVisible ? 85 : 0,
-                    }}
-                >
-                    <ProvidersList
-                        providers={providersList}
-                        nameValue={nameValue}
-                        idValue={idValue}
-                        onViewDetails={onOpenDetailModal}
-                    />
-                </div>
-                <AddProviderModal
-                    modalVisible={addProviderModalVisible}
-                    onCloseModal={onCloseAddProviderModal}
-                    onAddNewProvider={(provider) => console.log(provider)}
-                />
-                <DetailModal
-                    modalVisible={detailModalVisible}
-                    onClose={onCloseDetailModal}
-                    onEdit={onOpenEditModal}
-                    provider={providerSelected}
-                />
-                <EditDetailModal
-                    modalVisible={editModalVisible}
-                    onClose={onCloseEditModal}
-                    provider={providerSelected}
-                />
+  const onCloseEditModal = () => {
+    setEditModalVisible(false);
+  };
+
+  const onFilterByProviderName = (name) => {
+    setProviderNameValue(name);
+  };
+
+  const onFilterProviderId = (code) => {
+    setProviderIdValue(code);
+  };
+
+  return (
+    <React.Fragment>
+      <div className={classes.Container}>
+        <div className={classes.HeaderContainer}>
+          <Header title={"Proveedores"} />
+          <DropableSearchHeader
+            searchBarVisible={searchBarVisible}
+            onToggle={() => setSearchBarVisible((actualValue) => !actualValue)}
+          >
+            <div className={classes.Input}>
+              <SearchInput
+                inputStyle={{ height: 20 }}
+                label={"Nombre"}
+                onChange={(value) => {
+                  onFilterByProviderName(value);
+                }}
+              />
             </div>
-        </React.Fragment>
-    );
+            <div className={classes.Input}>
+              <SearchInput
+                inputStyle={{ height: 20 }}
+                label={"Identificacion"}
+                onChange={(value) => {
+                  onFilterProviderId(value);
+                }}
+              />
+            </div>
+          </DropableSearchHeader>
+          <div className={classes.IconsContainer}>
+            <AddIcon onClick={onOpenAddProviderModal} />
+          </div>
+        </div>
+
+        <div
+          className={classes.ContentContainer}
+          style={{
+            maxHeight: searchBarVisible ? "70%" : "75%",
+            marginTop: searchBarVisible ? 85 : 0,
+          }}
+        >
+          <ProvidersList
+            providers={providersList}
+            nameValue={nameValue}
+            idValue={idValue}
+            onViewDetails={onOpenDetailModal}
+          />
+        </div>
+        <AddProviderModal
+          modalVisible={addProviderModalVisible}
+          updateList={updateList}
+          onCloseModal={onCloseAddProviderModal}
+        />
+        <DetailModal
+          modalVisible={detailModalVisible}
+          onClose={onCloseDetailModal}
+          onEdit={onOpenEditModal}
+          provider={providerSelected}
+        />
+        <EditDetailModal
+          modalVisible={editModalVisible}
+          onClose={onCloseEditModal}
+          updateList={updateList}
+          provider={providerSelected}
+        />
+      </div>
+    </React.Fragment>
+  );
 };
 
 export default Providers;

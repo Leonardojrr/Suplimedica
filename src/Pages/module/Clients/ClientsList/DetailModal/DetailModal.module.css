@@ -1,156 +1,156 @@
 .ModalContainer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    z-index: 200;
-    font-family: "Nunito";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  font-family: "Nunito";
 }
 
 .Backdrop {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .Modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    display: flex;
-    flex-direction: column;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    height: 80%;
-    background-color: white;
-    z-index: 250;
-    border-radius: 10px;
-    overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background-color: white;
+  z-index: 250;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .TitleContainer {
-    font-size: 25px;
-    font-weight: bold;
-    min-height: 3%;
-    max-height: 5%;
-    padding: 20px;
-    width: 100% - 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    flex-direction: row;
-    background-color: #0f52ab;
-    color: white;
-    user-select: none;
+  font-size: 25px;
+  font-weight: bold;
+  min-height: 3%;
+  max-height: 5%;
+  padding: 20px;
+  width: 100% - 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  flex-direction: row;
+  background-color: #0f52ab;
+  color: white;
+  user-select: none;
 }
 
 .IconsContainer {
-    position: absolute;
-    top: 0;
-    right: 20px;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  top: 0;
+  right: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 /* 
 .IconContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    margin: 0 5px;
-    background-color: #0f52ab;
-    border-radius: 50px;
-    user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  margin: 0 5px;
+  background-color: #0f52ab;
+  border-radius: 50px;
+  user-select: none;
 }
 
 .Icon {
-    width: 40px;
-    height: 40px;
-    color: white;
+  width: 40px;
+  height: 40px;
+  color: white;
 } */
 
 /* .IconContainer:active {
-    background-color: #0d4894;
+  background-color: #0d4894;
 }
 
 .Icon:active {
-    color: rgb(212, 212, 212);
+  color: rgb(212, 212, 212);
 } */
 
 .ContentContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    flex: 1;
-    /* background-color: lightcoral; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex: 1;
+  /* background-color: lightcoral; */
 }
 
 .Content {
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    height: 90%;
-    /* background-color: lightgray; */
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 90%;
+  /* background-color: lightgray; */
 }
 
 .Name {
-    display: flex;
-    align-items: center;
-    width: 70%;
-    padding-left: 15px;
+  display: flex;
+  align-items: center;
+  width: 70%;
+  padding-left: 15px;
 }
 
 .ClientDataContainer {
-    display: flex;
-    width: 100%;
-    height: 10%;
+  display: flex;
+  width: 100%;
+  height: 10%;
 }
 
 .ClientData {
-    display: flex;
-    flex: 1;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    text-transform: uppercase;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
 }
 
 .ClientFieldDetail {
-    font-weight: bold;
-    font-size: 20px;
-    color: #0f52ab;
+  font-weight: bold;
+  font-size: 20px;
+  color: #0f52ab;
 }
 
 .ClientReceipts {
-    display: flex;
-    flex: 1;
-    max-height: 90%;
-    flex-direction: row;
-    align-items: center;
-    overflow-x: auto;
-    box-shadow: 0 0 5px grey;
-    /* border: 1px solid #0f52ab; */
-    /* background-color: lime; */
-    border-radius: 7px;
-    column-gap: 20px;
+  display: flex;
+  flex: 1;
+  max-height: 90%;
+  flex-direction: row;
+  align-items: center;
+  overflow-x: auto;
+  box-shadow: 0 0 5px grey;
+  /* border: 1px solid #0f52ab; */
+  /* background-color: lime; */
+  border-radius: 7px;
+  column-gap: 20px;
 }
 
 .Gap {
-    flex: 0 0 auto;
-    height: 100%;
-    width: 1px;
-    background-color: transparent;
+  flex: 0 0 auto;
+  height: 100%;
+  width: 1px;
+  background-color: transparent;
 }

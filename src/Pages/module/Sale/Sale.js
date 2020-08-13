@@ -1,67 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import classes from "./Sale.module.css";
 import { SearchInput } from "../../../components/SearchInput/SearchInput";
 import { AddItemsList } from "./AddItemsList/AddItemsList";
 import { DetailItemsList } from "./DetailItemList/DetailItemsList";
 import { ClientsList } from "./SelectClient/ClientsList/ClientsList";
 import { AddClientModal } from "./AddClientModal/AddClientModal";
+import { SessionContext } from "../../../context/SessionContext";
+import { LoaderModal } from "../../../components/Loader/Loader";
 
 import { MdArrowBack } from "react-icons/md";
+import { Toast } from "../../../components/Toast/Toast";
 
 const Sale = (props) => {
-  const [clientsList, setClientsList] = useState([
-    {
-      nombre: "Wisam Mozalbat",
-      ci: "V. 27.030.643",
-      direccion: "tierra negra",
-      numero: "04242108555",
-    },
-    {
-      nombre: "Leonardo Rodrigues",
-      ci: "V. 26.123.456",
-      direccion: "tierra negra",
-      numero: "04242108555",
-    },
-    {
-      nombre: "Brandon Lugo",
-      ci: "V. 25.234.567",
-      direccion: "tierra negra",
-      numero: "04242108555",
-    },
-    {
-      nombre: "Suplimedica",
-      ci: "J. 01234567-3",
-      direccion: "tierra negra",
-      numero: "04242108555",
-    },
-    {
-      nombre: "Wasim",
-      ci: "V. 30.030.643",
-      direccion: "tierra negra",
-      numero: "04242108555",
-    },
-    {
-      nombre: "Fadi",
-      ci: "E. 82.030.643",
-      direccion: "tierra negra",
-      numero: "04242108555",
-    },
-  ]);
-
-  const list = [
-    { id: 1213501, name: "Gazas", price: 0.7, cuantity: 10 },
-    { id: 1213502, name: "Guantes", price: 1.7, cuantity: 10 },
-    { id: 1213503, name: "Mascarillas", price: 4, cuantity: 10 },
-    { id: 1213504, name: "Jeringas", price: 0.5, cuantity: 10 },
-    { id: 1213505, name: "Yelco", price: 4, cuantity: 10 },
-    { id: 1213506, name: "Codera", price: 10, cuantity: 10 },
-    { id: 1213512, name: "Andadera", price: 1.7, cuantity: 10 },
-    { id: 1213513, name: "Escabel", price: 4, cuantity: 10 },
-    { id: 1213514, name: "Traqueotomo", price: 0.5, cuantity: 10 },
-    { id: 1213515, name: "Camilla", price: 4, cuantity: 10 },
-    { id: 1213516, name: "Gel antibacterial", price: 10, cuantity: 10 },
-  ];
-
+  const sessionContext = useContext(SessionContext);
+  const [clientsList, setClientsList] = useState([]);
+  const [productsList, setProductsList] = useState([]);
   const [nameValue, setNameValue] = useState("");
   const [codeValue, setCodeValue] = useState("");
   const [clientNameValue, setClientNameValue] = useState("");
@@ -73,10 +26,39 @@ const Sale = (props) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
+    getClients();
+  }, []);
+
+  useEffect(() => {
+    if (clientConfirmed) {
+      getProducts();
+    }
+  }, [clientConfirmed]);
+
+  const getClients = async () => {
+    const res = await fetch("http://localhost:3000/client", {
+      method: "GET",
+      headers: { "Content-Type": "aplication/json" },
+    }).then((resp) => resp.json());
+
+    if (status === 200) {
+      setClientsList(res.data);
+    }
+  };
+
+  const getProducts = async () => {
+    const res = await fetch("http://localhost:3000/product/", {
+      method: "GET",
+      headers: { "Content-Type": "aplication/json" },
+    }).then((resp) => resp.json());
+    setProductsList(res.data.filter((product) => product.cantidad > 0));
+  };
+
+  useEffect(() => {
     let total = 0;
 
     itemsSelected.map((item) => {
-      return (total += item.price * item.selling);
+      return (total += item.precio * item.selling);
     });
 
     setTotalPrice(total.toFixed(2));
@@ -113,16 +95,41 @@ const Sale = (props) => {
     setClientConfirmed(true);
   };
 
-  const onAddNewClient = (newClient) => {
-    if (clientsList.findIndex((client) => client.ci === newClient.ci) < 0)
-      setClientsList((prevClientsList) => [...prevClientsList, newClient]);
-    else {
+  const onAddNewClient = async (newClient) => {
+    if (
+      clientsList.findIndex((client) => client.ci_persona === newClient.ci) < 0
+    ) {
+      const res = await fetch("http://localhost:3000/client", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...newClient,
+        }),
+      }).then((resp) => resp.json());
+      if (res.status === 200) {
+        setClientsList([
+          ...clientsList,
+          {
+            nombre_persona: newClient.name,
+            direccion_persona: newClient.address,
+            ci_persona: newClient.ci,
+            numero_persona: newClient.number,
+          },
+        ]);
+      }
+    } else {
       alert("Este cliente ya existe!");
     }
   };
 
   const onAddItem = (itemSelected) => {
-    if (itemsSelected.findIndex((item) => item.id === itemSelected.id) < 0) {
+    if (
+      itemsSelected.findIndex(
+        (item) => item.id_producto === itemSelected.id_producto
+      ) < 0
+    ) {
       setItemsSelected((prevItems) => [
         ...prevItems,
         { ...itemSelected, selling: 1 },
@@ -131,13 +138,15 @@ const Sale = (props) => {
   };
 
   const onRemoveItem = (itemId) => {
-    let newitemsArray = itemsSelected.filter((item) => item.id !== itemId);
+    let newitemsArray = itemsSelected.filter(
+      (item) => item.id_producto !== itemId
+    );
     setItemsSelected([...newitemsArray]);
   };
 
   const onChangeItem = (id, value) => {
     let itemsSelectedCopy = [...itemsSelected];
-    let itemIndex = itemsSelected.findIndex((item) => item.id === id);
+    let itemIndex = itemsSelected.findIndex((item) => item.id_producto === id);
     const copy = Object.assign({}, itemsSelected[itemIndex]);
     itemsSelectedCopy[itemIndex] = {
       ...copy,
@@ -146,40 +155,61 @@ const Sale = (props) => {
     setItemsSelected(itemsSelectedCopy);
   };
 
-  const onConfirmSale = () => {
-    console.log(
-      "sale done",
-      clientSelected,
-      (totalPrice * 1.16).toFixed(2),
-      itemsSelected
-    );
+  const onConfirmSale = async () => {
+    if (itemsSelected.filter((producto) => producto.costo <= 0).length > 0) {
+      alert("Costo invalido de algun producto");
+      return null;
+    }
+
+    const res = await fetch("http://localhost:3000/operation/sell", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id_persona: clientSelected.id_persona,
+        fecha_operacion: new Date().toLocaleString(),
+        total_operacion: (totalPrice * 1.16).toFixed(2),
+        id_usuario: sessionContext.user.id_usuario,
+        productos: [...itemsSelected],
+      }),
+    }).then((resp) => resp.json());
+
+    if (res.status === 200) {
+      setItemsSelected([]);
+      setClientSelected({});
+      setClientConfirmed(false);
+      setTotalPrice(0);
+      getClients();
+      getProducts();
+    }
   };
 
   let saleDetailComponents = null;
   let selectClientComponent = null;
   let clientDetails = null;
 
-  if (clientSelected.nombre) {
+  if (clientSelected.nombre_persona) {
     clientDetails = (
       <div className={classes.ClientContent}>
         <div className={classes.ClientDataContainer}>
           <div className={classes.ClientData}>
             <div className={classes.ClientFieldDetail} style={{ fontSize: 40 }}>
-              {clientSelected.nombre}
+              {clientSelected.nombre_persona}
             </div>
             <div className={classes.ClientFieldDetail}>
-              {clientSelected.ci.toLowerCase().startsWith("j")
-                ? "RIF: " + clientSelected.ci
-                : "CI: " + clientSelected.ci}
+              {clientSelected.ci_persona.toLowerCase().startsWith("j")
+                ? "RIF: " + clientSelected.ci_persona
+                : "CI: " + clientSelected.ci_persona}
             </div>
             <div className={classes.ClientFieldDetail}>
-              {clientSelected.direccion
-                ? "direccion: " + clientSelected.direccion
+              {clientSelected.direccion_persona
+                ? "direccion: " + clientSelected.direccion_persona
                 : null}
             </div>
             <div className={classes.ClientFieldDetail}>
-              {clientSelected.numero
-                ? "numero: " + clientSelected.numero
+              {clientSelected.numero_persona
+                ? "numero: " + clientSelected.numero_persona
                 : null}
             </div>
           </div>
@@ -246,9 +276,7 @@ const Sale = (props) => {
     );
   }
 
-  // console.log();
-
-  if (clientConfirmed) {
+  if (clientConfirmed && clientSelected.nombre_persona) {
     saleDetailComponents = (
       <div className={classes.Content}>
         <div className={classes.LeftContainer}>
@@ -279,7 +307,7 @@ const Sale = (props) => {
                 nameValue={nameValue}
                 codeValue={codeValue}
                 onAddItem={onAddItem}
-                items={list}
+                items={productsList}
               />
             </div>
           </div>
@@ -305,24 +333,28 @@ const Sale = (props) => {
                   <div>
                     Nombre:{" "}
                     <span style={{ fontWeight: 100 }}>
-                      {clientSelected.nombre}
+                      {clientSelected.nombre_persona}
                     </span>
                   </div>
                   <div>
-                    {clientSelected.ci.startsWith("J") ? "RIF: " : "CI: "}
-                    <span style={{ fontWeight: 100 }}>{clientSelected.ci}</span>
+                    {clientSelected.ci_persona.startsWith("J")
+                      ? "RIF: "
+                      : "CI: "}
+                    <span style={{ fontWeight: 100 }}>
+                      {clientSelected.ci_persona}
+                    </span>
                   </div>
                   <div>
                     Fecha: <span style={{ fontWeight: 100 }}>{saleDate}</span>
                   </div>
                 </div>
-
                 <div className={classes.DetailSaleTotal}>
                   <div>
-                    Base: $<span style={{ fontWeight: 100 }}>{totalPrice}</span>
+                    Total: $
+                    <span style={{ fontWeight: 100 }}>{totalPrice}</span>
                   </div>
                   <div>
-                    IVA(16.00%): $
+                    IVA: $
                     <span style={{ fontWeight: 100 }}>
                       {(totalPrice * 0.16).toFixed(2)}
                     </span>
@@ -352,7 +384,7 @@ const Sale = (props) => {
 
   const goToSelectClient = () => {
     setClientConfirmed(false);
-    setClientSelected("");
+    setClientSelected({});
   };
 
   if (clientConfirmed) {
@@ -370,6 +402,8 @@ const Sale = (props) => {
         onCloseModal={onCloseAddClientModal}
         onAddNewClient={onAddNewClient}
       />
+      {/* <LoaderModal visible={true} /> */}
+      {/* <Toast openToast={true} msg={"Hello world"} /> */}
       <div className={classes.Container}>
         {goBack}
         <div className={classes.Header}>Venta</div>

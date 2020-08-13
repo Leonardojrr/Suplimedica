@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useRouteMatch, useHistory, Switch, Route } from "react-router-dom";
+import { SessionContext } from "../../../context/SessionContext";
 
+//import components
 import { UpdateUser } from "./UpdateUser/UpdateUser";
 import { AddUser } from "./AddUser/AddUser";
 import { PermissionList } from "./PermissionList/PermissionList";
@@ -9,7 +11,6 @@ import { SearchInput } from "../../../components/SearchInput/SearchInput";
 import { Header } from "../../../components/Header/Header";
 
 //import icons
-
 import { MdArrowBack, MdAdd } from "react-icons/md";
 
 import classes from "./Permission.module.css";
@@ -22,7 +23,6 @@ const Permission = () => {
   const [nameValue, setUserNameValue] = useState("");
   const [ciValue, setUserCiValue] = useState("");
   const [usernameValue, setUserUsernameValue] = useState("");
-  const [usersList, setUsersList] = useState("");
 
   const onFilterByUserName = (name) => {
     setUserNameValue(name);
@@ -117,12 +117,7 @@ const Permission = () => {
       <div className={classes.Content}>
         <Switch>
           <Route exact path={`${match.url}`}>
-            <PermissionList
-              List={usersList}
-              nameValue={""}
-              ciValue={""}
-              usernameValue={""}
-            />
+            <PermissionList nameValue={""} ciValue={""} usernameValue={""} />
           </Route>
           <Route exact path={`${match.url}/add`}>
             <AddUser />

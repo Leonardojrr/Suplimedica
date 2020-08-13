@@ -1,69 +1,35 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { UserRow } from "../UserRow/UserRow";
 import { ModuleRow } from "../ModuleRow/ModuleRow";
-import { useRouteMatch } from "react-router-dom";
+import { SessionContext } from "../../../../context/SessionContext";
 
 import classes from "./PermissionList.module.css";
 
-export const PermissionList = () => {
-  let users = [
-    {
-      name: "Leonardo Rodrigues",
-      username: "leonardojrr",
-      ci: "28009205",
-      password: "hola",
-      modules: [1, 2, 3],
-    },
-    {
-      name: "Wisam Mozalbat",
-      username: "Wisinchu",
-      ci: "27008321",
-      password: "hola",
-      modules: [1, 2, 3, 4],
-    },
-    {
-      name: "Victoria Urdaneta",
-      username: "vudaneta",
-      ci: "26003003",
-      password: "hola",
-      modules: [1, 2, 3, 4, 5],
-    },
-    {
-      name: "Oscar Colmenares",
-      username: "graren",
-      ci: "25456447",
-      password: "hola",
-      modules: [1, 2, 3, 4, 5, 6],
-    },
-    {
-      name: "Oscar Colmenares",
-      username: "graren",
-      ci: "25456447",
-      password: "hola",
-      modules: [1, 2, 3, 4, 5, 6],
-    },
-    {
-      name: "Oscar Colmenares",
-      username: "graren",
-      ci: "25456447",
-      password: "hola",
-      modules: [1, 2, 3, 4, 5, 6],
-    },
-    {
-      name: "Oscar Colmenares",
-      username: "graren",
-      ci: "25456447",
-      password: "hola",
-      modules: [1, 2, 3, 4, 5, 6, 7],
-    },
-    {
-      name: "Oscar Colmenares",
-      username: "graren",
-      ci: "25456447",
-      password: "hola",
-      modules: [1, 2, 3, 4, 5, 6],
-    },
-  ];
+export const PermissionList = (props) => {
+  const sessionContext = useContext(SessionContext);
+  const [userList, setUsersList] = useState([]);
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  //Fecth de los usuarios
+  const getUsers = async () => {
+    const res = await fetch("http://localhost:3000/user", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    }).then((resp) => resp.json());
+
+    if (res.status === 200) {
+      let list = res.data.filter(
+        (user) => user.id_usuario != sessionContext.user.id_usuario
+      );
+
+      setUsersList(list);
+    } else {
+      alert("Error al traer los usuarios");
+    }
+  };
 
   return (
     <div className={classes.Container}>
@@ -74,7 +40,7 @@ export const PermissionList = () => {
           <span>Cedula</span>
         </div>
         <div className={classes.List}>
-          {users.map((user, index) => (
+          {userList.map((user, index) => (
             <UserRow key={index} user={user} />
           ))}
         </div>
@@ -84,8 +50,8 @@ export const PermissionList = () => {
           <span>Modulos</span>
         </div>
         <div className={classes.List}>
-          {users.map((user) => (
-            <ModuleRow modules={user.modules} />
+          {userList.map((user, index) => (
+            <ModuleRow key={index} modules={user.modules} />
           ))}
         </div>
       </div>

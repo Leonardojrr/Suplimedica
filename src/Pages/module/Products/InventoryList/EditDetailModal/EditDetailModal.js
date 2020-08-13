@@ -62,7 +62,7 @@ export const EditDetailModal = (props) => {
         }),
       }
     ).then((resp) => resp.json());
-
+    onClose();
     updateList();
   };
 

@@ -40,6 +40,7 @@ const Warehouse = (props) => {
           <div className={classes.Container}>
             {validModules.inventario ? (
               <NavLink
+                draggable={false}
                 to={`${match.url}/inventory`}
                 className={`${classes.ButtonContainer} ${classes.ButtonActive}`}
               >
@@ -73,6 +74,7 @@ const Warehouse = (props) => {
 
             {validModules.productos ? (
               <NavLink
+                draggable={false}
                 to={`${match.url}/products`}
                 className={`${classes.ButtonContainer} ${classes.ButtonActive}`}
               >

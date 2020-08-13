@@ -1,130 +1,140 @@
 .ItemContainer {
-    width: 80%;
-    background-color: #0f52ab;
-    align-self: center;
-    color: white;
-    padding: 8px 20px;
-    border-radius: 7px;
-    box-shadow: 0px 0px 5px grey;
-    display: flex;
-    flex-direction: row;
-    /* justify-content: space-between; */
-    align-items: center;
-    font-family: "Nunito";
-    margin-bottom: 10px;
+  width: 80%;
+  background-color: #0f52ab;
+  align-self: center;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 7px;
+  box-shadow: 0px 0px 5px grey;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  align-items: center;
+  font-family: "Nunito";
+  margin-bottom: 10px;
 }
 
 .ItemData,
 .ItemCuantity {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .ItemData {
-    width: 55%;
+  width: 55%;
 }
 
 .ItemCuantity {
-    justify-content: flex-end;
-    width: 35%;
+  justify-content: flex-end;
+  width: 35%;
 }
 
 .ItemTitle {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .ItemPrice {
-    font-size: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+  width: 40%;
+}
+
+.ItemPriceInput {
+  width: 50%;
+  text-align: end;
 }
 
 .AddItem {
-    width: 40px;
-    height: 40px;
+  width: 40px;
+  height: 40px;
 }
 
 .AddItemContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background-color: transparent;
 }
 
 .AddItem:active {
-    color: rgb(219, 219, 219);
+  color: rgb(219, 219, 219);
 }
 
 .AddItemContainer:active {
-    background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .InputContainer {
-    display: flex;
-    align-items: center;
-    height: 35px;
-    /* background-color: lightskyblue; */
+  display: flex;
+  align-items: center;
+  height: 35px;
+  /* background-color: lightskyblue; */
 }
 
 .Input {
-    width: 40px;
-    height: 25px;
-    padding-left: 5px;
-    padding-right: 5px;
-    outline: none;
-    border: none;
-    text-align: end;
+  width: 40px;
+  height: 25px;
+  padding-left: 5px;
+  padding-right: 5px;
+  outline: none;
+  border: none;
+  text-align: end;
 }
 
 .PlusButtonContainer,
 .LessButtonContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 27px;
-    width: 27px;
-    margin: 0 3px;
-    background-color: transparent;
-    user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 27px;
+  width: 27px;
+  margin: 0 3px;
+  background-color: transparent;
+  user-select: none;
 }
 
 .PlusButtonContainer:active,
 .LessButtonContainer:active {
-    background-color: #0d4894;
+  background-color: #0d4894;
 }
 
 .PlusButton:active,
 .LessButton:active {
-    color: rgb(212, 212, 212);
+  color: rgb(212, 212, 212);
 }
 
 .PlusButton,
 .LessButton {
-    width: 20px;
-    height: 20px;
-    color: white;
+  width: 20px;
+  height: 20px;
+  color: white;
 }
 
 .DeleteButton {
-    width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
 }
 
 .DeleteButtonContainer {
-    background-color: #c40303;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 35px;
-    height: 35px;
-    border-radius: 50px;
+  background-color: #c40303;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50px;
 }
 
 .DeleteButton:active {
-    color: rgb(212, 212, 212);
+  color: rgb(212, 212, 212);
 }
 
 .DeleteButtonContainer:active {
-    background-color: #b10000;
+  background-color: #b10000;
 }

@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./Clients.module.css";
 
-import { MdAdd } from "react-icons/md";
 import { SearchInput } from "../../../components/SearchInput/SearchInput";
 import { Header } from "../../../components/Header/Header";
 import { ClientsList } from "./ClientsList/ClientsList";
@@ -12,155 +11,143 @@ import { EditDetailModal } from "./ClientsList/EditDetailModal/EditDetailModal";
 import { AddIcon } from "../../../components/Icons/AddIcon/AddIcon";
 
 const Clients = (props) => {
-    const [clientsList, setClientsList] = useState([
-        {
-            nombre: "Wisam Mozalbat",
-            ci: "V. 27.030.643",
-            direccion: "tierra negra",
-            numero: "04242108555",
-        },
-        {
-            nombre: "Leonardo Rodrigues",
-            ci: "V. 26.123.456",
-            direccion: "tierra negra",
-            numero: "04242108555",
-        },
-        {
-            nombre: "Brandon Lugo",
-            ci: "V. 25.234.567",
-            direccion: "tierra negra",
-            numero: "04242108555",
-        },
-        {
-            nombre: "Suplimedica",
-            ci: "J. 01234567-3",
-            direccion: "tierra negra",
-            numero: "04242108555",
-        },
-        {
-            nombre: "Wasim",
-            ci: "V. 30.030.643",
-            direccion: "tierra negra",
-            numero: "04242108555",
-        },
-        {
-            nombre: "Fadi",
-            ci: "E. 82.030.643",
-            direccion: "tierra negra",
-            numero: "04242108555",
-        },
-    ]);
+  const [clientsList, setClientsList] = useState([]);
 
-    const [searchBarVisible, setSearchBarVisible] = useState(false);
+  const [searchBarVisible, setSearchBarVisible] = useState(false);
+  const [addClientModalVisible, setAddClientModalVisible] = useState(false);
+  const [editModalVisible, setEditModalVisible] = useState(false);
+  const [detailModalVisible, setDetailModalVisible] = useState(false);
+  const [clientSelected, setClientSelected] = useState({});
+  const [nameValue, setClientNameValue] = useState("");
+  const [idValue, setClientIdValue] = useState("");
 
-    const [addClientModalVisible, setAddClientModalVisible] = useState(false);
-    const [editModalVisible, setEditModalVisible] = useState(false);
-    const [detailModalVisible, setDetailModalVisible] = useState(false);
-    const [clientSelected, setClientSelected] = useState({});
-    const [nameValue, setProviderNameValue] = useState("");
-    const [idValue, setProviderIdValue] = useState("");
+  useEffect(() => {
+    getClients();
+  }, []);
 
-    const onOpenAddClientModal = () => {
-        setAddClientModalVisible(true);
-    };
-
-    const onCloseAddClientModal = () => {
-        setAddClientModalVisible(false);
-    };
-
-    const onOpenDetailModal = (client) => {
-        setClientSelected(client);
-        setDetailModalVisible(true);
-    };
-    const onCloseDetailModal = () => {
-        setDetailModalVisible(false);
-    };
-
-    const onOpenEditModal = () => {
-        setEditModalVisible(true);
-        setDetailModalVisible(false);
-    };
-    const onCloseEditModal = () => {
-        setEditModalVisible(false);
-        setDetailModalVisible(true);
-    };
-
-    const onFilterByProviderName = (name) => {
-        setProviderNameValue(name);
-    };
-
-    const onFilterProviderId = (code) => {
-        setProviderIdValue(code);
-    };
-
-    return (
-        <React.Fragment>
-            <div className={classes.Container}>
-                <div className={classes.HeaderContainer}>
-                    <Header title={"Clientes"} />
-                    <DropableSearchHeader
-                        searchBarVisible={searchBarVisible}
-                        onToggle={() =>
-                            setSearchBarVisible((actualValue) => !actualValue)
-                        }
-                    >
-                        <div className={classes.Input}>
-                            <SearchInput
-                                inputStyle={{ height: 20 }}
-                                label={"Nombre"}
-                                onChange={(value) => {
-                                    onFilterByProviderName(value);
-                                }}
-                            />
-                        </div>
-                        <div className={classes.Input}>
-                            <SearchInput
-                                inputStyle={{ height: 20 }}
-                                label={"Código"}
-                                onChange={(value) => {
-                                    onFilterProviderId(value);
-                                }}
-                            />
-                        </div>
-                    </DropableSearchHeader>
-                    <div className={classes.IconsContainer}>
-                        <AddIcon onClick={onOpenAddClientModal} />
-                    </div>
-                </div>
-
-                <div
-                    className={classes.ContentContainer}
-                    style={{
-                        maxHeight: searchBarVisible ? "70%" : "75%",
-                        marginTop: searchBarVisible ? 85 : 0,
-                    }}
-                >
-                    <ClientsList
-                        clients={clientsList}
-                        nameValue={nameValue}
-                        idValue={idValue}
-                        onViewDetails={onOpenDetailModal}
-                    />
-                </div>
-                <AddClientModal
-                    modalVisible={addClientModalVisible}
-                    onCloseModal={onCloseAddClientModal}
-                    onAddNewClient={(client) => console.log(client)}
-                />
-                <DetailModal
-                    modalVisible={detailModalVisible}
-                    onClose={onCloseDetailModal}
-                    onEdit={onOpenEditModal}
-                    client={clientSelected}
-                />
-                <EditDetailModal
-                    modalVisible={editModalVisible}
-                    onClose={onCloseEditModal}
-                    client={clientSelected}
-                />
-            </div>
-        </React.Fragment>
+  useEffect(() => {
+    let client = clientsList.filter(
+      (client) => client.id_persona == clientSelected.id_persona
     );
+    console.log(client);
+    setClientSelected(client);
+  }, [clientsList]);
+
+  const getClients = async () => {
+    let res = await fetch("http://localhost:3000/client", {
+      method: "GET",
+      headers: { "Content-Type": "aplication/json" },
+    }).then((resp) => resp.json());
+
+    if (res.status === 200) {
+      setClientsList(res.data);
+    }
+  };
+
+  const updateList = () => {
+    getClients();
+  };
+
+  const onOpenAddClientModal = () => {
+    setAddClientModalVisible(true);
+  };
+
+  const onCloseAddClientModal = () => {
+    setAddClientModalVisible(false);
+  };
+
+  const onOpenDetailModal = (client) => {
+    setClientSelected(client);
+    setDetailModalVisible(true);
+  };
+  const onCloseDetailModal = () => {
+    setDetailModalVisible(false);
+  };
+
+  const onOpenEditModal = () => {
+    setEditModalVisible(true);
+    setDetailModalVisible(false);
+  };
+
+  const onCloseEditModal = () => {
+    setEditModalVisible(false);
+  };
+
+  const onFilterByClientName = (name) => {
+    setClientNameValue(name);
+  };
+
+  const onFilterClientId = (code) => {
+    setClientIdValue(code);
+  };
+
+  return (
+    <React.Fragment>
+      <div className={classes.Container}>
+        <div className={classes.HeaderContainer}>
+          <Header title={"Clientes"} />
+          <DropableSearchHeader
+            searchBarVisible={searchBarVisible}
+            onToggle={() => setSearchBarVisible((actualValue) => !actualValue)}
+          >
+            <div className={classes.Input}>
+              <SearchInput
+                inputStyle={{ height: 20 }}
+                label={"Nombre"}
+                onChange={(value) => {
+                  onFilterByClientName(value);
+                }}
+              />
+            </div>
+            <div className={classes.Input}>
+              <SearchInput
+                inputStyle={{ height: 20 }}
+                label={"Identificacion"}
+                onChange={(value) => {
+                  onFilterClientId(value);
+                }}
+              />
+            </div>
+          </DropableSearchHeader>
+          <div className={classes.IconsContainer}>
+            <AddIcon onClick={onOpenAddClientModal} />
+          </div>
+        </div>
+
+        <div
+          className={classes.ContentContainer}
+          style={{
+            maxHeight: searchBarVisible ? "70%" : "75%",
+            marginTop: searchBarVisible ? 85 : 0,
+          }}
+        >
+          <ClientsList
+            clients={clientsList}
+            nameValue={nameValue}
+            idValue={idValue}
+            onViewDetails={onOpenDetailModal}
+          />
+        </div>
+        <AddClientModal
+          modalVisible={addClientModalVisible}
+          updateList={updateList}
+          onCloseModal={onCloseAddClientModal}
+        />
+        <DetailModal
+          modalVisible={detailModalVisible}
+          onClose={onCloseDetailModal}
+          onEdit={onOpenEditModal}
+          client={clientSelected}
+        />
+        <EditDetailModal
+          modalVisible={editModalVisible}
+          onClose={onCloseEditModal}
+          updateList={updateList}
+          client={clientSelected}
+        />
+      </div>
+    </React.Fragment>
+  );
 };
 
 export default Clients;

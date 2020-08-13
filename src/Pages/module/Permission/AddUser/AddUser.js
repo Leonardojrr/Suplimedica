@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { useRouteMatch } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Input } from "../Input/Input";
 
 //icons imports
@@ -8,17 +8,59 @@ import { BsFillPersonFill, BsLock } from "react-icons/bs";
 import { MdShoppingCart, MdReceipt } from "react-icons/md";
 
 import classes from "./AddUser.module.css";
+import { stat } from "fs";
+import { UpdateUser } from "../UpdateUser/UpdateUser";
 
 export const AddUser = (props) => {
+  const history = useHistory();
+
   const [state, setState] = useState({
     name: "",
     ci: "",
     username: "",
     password: "",
     number: "",
-    direccion: "",
+    address: "",
     modules: [],
   });
+
+  const addUser = async () => {
+    if (!state.name) {
+      alert("El usuario tiene que tener un nombre");
+      return null;
+    }
+
+    if (!state.ci) {
+      alert("El usuario tiene que tener un ci");
+      return null;
+    }
+
+    if (!state.username) {
+      alert("El usuario tiene que tener un nombre de usuario");
+      return null;
+    }
+
+    if (!state.password) {
+      alert("El usuario tiene que tener una contraseña");
+      return null;
+    }
+
+    if (state.modules.length === 0) {
+      alert("El usuerio tiene que tener acceso al menos a 1 modulo");
+      return null;
+    }
+
+    //Añade un nuevo usuario
+    const res = await fetch("http://localhost:3000/user", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(state),
+    }).then((resp) => resp.json());
+
+    if (res.status === 200) {
+      history.push("/module/permissions");
+    }
+  };
 
   const onChangeName = (e) => {
     setState({ ...state, name: e.target.value });
@@ -202,7 +244,7 @@ export const AddUser = (props) => {
         />
 
         <Input
-          name={"Password"}
+          name={"Contraseña"}
           handleChange={onChangePassword}
           password={true}
           value={state.password}
@@ -233,7 +275,9 @@ export const AddUser = (props) => {
             {getPermissionsModule(state.modules)}
           </div>
         </div>
-        <div className={classes.Button}>Añadir Usuario</div>
+        <div className={classes.Button} onClick={addUser}>
+          Añadir Usuario
+        </div>
       </div>
     </Fragment>
   );

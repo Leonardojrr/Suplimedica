@@ -41,6 +41,7 @@ const People = (props) => {
           <div className={classes.Container}>
             {validModules.clientes ? (
               <NavLink
+                draggable={false}
                 to={`${match.url}/clients`}
                 className={`${classes.ButtonContainer} ${classes.ButtonActive}`}
               >
@@ -73,6 +74,7 @@ const People = (props) => {
             ) : null}
             {validModules.proveedores ? (
               <NavLink
+                draggable={false}
                 to={`${match.url}/providers`}
                 className={`${classes.ButtonContainer} ${classes.ButtonActive}`}
               >

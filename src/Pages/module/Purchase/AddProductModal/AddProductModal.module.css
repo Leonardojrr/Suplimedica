@@ -1,168 +1,176 @@
 .ModalContainer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    z-index: 200;
-    font-family: "Nunito";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  font-family: "Nunito";
 }
 
 .Backdrop {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .Modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    display: flex;
-    flex-direction: column;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    height: 80%;
-    background-color: white;
-    z-index: 250;
-    border-radius: 10px;
-    overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background-color: white;
+  z-index: 250;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .Header {
-    height: 15%;
-    position: relative;
-    width: 100%;
-    color: white;
-    text-transform: uppercase;
-    user-select: none;
-    background-color: #0f52ab;
-    color: white;
-    text-transform: uppercase;
-    user-select: none;
+  height: 15%;
+  position: relative;
+  width: 100%;
+  color: white;
+  text-transform: uppercase;
+  user-select: none;
+  background-color: #0f52ab;
+  color: white;
+  text-transform: uppercase;
+  user-select: none;
 }
 
 .Title {
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 30px;
-    font-weight: bold;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 30px;
+  font-weight: bold;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .IconsContainer {
-    position: absolute;
-    top: 0;
-    right: 20px;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  top: 0;
+  right: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .InputContainer {
-    border: 1px solid grey;
-    box-shadow: 0 0 5px rgb(214, 214, 214);
-    align-self: center;
-    width: 50%;
-    border-radius: 7px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+  border: 1px solid grey;
+  box-shadow: 0 0 5px rgb(214, 214, 214);
+  align-self: center;
+  width: 50%;
+  border-radius: 7px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 .SearchBar {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 60px;
 }
 .Input {
-    width: 30%;
-    display: flex;
-    justify-content: center;
+  width: 30%;
+  display: flex;
+  justify-content: center;
 }
 .ContentContainer {
-    flex: 1;
+  flex: 1;
 }
 
 .BottomContainer {
-    height: 15%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    background-color: rgb(15, 82, 171, 0.3);
-    user-select: none;
+  height: 15%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: rgb(15, 82, 171, 0.3);
+  user-select: none;
 }
 
 .ExitButtonContainer {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    background-color: transparent;
-    border-radius: 50px;
-    user-select: none;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background-color: transparent;
+  border-radius: 50px;
+  user-select: none;
 }
 
 .ExitButton {
-    width: 40px;
-    height: 40px;
-    color: white;
+  width: 40px;
+  height: 40px;
+  color: white;
 }
 
 .ExitButtonContainer:active {
-    background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .ExitButton:active {
-    color: rgb(219, 219, 219);
+  color: rgb(219, 219, 219);
 }
 
 .AcceptButton,
 .CancelButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20%;
-    height: 50px;
-    color: white;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-family: "Nunito";
-    font-size: 25px;
-    border-radius: 7px;
-    box-shadow: 0px 0px 5px rgb(109, 109, 109);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+  height: 50px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: "Nunito";
+  font-size: 25px;
+  border-radius: 7px;
+  box-shadow: 0px 0px 5px rgb(109, 109, 109);
 }
 
 .AcceptButton {
-    background-color: #0f52ab;
+  background-color: #0f52ab;
 }
 
 .AcceptButton:active {
-    background-color: #0d4894;
-    color: rgb(212, 212, 212);
+  background-color: #0d4894;
+  color: rgb(212, 212, 212);
 }
 
 .CancelButton:active {
-    background-color: #b10000;
-    color: rgb(212, 212, 212);
+  background-color: #b10000;
+  color: rgb(212, 212, 212);
 }
 
 .CancelButton {
-    background-color: #c40303;
+  background-color: #c40303;
+}
+
+.Product {
+  background-color: lightgray;
+}
+
+.ProductSelected {
+  background-color: grey;
 }
