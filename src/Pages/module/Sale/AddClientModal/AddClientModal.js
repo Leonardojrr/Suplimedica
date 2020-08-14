@@ -15,10 +15,6 @@ export const AddClientModal = (props) => {
     address: "",
     number: 0,
   });
-  const [nameValue, setNameValue] = useState("");
-  const [idValue, setIdValue] = useState("");
-  const [addressValue, setAddressValue] = useState("");
-  const [numberValue, setNumberValue] = useState(0);
 
   const onNameChangeHandler = (newVal) => {
     setState({ ...state, name: newVal });

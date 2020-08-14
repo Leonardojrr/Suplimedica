@@ -6,9 +6,11 @@ import { MdClose } from "react-icons/md";
 
 import { Input } from "../../../../../Util/Input/Input";
 import { formatId } from "../../../../../Util/FormatId/FormatId";
+import { LoaderModal } from "../../../../../components/Loader/Loader";
 
 export const AddClientModal = (props) => {
   let { modalVisible, onCloseModal, updateList } = props;
+  const [isLoading, setIsLoading] = useState(false);
   const [state, setState] = useState({
     name: "",
     ci: "",
@@ -33,6 +35,7 @@ export const AddClientModal = (props) => {
   };
 
   const onAddNewClient = async (newClient) => {
+    setIsLoading(true);
     const res = await fetch("http://localhost:3000/client", {
       method: "POST",
       headers: {
@@ -42,9 +45,11 @@ export const AddClientModal = (props) => {
         ...newClient,
       }),
     }).then((resp) => resp.json());
+
+    setIsLoading(false);
     if (res.status === 200) {
       updateList();
-      onCloseModal();
+      onCancelHandler();
     }
   };
 
@@ -122,6 +127,7 @@ export const AddClientModal = (props) => {
           <MdClose className={classes.ExitButton} />
         </div>
       </div>
+      <LoaderModal visible={isLoading} />
     </div>
   );
 };

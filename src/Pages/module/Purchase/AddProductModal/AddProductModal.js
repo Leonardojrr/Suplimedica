@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import classes from "./AddProductModal.module.css";
 
 import { ExitIcon } from "../../../../components/Icons/ExitIcon/ExitIcon";
+import { LoaderModal } from "../../../../components/Loader/Loader";
 
 import { Input } from "../../../../Util/Input/Input";
 import { SearchInput } from "../../../../components/SearchInput/SearchInput";
@@ -14,6 +15,7 @@ export const AddProductModal = (props) => {
   const [providerProducts, setProviderProducts] = useState([]);
   const [productNameValue, setProductNameValue] = useState("");
   const [productCodeValue, setProductCodeValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getProducts();
@@ -24,14 +26,17 @@ export const AddProductModal = (props) => {
   }, [props.providerProducts]);
 
   const getProducts = async () => {
+    setIsLoading(true);
+
     const res = await fetch("http://localhost:3000/product", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     }).then((resp) => resp.json());
+    setIsLoading(true);
 
-    setProducts(res.data);
+    setProducts(res.data.filter((product) => product.cantidad > 0));
 
     return null;
   };
@@ -133,6 +138,7 @@ export const AddProductModal = (props) => {
           </div>
         </div>
       </div>
+      <LoaderModal visible={isLoading} />
     </div>
   );
 };

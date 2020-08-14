@@ -9,6 +9,7 @@ import { AddProviderModal } from "./ProvidersList/AddProviderModal/AddProviderMo
 import { DetailModal } from "./ProvidersList/DetailModal/DetailModal";
 import { EditDetailModal } from "./ProvidersList/EditDetailModal/EditDetailModal";
 import { AddIcon } from "../../../components/Icons/AddIcon/AddIcon";
+import { LoaderModal } from "../../../components/Loader/Loader";
 
 const Providers = (props) => {
   const [providersList, setProvidersList] = useState([]);
@@ -20,6 +21,7 @@ const Providers = (props) => {
   const [providerSelected, setProviderSelected] = useState({});
   const [nameValue, setProviderNameValue] = useState("");
   const [idValue, setProviderIdValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getProviders();
@@ -34,10 +36,12 @@ const Providers = (props) => {
   }, [providersList]);
 
   const getProviders = async () => {
+    setIsLoading(true);
     let res = await fetch("http://localhost:3000/provider", {
       method: "GET",
       headers: { "Content-Type": "aplication/json" },
     }).then((resp) => resp.json());
+    setIsLoading(false);
 
     setProvidersList(res);
   };
@@ -143,6 +147,7 @@ const Providers = (props) => {
           updateList={updateList}
           provider={providerSelected}
         />
+        <LoaderModal visible={isLoading} />
       </div>
     </React.Fragment>
   );

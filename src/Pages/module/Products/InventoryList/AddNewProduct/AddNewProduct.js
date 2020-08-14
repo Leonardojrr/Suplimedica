@@ -4,9 +4,12 @@ import classes from "./AddNewProduct.module.css";
 
 import { EditInput } from "./EditInput/EditInput";
 import { ExitIcon } from "../../../../../components/Icons/ExitIcon/ExitIcon";
+import { LoaderModal } from "../../../../../components/Loader/Loader";
 
 export const AddNewProduct = (props) => {
   let { modalVisible, onClose, onAddProduct = () => {}, updateList } = props;
+  const [isLoading, setIsLoading] = useState(false);
+
   const [state, setState] = useState({
     nombre: "",
     codigo: "",
@@ -22,6 +25,7 @@ export const AddNewProduct = (props) => {
 
   const onAddProductHandler = async () => {
     try {
+      setIsLoading(true);
       const res = await fetch("http://localhost:3000/product/", {
         method: "POST",
         headers: {
@@ -40,6 +44,7 @@ export const AddNewProduct = (props) => {
     } catch (e) {
       return e;
     }
+    setIsLoading(false);
   };
 
   const onNameChangeHandler = (val) => {
@@ -118,6 +123,7 @@ export const AddNewProduct = (props) => {
           </div>
         </div>
       </div>
+      <LoaderModal visible={isLoading} />
     </div>
   );
 };

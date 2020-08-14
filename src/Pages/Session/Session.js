@@ -3,16 +3,22 @@ import classes from "./Session.module.css";
 import { useHistory } from "react-router-dom";
 import { Input } from "../../Util/Input/Input";
 import { SessionContext } from "../../context/SessionContext";
+import { Toast } from "../../components/Toast/Toast";
+import { LoaderModal } from "../../components/Loader/Loader";
 
 export const Session = (props) => {
   const sessionContext = useContext(SessionContext);
   let history = useHistory();
-  let { onLogIn } = props;
+  const [toast, setToast] = useState({
+    openToast: false,
+    msg: "",
+  });
 
   const [state, setState] = useState({
     username: "",
     password: "",
     redirect: false,
+    isLoading: false,
   });
 
   const changeUsername = (e) => {
@@ -23,12 +29,9 @@ export const Session = (props) => {
     setState({ ...state, password: e });
   };
 
-  const changeRedirect = (e) => {
-    setState({ ...state, redirect: !state.redirect });
-  };
-
   const login = async () => {
     //Fetch
+    setState({ ...state, isLoading: true });
     let resp = await fetch("http://localhost:3000/login", {
       method: "POST",
       headers: {
@@ -39,15 +42,16 @@ export const Session = (props) => {
         password: state.password,
       }),
     }).then((resp) => resp.json());
-
-    // await sessionContext.setUser({
-    //   nombre: "Wisam",
-    //   modulos: [1, 2, 3, 4, 5, 6, 7],
-    // });
+    setState({ ...state, isLoading: false });
     await sessionContext.setUser(resp.data);
-
+    console.log(resp);
     if (resp.status === 200) {
       history.push("/module");
+    } else {
+      setToast({
+        openToast: true,
+        msg: resp.msg,
+      });
     }
   };
 
@@ -77,6 +81,8 @@ export const Session = (props) => {
           </div>
         </div>
       </div>
+      <Toast toast={toast} />
+      <LoaderModal visible={state.isLoading} />
     </div>
   );
 };

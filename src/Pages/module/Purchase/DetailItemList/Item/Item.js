@@ -17,15 +17,24 @@ export const Item = (props) => {
   };
 
   const onCostValueChange = (newVal) => {
-    if (
-      Number(newVal) < 0 ||
-      /[^0-9\.]/.test(newVal) ||
-      newVal.match(/[\.]/g).length > 1
-    ) {
-      alert("Costo invalido");
+    if (newVal.match(/[\.]/g)) {
+      if (
+        Number(newVal) < 0 ||
+        /[^0-9\.]/.test(newVal) ||
+        newVal.match(/[\.]/g).length > 1
+      ) {
+        alert("Costo invalido");
+      } else {
+        onChangeCost(item.id_producto, Number(newVal));
+        setCostValue(newVal);
+      }
     } else {
-      onChangeCost(item.id_producto, Number(newVal));
-      setCostValue(newVal);
+      if (Number(newVal) < 0 || /[^0-9\.]/.test(newVal)) {
+        alert("Costo invalido");
+      } else {
+        onChangeCost(item.id_producto, Number(newVal));
+        setCostValue(newVal);
+      }
     }
   };
 

@@ -5,9 +5,11 @@ import classes from "./EditDetailModal.module.css";
 import { MdClose } from "react-icons/md";
 import { EditInput } from "./EditInput/EditInput";
 import { ExitIcon } from "../../../../../components/Icons/ExitIcon/ExitIcon";
+import { LoaderModal } from "../../../../../components/Loader/Loader";
 
 export const EditDetailModal = (props) => {
   let { modalVisible, onClose, updateList } = props;
+  const [isLoading, setIsLoading] = useState(false);
   const [state, setState] = useState({
     name: "",
     ci: "",
@@ -52,6 +54,8 @@ export const EditDetailModal = (props) => {
 
   const onEditProvider = async () => {
     try {
+      setIsLoading(true);
+
       const res = await fetch(
         "http://localhost:3000/provider/" + props.provider.id_persona,
         {
@@ -64,6 +68,8 @@ export const EditDetailModal = (props) => {
           }),
         }
       ).then((resp) => resp.json());
+      setIsLoading(false);
+
       if (res.status === 200) {
         // onOpenDetailModal({
         //   id_persona: props.provider.id_persona,
@@ -116,6 +122,7 @@ export const EditDetailModal = (props) => {
               value={state.number}
               onChange={onNumberChangeHandler}
             />
+            <LoaderModal visible={isLoading} />
           </div>
         </div>
 

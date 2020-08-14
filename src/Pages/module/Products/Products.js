@@ -9,6 +9,7 @@ import { SearchInput } from "../../../components/SearchInput/SearchInput";
 import { DropableSearchHeader } from "../../../components/DropableSearchHeader/DropableSearchHeader";
 import { Header } from "../../../components/Header/Header";
 import { AddIcon } from "../../../components/Icons/AddIcon/AddIcon";
+import { LoaderModal } from "../../../components/Loader/Loader";
 
 const Products = (props) => {
   const [items, setItems] = useState([]);
@@ -20,22 +21,28 @@ const Products = (props) => {
   const [itemSelected, setItemSelected] = useState({});
   const [nameValue, setItemNameValue] = useState("");
   const [codeValue, setItemCodeValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getProducts();
   }, []);
 
   const getProducts = async () => {
+    setIsLoading(true);
     const res = await fetch("http://localhost:3000/product", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     }).then((resp) => resp.json());
+    setIsLoading(false);
+
     setItems(res.data);
   };
 
   const onViewDetails = async (item) => {
+    setIsLoading(true);
+
     const res = await fetch(
       "http://localhost:3000/product/" + item.id_producto,
       {
@@ -45,6 +52,8 @@ const Products = (props) => {
         },
       }
     ).then((resp) => resp.json());
+    setIsLoading(false);
+
     setProductProviders(res.data);
     setItemSelected(item);
     setModalVisible(true);
@@ -152,6 +161,7 @@ const Products = (props) => {
           modalVisible={addModalVisible}
           onAddProduct={onAddNewProduct}
         />
+        <LoaderModal visible={isLoading} />
       </div>
     </React.Fragment>
   );

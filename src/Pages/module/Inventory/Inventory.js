@@ -9,6 +9,7 @@ import { DetailModal } from "./InventoryList/DetailModal/DetailModal";
 import { SearchInput } from "../../../components/SearchInput/SearchInput";
 import { DropableSearchHeader } from "../../../components/DropableSearchHeader/DropableSearchHeader";
 import { Header } from "../../../components/Header/Header";
+import { LoaderModal } from "../../../components/Loader/Loader";
 
 const Inventory = (props) => {
   const [items, setItems] = useState([]);
@@ -20,21 +21,25 @@ const Inventory = (props) => {
   const [nameValue, setItemNameValue] = useState("");
   const [codeValue, setItemCodeValue] = useState("");
   const [productProviders, setProductProviders] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     getProducts();
   }, []);
 
   const getProducts = async () => {
+    setIsLoading(true);
     const res = await fetch("http://localhost:3000/product", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     }).then((resp) => resp.json());
+    setIsLoading(false);
     setItems(res.data);
   };
 
   const onViewDetails = async (item) => {
+    setIsLoading(true);
     const res = await fetch(
       "http://localhost:3000/product/" + item.id_producto,
       {
@@ -44,6 +49,7 @@ const Inventory = (props) => {
         },
       }
     ).then((resp) => resp.json());
+    setIsLoading(false);
     setProductProviders(res.data);
     setItemSelected(item);
     setModalVisible(true);
@@ -113,6 +119,7 @@ const Inventory = (props) => {
           item={itemSelected}
         />
       </div>
+      <LoaderModal visible={isLoading} />
     </React.Fragment>
   );
 };

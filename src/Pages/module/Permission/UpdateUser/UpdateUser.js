@@ -8,6 +8,7 @@ import { BsFillPersonFill, BsLock } from "react-icons/bs";
 import { MdShoppingCart, MdReceipt } from "react-icons/md";
 
 import classes from "./UpdateUser.module.css";
+import { LoaderModal } from "../../../../components/Loader/Loader";
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -16,6 +17,7 @@ const useQuery = () => {
 export const UpdateUser = (props) => {
   const history = useHistory();
   let query = useQuery();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [state, setState] = useState({
     id_persona: query.get("id_persona"),
@@ -51,13 +53,13 @@ export const UpdateUser = (props) => {
       alert("El usuario tiene que tener acceso al menos a 1 modulo");
       return null;
     }
-
+    setIsLoading(true);
     const res = await fetch("http://localhost:3000/user/" + state.id_persona, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(state),
     }).then((resp) => resp.json());
-
+    setIsLoading(false);
     if (res.status === 200) {
       history.push("/module/permissions");
     }
@@ -288,6 +290,7 @@ export const UpdateUser = (props) => {
           Actualizar Usuario
         </div>
       </div>
+      <LoaderModal visible={isLoading} />
     </Fragment>
   );
 };

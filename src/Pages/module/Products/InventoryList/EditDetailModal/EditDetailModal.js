@@ -7,6 +7,7 @@ import { FaBarcode } from "react-icons/fa";
 import { Input } from "../../../../../Util/Input/Input";
 import { EditInput } from "./EditInput/EditInput";
 import { ExitIcon } from "../../../../../components/Icons/ExitIcon/ExitIcon";
+import { LoaderModal } from "../../../../../components/Loader/Loader";
 
 export const EditDetailModal = (props) => {
   let { modalVisible, onClose, item, updateList } = props;
@@ -14,7 +15,7 @@ export const EditDetailModal = (props) => {
   const [editBrandValue, setEditBrandValue] = useState(props.item.marca);
   const [editCodeValue, setEditCodeValue] = useState(props.item.codigo);
   const [editPriceValue, setEditPriceValue] = useState(props.item.precio);
-
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     setEditNameValue(props.item.nombre);
     setEditBrandValue(props.item.marca);
@@ -47,6 +48,8 @@ export const EditDetailModal = (props) => {
   };
 
   const updateItem = async () => {
+    setIsLoading(true);
+
     const res = await fetch(
       "http://localhost:3000/product/" + item.id_producto,
       {
@@ -62,6 +65,8 @@ export const EditDetailModal = (props) => {
         }),
       }
     ).then((resp) => resp.json());
+    setIsLoading(false);
+
     onClose();
     updateList();
   };
@@ -102,6 +107,7 @@ export const EditDetailModal = (props) => {
               value={editPriceValue}
               onChange={onPriceChangeHandler}
             />
+            <LoaderModal visible={isLoading} />
           </div>
         </div>
 

@@ -10,9 +10,11 @@ import { MdShoppingCart, MdReceipt } from "react-icons/md";
 import classes from "./AddUser.module.css";
 import { stat } from "fs";
 import { UpdateUser } from "../UpdateUser/UpdateUser";
+import { LoaderModal } from "../../../../components/Loader/Loader";
 
 export const AddUser = (props) => {
   const history = useHistory();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [state, setState] = useState({
     name: "",
@@ -51,12 +53,14 @@ export const AddUser = (props) => {
     }
 
     //Añade un nuevo usuario
+
+    setIsLoading(true);
     const res = await fetch("http://localhost:3000/user", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(state),
     }).then((resp) => resp.json());
-
+    setIsLoading(false);
     if (res.status === 200) {
       history.push("/module/permissions");
     }
@@ -279,6 +283,7 @@ export const AddUser = (props) => {
           Añadir Usuario
         </div>
       </div>
+      <LoaderModal visible={isLoading} />
     </Fragment>
   );
 };

@@ -9,6 +9,7 @@ import { AddClientModal } from "./ClientsList/AddClientModal/AddClientModal";
 import { DetailModal } from "./ClientsList/DetailModal/DetailModal";
 import { EditDetailModal } from "./ClientsList/EditDetailModal/EditDetailModal";
 import { AddIcon } from "../../../components/Icons/AddIcon/AddIcon";
+import { LoaderModal } from "../../../components/Loader/Loader";
 
 const Clients = (props) => {
   const [clientsList, setClientsList] = useState([]);
@@ -20,6 +21,7 @@ const Clients = (props) => {
   const [clientSelected, setClientSelected] = useState({});
   const [nameValue, setClientNameValue] = useState("");
   const [idValue, setClientIdValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getClients();
@@ -34,11 +36,12 @@ const Clients = (props) => {
   }, [clientsList]);
 
   const getClients = async () => {
+    setIsLoading(true);
     let res = await fetch("http://localhost:3000/client", {
       method: "GET",
       headers: { "Content-Type": "aplication/json" },
     }).then((resp) => resp.json());
-
+    setIsLoading(false);
     if (res.status === 200) {
       setClientsList(res.data);
     }
@@ -145,6 +148,7 @@ const Clients = (props) => {
           updateList={updateList}
           client={clientSelected}
         />
+        <LoaderModal visible={isLoading} />
       </div>
     </React.Fragment>
   );

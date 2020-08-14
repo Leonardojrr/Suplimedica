@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import classes from "./Toast.module.css";
 
 export const Toast = (props) => {
-  let { openToast, msg } = props;
+  let { openToast, msg } = props.toast;
   const [toastOpen, setToastOpen] = useState(false);
 
   useEffect(() => {
     if (openToast) showToast();
-  }, [props.showToast]);
+  }, [props.toast]);
 
   const showToast = () => {
     setToastOpen(true);

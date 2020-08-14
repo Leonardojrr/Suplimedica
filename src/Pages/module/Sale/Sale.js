@@ -24,6 +24,7 @@ const Sale = (props) => {
   const [clientConfirmed, setClientConfirmed] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getClients();
@@ -36,21 +37,27 @@ const Sale = (props) => {
   }, [clientConfirmed]);
 
   const getClients = async () => {
+    setIsLoading(true);
     const res = await fetch("http://localhost:3000/client", {
       method: "GET",
       headers: { "Content-Type": "aplication/json" },
     }).then((resp) => resp.json());
+    setIsLoading(false);
 
-    if (status === 200) {
+    if (res.status === 200) {
       setClientsList(res.data);
     }
   };
 
   const getProducts = async () => {
+    setIsLoading(true);
+
     const res = await fetch("http://localhost:3000/product/", {
       method: "GET",
       headers: { "Content-Type": "aplication/json" },
     }).then((resp) => resp.json());
+    setIsLoading(false);
+
     setProductsList(res.data.filter((product) => product.cantidad > 0));
   };
 
@@ -99,6 +106,8 @@ const Sale = (props) => {
     if (
       clientsList.findIndex((client) => client.ci_persona === newClient.ci) < 0
     ) {
+      setIsLoading(true);
+
       const res = await fetch("http://localhost:3000/client", {
         method: "POST",
         headers: {
@@ -108,6 +117,8 @@ const Sale = (props) => {
           ...newClient,
         }),
       }).then((resp) => resp.json());
+      setIsLoading(false);
+
       if (res.status === 200) {
         setClientsList([
           ...clientsList,
@@ -160,6 +171,7 @@ const Sale = (props) => {
       alert("Costo invalido de algun producto");
       return null;
     }
+    setIsLoading(true);
 
     const res = await fetch("http://localhost:3000/operation/sell", {
       method: "POST",
@@ -174,6 +186,7 @@ const Sale = (props) => {
         productos: [...itemsSelected],
       }),
     }).then((resp) => resp.json());
+    setIsLoading(false);
 
     if (res.status === 200) {
       setItemsSelected([]);
@@ -402,7 +415,7 @@ const Sale = (props) => {
         onCloseModal={onCloseAddClientModal}
         onAddNewClient={onAddNewClient}
       />
-      {/* <LoaderModal visible={true} /> */}
+      <LoaderModal visible={isLoading} />
       {/* <Toast openToast={true} msg={"Hello world"} /> */}
       <div className={classes.Container}>
         {goBack}

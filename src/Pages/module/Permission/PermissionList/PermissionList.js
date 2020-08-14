@@ -4,10 +4,12 @@ import { ModuleRow } from "../ModuleRow/ModuleRow";
 import { SessionContext } from "../../../../context/SessionContext";
 
 import classes from "./PermissionList.module.css";
+import { LoaderModal } from "../../../../components/Loader/Loader";
 
 export const PermissionList = (props) => {
   const sessionContext = useContext(SessionContext);
   const [userList, setUsersList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getUsers();
@@ -15,11 +17,12 @@ export const PermissionList = (props) => {
 
   //Fecth de los usuarios
   const getUsers = async () => {
+    setIsLoading(true);
     const res = await fetch("http://localhost:3000/user", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     }).then((resp) => resp.json());
-
+    setIsLoading(false);
     if (res.status === 200) {
       let list = res.data.filter(
         (user) => user.id_usuario != sessionContext.user.id_usuario
@@ -55,6 +58,7 @@ export const PermissionList = (props) => {
           ))}
         </div>
       </div>
+      <LoaderModal visible={isLoading} />
     </div>
   );
 };

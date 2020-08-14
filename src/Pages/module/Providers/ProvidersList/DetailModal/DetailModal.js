@@ -7,11 +7,13 @@ import { MdClose, MdEdit } from "react-icons/md";
 import { Receipt } from "./Receipt/Receipt";
 import { ExitIcon } from "../../../../../components/Icons/ExitIcon/ExitIcon";
 import { EditIcon } from "../../../../../components/Icons/EditIcon/EditIcon";
+import { LoaderModal } from "../../../../../components/Loader/Loader";
 
 export const DetailModal = (props) => {
   let { modalVisible, onClose, onEdit } = props;
   const [provider, setProvider] = useState({});
   const [providerReceipts, setProviderReceipts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   // console.log(provider);
 
@@ -24,10 +26,13 @@ export const DetailModal = (props) => {
   }, [props.provider]);
 
   const getReceipts = async (id_proveedor) => {
+    setIsLoading(true);
+
     const res = await fetch("http://localhost:3000/operation/" + id_proveedor, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     }).then((resp) => resp.json());
+    setIsLoading(false);
 
     if (res.status === 200) {
       setProviderReceipts(res.data);
@@ -140,6 +145,7 @@ export const DetailModal = (props) => {
           </div>
         </div>
       </div>
+      <LoaderModal visible={isLoading} />
     </div>
   );
 };

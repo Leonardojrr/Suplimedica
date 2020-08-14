@@ -4,8 +4,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background-color: wwhite;
   font-family: "Nunito";
+  overflow: hidden;
 }
 
 .Title {

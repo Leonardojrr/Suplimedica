@@ -6,6 +6,7 @@ import { DetailItemsList } from "./DetailItemList/DetailItemsList";
 import { ProvidersList } from "./SelectProvider/ProvidersList/ProvidersList";
 import { AddProviderModal } from "./AddProviderModal/AddProviderModal";
 import { SessionContext } from "../../../context/SessionContext";
+import { LoaderModal } from "../../../components/Loader/Loader";
 
 import { MdArrowBack } from "react-icons/md";
 import { AddProductModal } from "./AddProductModal/AddProductModal";
@@ -24,6 +25,7 @@ const Purchase = (props) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [addProductModalVisible, setAddProductModalVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getProviders();
@@ -36,19 +38,27 @@ const Purchase = (props) => {
   }, [providerConfirmed]);
 
   const getProviders = async () => {
+    setIsLoading(true);
+
     const res = await fetch("http://localhost:3000/provider", {
       method: "GET",
       headers: { "Content-Type": "aplication/json" },
     }).then((resp) => resp.json());
+    setIsLoading(false);
+
     setProvidersList(res);
   };
 
   const getProducts = async (id) => {
     if (id) {
+      setIsLoading(true);
+
       const res = await fetch("http://localhost:3000/provider/product/" + id, {
         method: "GET",
         headers: { "Content-Type": "aplication/json" },
       }).then((resp) => resp.json());
+      setIsLoading(false);
+
       setProductsList(res);
     }
   };
@@ -108,6 +118,8 @@ const Purchase = (props) => {
         (provider) => provider.ci_persona === newProvider.ci
       ) < 0
     ) {
+      setIsLoading(true);
+
       const res = await fetch("http://localhost:3000/provider", {
         method: "POST",
         headers: {
@@ -117,6 +129,8 @@ const Purchase = (props) => {
           ...newProvider,
         }),
       }).then((resp) => resp.json());
+      setIsLoading(false);
+
       if (res.status === 200) {
         setProvidersList([
           ...providersList,
@@ -134,6 +148,8 @@ const Purchase = (props) => {
   };
 
   const addProductToProvider = async (product) => {
+    setIsLoading(true);
+
     const res = await fetch("http://localhost:3000/provider/product", {
       method: "POST",
       headers: {
@@ -144,6 +160,8 @@ const Purchase = (props) => {
         id_product: product.id_producto,
       }),
     }).then((resp) => resp.json());
+    setIsLoading(false);
+
     if (res.status === 200) {
       setProductsList([...productsList, product]);
     }
@@ -196,6 +214,7 @@ const Purchase = (props) => {
       alert("Costo invalido de algun producto");
       return null;
     }
+    setIsLoading(true);
 
     const res = await fetch("http://localhost:3000/operation/buy", {
       method: "POST",
@@ -210,6 +229,7 @@ const Purchase = (props) => {
         productos: [...itemsSelected],
       }),
     }).then((resp) => resp.json());
+    setIsLoading(false);
 
     if (res.status === 200) {
       setItemsSelected([]);
@@ -454,6 +474,7 @@ const Purchase = (props) => {
         modalVisible={addProductModalVisible}
         onCloseModal={onCloseAddProductModal}
       />
+      <LoaderModal visible={isLoading} />
       <div className={classes.Container}>
         {goBack}
         <div className={classes.Header}>Compra</div>

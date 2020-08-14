@@ -7,11 +7,13 @@ import { MdClose, MdEdit } from "react-icons/md";
 import { Receipt } from "./Receipt/Receipt";
 import { ExitIcon } from "../../../../../components/Icons/ExitIcon/ExitIcon";
 import { EditIcon } from "../../../../../components/Icons/EditIcon/EditIcon";
+import { LoaderModal } from "../../../../../components/Loader/Loader";
 
 export const DetailModal = (props) => {
   let { modalVisible, onClose, onEdit } = props;
   const [client, setClient] = useState({});
   const [clientReceipts, setClientReceipts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   // console.log(client);
 
@@ -24,11 +26,12 @@ export const DetailModal = (props) => {
   }, [props.client]);
 
   const getReceipts = async (id_cliente) => {
+    setIsLoading(true);
     const res = await fetch("http://localhost:3000/operation/" + id_cliente, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     }).then((resp) => resp.json());
-
+    setIsLoading(false);
     if (res.status === 200) {
       console.log(res.data);
       setClientReceipts(res.data);
@@ -60,49 +63,6 @@ export const DetailModal = (props) => {
       </div>
     );
   }
-
-  // let clientReceipts = [
-  //   {
-  //     id_operacion: 1,
-  //     fecha_operacion: "24/10/2020",
-  //     total_operacion: 1200,
-  //     id_usuario: 1,
-  //     detalle: [
-  //       {
-  //         cantidad_producto_operacion: 10,
-  //         codigo: 29292929,
-  //         nombre: "Paquete de vendaje 60 unidades",
-  //         precio: 120,
-  //       },
-  //       {
-  //         cantidad_producto_operacion: 10,
-  //         codigo: 29292989,
-  //         nombre: "Inyectadora 30 unidades",
-  //         precio: 100,
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     id_operacion: 2,
-  //     fecha_operacion: "24/10/2020",
-  //     total_operacion: 1200,
-  //     id_usuario: 1,
-  //     detalle: [
-  //       {
-  //         cantidad_producto_operacion: 10,
-  //         codigo: 29292929,
-  //         nombre: "Paquete de vendaje 60 unidades",
-  //         precio: 120,
-  //       },
-  //       {
-  //         cantidad_producto_operacion: 10,
-  //         codigo: 29292989,
-  //         nombre: "Inyectadora 30 unidades",
-  //         precio: 100,
-  //       },
-  //     ],
-  //   },
-  // ];
 
   let clientReceiptsList = [];
   if (clientReceipts.length > 0) {
@@ -137,6 +97,7 @@ export const DetailModal = (props) => {
           </div>
         </div>
       </div>
+      <LoaderModal visible={isLoading} />
     </div>
   );
 };
